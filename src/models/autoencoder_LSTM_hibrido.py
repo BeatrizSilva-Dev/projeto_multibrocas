@@ -18,7 +18,7 @@ from tensorflow.keras import backend as K  # Corrigido para gerenciar memória l
 # ==========================================================
 # CONFIG
 # ==========================================================
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 
 MIC_A = "reg_mics"
 MIC_B = "ultrasonic_mics"

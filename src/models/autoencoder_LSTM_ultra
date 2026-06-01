@@ -18,7 +18,7 @@ from tensorflow.keras import backend as K  # Adicionado para gerenciamento ativo
 # ==========================================================
 # CONFIG
 # ==========================================================
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 
 # Foco apenas no ultrassom
 MIC_B = "ultrasonic_mics"

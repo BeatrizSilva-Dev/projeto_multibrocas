@@ -19,7 +19,7 @@ from tensorflow.keras import backend as K  # ADICIONADO: Gerenciamento ativo de 
 # ==========================================================
 # CONFIG
 # ==========================================================
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 
 MIC_A = "reg_mics"
 CANAL_ALVO = "4"
