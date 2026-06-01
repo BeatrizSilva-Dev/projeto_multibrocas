@@ -11,21 +11,16 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import f1_score, confusion_matrix, recall_score
 from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve
 
-# ==========================================================
 # CONFIGURAÇÕES
-# ==========================================================
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 
-# Foco exclusivo no sensor ultrassônico
 MIC_B = "ultrasonic_mics"
 CANAL_ALVO = "4"
 
 N_NORMAL = 5
 N_MFCC = 20
 
-# ==========================================================
 # FUNÇÕES AUXILIARES
-# ==========================================================
 def extract_hole_number(filename):
     match = re.search(r"hole(\d+)", filename)
     return int(match.group(1)) if match else None
@@ -41,9 +36,7 @@ def extract_features(y, sr):
         np.std(rms)
     ])
 
-# ==========================================================
-# 1. CARREGAMENTO DOS DADOS (APENAS ULTRASSÔNICO)
-# ==========================================================
+# 1. CARREGAMENTO DOS DADOS
 drills_data = {}
 
 print("Extraindo features do sensor Ultrassônico...")
@@ -92,12 +85,10 @@ for drill_folder in os.listdir(ROOT_DATASET):
 all_scores = []
 all_labels = []
 
-# ==========================================================
-# 2. VALIDAÇÃO LODO (SEM VAZAMENTO)
-# ==========================================================
+# 2. VALIDAÇÃO LODO 
 regional_results = []
 export_data = []
-lead_times = []  # ADICIONADO: Lista para armazenar o lead-time de cada broca
+lead_times = []  
 
 print(f"\nValidando em {len(drills_data)} brocas...")
 
@@ -131,7 +122,7 @@ for drill_name, X in drills_data.items():
         if np.all(flags[i - (janela - 1):i + 1] == 1):
             preds[i] = 1
 
-    # --- ADICIONADO: CÁLCULO DO LEAD-TIME POR BROCA ---
+    # CÁLCULO DO LEAD-TIME POR BROCA
     alert_indices = np.where(preds == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1  # Base 1 (Furo real)
@@ -158,12 +149,10 @@ for drill_name, X in drills_data.items():
             'adaptive_threshold': threshold,
             'prediction': preds[i],
             'label': labels[i],
-            'drill_lead_time': drill_lead_time  # ADICIONADO: Exportação da métrica para o CSV
+            'drill_lead_time': drill_lead_time 
         })
 
-# ==========================================================
 # 3. RESULTADOS
-# ==========================================================
 if regional_results:
     df_res = pd.DataFrame(regional_results)
 
@@ -172,7 +161,6 @@ if regional_results:
     acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
     auc = roc_auc_score(all_labels, all_scores)
 
-    # ADICIONADO: Configurações de estilo formais para conferência IEEEtran
     plt.rcParams.update({
         "font.family": "serif",
         "font.serif": ["Times New Roman"],
@@ -186,16 +174,12 @@ if regional_results:
         "ps.fonttype": 42
     })
 
-    print("\n=== RESULTADOS (APENAS ULTRASSÔNICO) ===")
     print(f"F1-score: {f1:.4f}")
     print(f"Recall:   {recall:.4f}")
     print(f"Accuracy: {acc:.4f}")
     print(f"AUC:      {auc:.4f}")
-    # ADICIONADO: Print da janela preventiva média no console
     print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-    print("========================================")
 
-    # MATRIZ (Cmap 'Oranges' para diferenciar do híbrido e audível)
     cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
     plt.figure(figsize=(3.5, 3))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Oranges', cbar=False,
@@ -230,7 +214,7 @@ if regional_results:
     # CSV
     df_export = pd.DataFrame(export_data)
     df_export.to_csv("resultados_autoencoder_ultrassonico.csv", index=False)
-    print("\n[OK] CSV e PDFs (vetoriais) exportados com sucesso.")
+    print("\n CSV e PDFs (vetoriais) exportados com sucesso.")
 
 else:
     print("Nenhum dado processado.")

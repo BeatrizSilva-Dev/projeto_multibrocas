@@ -1,0 +1,218 @@
+import os
+import re
+import numpy as np
+import librosa
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPRegressor
+from sklearn.metrics import f1_score, confusion_matrix, recall_score
+from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve
+
+# CONFIGURAÇÕES
+ROOT_DATASET = r"C:\...\data\segmented"
+
+MIC_A = "reg_mics"
+CANAL_ALVO = "4"
+
+N_NORMAL = 5
+N_MFCC = 20
+
+# FUNÇÕES AUXILIARES
+def extract_hole_number(filename):
+    match = re.search(r"hole(\d+)", filename)
+    return int(match.group(1)) if match else None
+
+def extract_features(y, sr):
+    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=N_MFCC)
+    rms = librosa.feature.rms(y=y)[0]
+
+    return np.hstack([
+        np.mean(mfcc, axis=1),
+        np.std(mfcc, axis=1),
+        np.mean(rms),
+        np.std(rms)
+    ])
+
+# 1. CARREGAMENTO DOS DADOS
+drills_data = {}
+
+print("Extraindo features do microfone comum (audível)...")
+
+for drill_folder in os.listdir(ROOT_DATASET):
+    path = os.path.join(ROOT_DATASET, drill_folder)
+    if not os.path.isdir(path):
+        continue
+
+    dict_a = {}
+
+    for root, _, files in os.walk(path):
+        # Filtra apenas a subpasta do microfone comum
+        if MIC_A not in root.lower():
+            continue
+
+        for f in files:
+            if not f.lower().endswith(".wav"):
+                continue
+
+            if f"ch{CANAL_ALVO}" in f.lower() or f"tr{CANAL_ALVO}" in f.lower():
+                hole = extract_hole_number(f)
+                if hole is None:
+                    continue
+                dict_a[hole] = os.path.join(root, f)
+
+    if len(dict_a) <= N_NORMAL + 2:
+        continue
+
+    # Ordena os furos e remove o último (falha total)
+    holes_sorted = sorted(dict_a.keys())[:-1]
+
+    X = []
+    for hole in holes_sorted:
+        try:
+            y, sr = librosa.load(dict_a[hole], sr=None)
+            feat = extract_features(y, sr)
+            X.append(feat) # Apenas 46 características aqui
+        except:
+            continue
+
+    if len(X) > N_NORMAL:
+        drills_data[drill_folder] = np.array(X)
+
+all_scores = []
+all_labels = []
+
+# 2. VALIDAÇÃO LODO 
+regional_results = []
+export_data = []
+lead_times = []  # ADICIONADO: Lista para armazenar o lead-time de cada broca
+
+print(f"\nValidando em {len(drills_data)} brocas...")
+
+for drill_name, X in drills_data.items():
+    n_holes = len(X)
+
+    scaler = StandardScaler()
+    scaler.fit(X[:N_NORMAL])
+    X_scaled = scaler.transform(X)
+
+    # AUTOENCODER 
+    ae = MLPRegressor(
+        hidden_layer_sizes=(32, 16, 32),
+        max_iter=1000,
+        random_state=42
+    )
+
+    ae.fit(X_scaled[:N_NORMAL], X_scaled[:N_NORMAL])
+
+    recon = ae.predict(X_scaled)
+    errors = np.mean((X_scaled - recon) ** 2, axis=1)
+    all_scores.extend(errors)
+
+    threshold = np.percentile(errors[:N_NORMAL], 99.5)
+    flags = (errors > threshold).astype(int)
+
+    # PERSISTÊNCIA
+    preds = np.zeros(n_holes)
+    janela = 10
+    for i in range(janela - 1, n_holes):
+        if np.all(flags[i - (janela - 1):i + 1] == 1):
+            preds[i] = 1
+
+    alert_indices = np.where(preds == 1)[0]
+    if len(alert_indices) > 0:
+        first_alert_hole = alert_indices[0] + 1  # Base 1 (Furo real)
+        drill_lead_time = n_holes - first_alert_hole
+    else:
+        drill_lead_time = 0
+    lead_times.append(drill_lead_time)
+
+    # AVALIAÇÃO REGIONAL
+    idx_50 = int(n_holes * 0.5)
+    idx_80 = int(n_holes * 0.8)
+
+    regional_results.append({'y_true': 0, 'y_pred': int(np.any(preds[:idx_50]))})
+    regional_results.append({'y_true': 1, 'y_pred': int(np.any(preds[idx_80:]))})
+
+    labels = [1 if (i / n_holes) >= 0.8 else 0 for i in range(n_holes)]
+    all_labels.extend(labels)
+
+    for i in range(n_holes):
+        export_data.append({
+            'drill': drill_name,
+            'hole': i + 1,
+            'mse': errors[i],
+            'adaptive_threshold': threshold,
+            'prediction': preds[i],
+            'label': labels[i],
+            'drill_lead_time': drill_lead_time  
+        })
+
+# 3. RESULTADOS
+if regional_results:
+    df_res = pd.DataFrame(regional_results)
+
+    f1 = f1_score(df_res['y_true'], df_res['y_pred'])
+    recall = recall_score(df_res['y_true'], df_res['y_pred'])
+    acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
+    auc = roc_auc_score(all_labels, all_scores)
+
+    plt.rcParams.update({
+        "font.family": "serif",
+        "font.serif": ["Times New Roman"],
+        "font.size": 10,
+        "axes.labelsize": 10,
+        "axes.titlesize": 10,
+        "xtick.labelsize": 9,
+        "ytick.labelsize": 9,
+        "legend.fontsize": 8,
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42
+    })
+
+    print(f"F1-score: {f1:.4f}")
+    print(f"Recall:   {recall:.4f}")
+    print(f"Accuracy: {acc:.4f}")
+    print(f"AUC:      {auc:.4f}")
+    print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
+
+    # MATRIZ
+    cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
+    plt.figure(figsize=(3.5, 3))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False,
+                annot_kws={"size": 12, "weight": "bold"},
+                xticklabels=['No Alert', 'Alert'],
+                yticklabels=['Normal', 'Anomaly'])
+
+    plt.xlabel("Predicted Label", fontweight='bold')
+    plt.ylabel("Ground Truth Label", fontweight='bold')
+    plt.tight_layout()
+    plt.savefig("matriz_autoencoder_comum.pdf", dpi=600, bbox_inches='tight')
+    plt.show()
+
+    # CURVA ROC
+    fpr, tpr, _ = roc_curve(all_labels, all_scores)
+
+    df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+    df_roc.to_csv("roc_mlp_comum_data.csv", index=False)
+
+    plt.figure(figsize=(3.5, 3))
+    plt.plot(fpr, tpr, linewidth=1.5, color='blue', label=f'AUC = {auc:.2f}')
+    plt.plot([0, 1], [0, 1], linestyle='--', color='navy', linewidth=1)
+    plt.xlabel("False Positive Rate", fontweight='bold')
+    plt.ylabel("True Positive Rate", fontweight='bold')
+    plt.legend(loc="lower right")
+    plt.grid(True, linestyle=':', alpha=0.6)
+    plt.tight_layout()
+    plt.savefig("roc_autoencoder_audivel.pdf", dpi=600, bbox_inches='tight')
+    plt.show()
+
+    # CSV
+    df_export = pd.DataFrame(export_data)
+    df_export.to_csv("resultados_autoencoder_comum.csv", index=False)
+    print("\n[OK] CSV e PDFs (vetoriais) exportados com sucesso.")
+
+else:
+    print("Nenhum dado processado.")
