@@ -3,11 +3,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# --- CONFIGURAÇÃO MANUAL SIMPLIFICADA PARA PLOTAR A TENDÊNCIA DA BROCA 05 ---
-# Nota: Como você já rodou o loop LODO, basta extrair os arrays de erro do MLP ou LSTM
-# gerados para a Broca 05 na execução do script anterior.
-
-# Exemplo de estrutura para plotagem acadêmica (Times New Roman)
 plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman"],
@@ -17,8 +12,7 @@ plt.rcParams.update({
     "ps.fonttype": 42
 })
 
-# Simulando o comportamento dos erros e furos da Broca 05 para visualização
-# (Substitua pelos arrays reais 'mlp_test_errors' e 'furos_teste' obtidos no loop da broca_05)
+
 furos_exemplo = np.arange(1, 107)
 duracao_pct = (furos_exemplo / 106) * 100
 erro_mse_exemplo = np.exp(duracao_pct / 25) * 0.005 + np.random.normal(0, 0.02, 106)
