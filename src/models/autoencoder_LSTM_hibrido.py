@@ -13,11 +13,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, recall_score, accuracy_score, roc_auc_score, confusion_matrix, roc_curve
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense
-from tensorflow.keras import backend as K  # Corrigido para gerenciar memória latente
+from tensorflow.keras import backend as K  
 
-# ==========================================================
+
 # CONFIG
-# ==========================================================
 ROOT_DATASET = r"C:\...\data\segmented"
 
 MIC_A = "reg_mics"
@@ -26,17 +25,14 @@ CANAL_ALVO = "4"
 
 N_NORMAL = 5
 N_MFCC = 20
-SEQ_LEN = 10   # janela temporal
+SEQ_LEN = 10   
 
-# Fixação global de sementes para o ecossistema do TensorFlow
 os.environ['TF_DETERMINISTIC_OPS'] = '1'
 random.seed(42)
 np.random.seed(42)
 tf.random.set_seed(42)
 
-# ==========================================================
 # FUNÇÕES
-# ==========================================================
 def extract_hole_number(filename):
     match = re.search(r"hole(\d+)", filename)
     return int(match.group(1)) if match else None
@@ -58,9 +54,7 @@ def create_sequences(X, seq_len):
         seqs.append(X[i:i+seq_len])
     return np.array(seqs)
 
-# ==========================================================
 # 1. CARREGAMENTO
-# ==========================================================
 drills_data = {}
 
 print("Extraindo features híbridas...")
@@ -115,9 +109,7 @@ export_data = []
 all_scores = []
 all_labels = []
 
-# ==========================================================
 # 2. VALIDAÇÃO LODO
-# ==========================================================
 regional_results = []
 lead_times = []
 
@@ -131,9 +123,7 @@ for drill_name, X in drills_data.items():
     scaler.fit(X[:N_NORMAL])
     X_scaled = scaler.transform(X)
 
-    # ==========================================
     # SEQUÊNCIAS
-    # ==========================================
     X_seq = create_sequences(X_scaled, SEQ_LEN)
 
     if len(X_seq) < 5:
@@ -142,9 +132,8 @@ for drill_name, X in drills_data.items():
     # treino só com normal
     X_train_seq = X_seq[:max(1, N_NORMAL - SEQ_LEN + 1)]
 
-    # ==========================================
+
     # LSTM AUTOENCODER
-    # ==========================================
     timesteps = SEQ_LEN
     n_features = X.shape[1]
 
@@ -162,9 +151,7 @@ for drill_name, X in drills_data.items():
               batch_size=8,
               verbose=0)
 
-    # ==========================================
     # ERRO DE RECONSTRUÇÃO
-    # ==========================================
     recon = model.predict(X_seq, verbose=0)
     errors_seq = np.mean((X_seq - recon) ** 2, axis=(1,2))
 
@@ -188,7 +175,7 @@ for drill_name, X in drills_data.items():
         if np.all(flags[i-(janela-1):i+1] == 1):
             preds[i] = 1
 
-    # --- CÁLCULO CIRÚRGICO DO LEAD-TIME POR BROCA ---
+    # CÁLCULO DO LEAD-TIME POR BROCA 
     alert_indices = np.where(preds == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1
@@ -228,12 +215,9 @@ for drill_name, X in drills_data.items():
             'drill_lead_time': drill_lead_time
         })
 
-    # CORREÇÃO: Destrói o grafo do modelo anterior para liberar espaço na memória RAM/VRAM
     K.clear_session()
 
-# ==========================================================
 # 3. MÉTRICAS
-# ==========================================================
 if regional_results:
 
     df_res = pd.DataFrame(regional_results)
@@ -243,13 +227,11 @@ if regional_results:
     acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
     auc = roc_auc_score(all_labels, all_scores)
 
-    print("\n=== LSTM AUTOENCODER ===")
     print(f"F1-score: {f1:.4f}")
     print(f"Recall:   {recall:.4f}")
     print(f"Accuracy: {acc:.4f}")
     print(f"AUC:      {auc:.4f}")
     print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-    print("========================")
 
     plt.rcParams.update({
         "font.family": "serif",

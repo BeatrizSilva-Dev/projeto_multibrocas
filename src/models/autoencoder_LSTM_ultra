@@ -15,28 +15,21 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense
 from tensorflow.keras import backend as K  # Adicionado para gerenciamento ativo de memória
 
-# ==========================================================
 # CONFIG
-# ==========================================================
 ROOT_DATASET = r"C:\...\data\segmented"
 
-# Foco apenas no ultrassom
 MIC_B = "ultrasonic_mics"
 CANAL_ALVO = "4"
 
 N_NORMAL = 5
 N_MFCC = 20
-SEQ_LEN = 10   # janela temporal
-
-# Fixação global de sementes para o ecossistema do TensorFlow
+SEQ_LEN = 10   
 os.environ['TF_DETERMINISTIC_OPS'] = '1'
 random.seed(42)
 np.random.seed(42)
 tf.random.set_seed(42)
 
-# ==========================================================
 # FUNÇÕES
-# ==========================================================
 def extract_hole_number(filename):
     match = re.search(r"hole(\d+)", filename)
     return int(match.group(1)) if match else None
@@ -58,9 +51,7 @@ def create_sequences(X, seq_len):
         seqs.append(X[i:i+seq_len])
     return np.array(seqs)
 
-# ==========================================================
-# 1. CARREGAMENTO (APENAS ULTRASSÔNICO)
-# ==========================================================
+# 1. CARREGAMENTO 
 drills_data = {}
 
 print("Extraindo features do sensor ultrassônico...")
@@ -73,7 +64,6 @@ for drill_folder in os.listdir(ROOT_DATASET):
     dict_b = {}
 
     for root, _, files in os.walk(path):
-        # Filtra para carregar apenas arquivos da pasta de ultrassom
         if MIC_B not in root.lower():
             continue
 
@@ -114,9 +104,7 @@ export_data = []
 all_scores = []
 all_labels = []
 
-# ==========================================================
 # 2. VALIDAÇÃO LODO
-# ==========================================================
 regional_results = []
 lead_times = []  # Lista para armazenar o lead-time de cada broca
 
@@ -178,7 +166,7 @@ for drill_name, X in drills_data.items():
         if np.all(flags[i-(janela-1):i+1] == 1):
             preds[i] = 1
 
-    # --- CÁLCULO CIRÚRGICO DO LEAD-TIME POR BROCA ---
+    # CÁLCULO DO LEAD-TIME POR BROCA 
     alert_indices = np.where(preds == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1  # Base 1 (Furo físico real)
@@ -215,12 +203,9 @@ for drill_name, X in drills_data.items():
             'drill_lead_time': drill_lead_time  # Exportação da métrica para análise comparativa
         })
 
-    # CORREÇÃO: Limpeza de memória do grafo computacional anterior
     K.clear_session()
 
-# ==========================================================
 # 3. MÉTRICAS
-# ==========================================================
 if regional_results:
     df_res = pd.DataFrame(regional_results)
 
@@ -229,13 +214,11 @@ if regional_results:
     acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
     auc_global = roc_auc_score(all_labels, all_scores)
 
-    print("\n=== LSTM AUTOENCODER (ULTRASSÔNICO) ===")
     print(f"F1-score: {f1:.4f}")
     print(f"Recall:   {recall:.4f}")
     print(f"Accuracy: {acc:.4f}")
     print(f"AUC:      {auc_global:.4f}")
     print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-    print("========================================")
 
     # Matriz
     cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
