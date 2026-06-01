@@ -10,12 +10,9 @@ from xgboost import XGBClassifier
 from sklearn.metrics import f1_score, confusion_matrix, recall_score
 from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve
 
-# ==========================================================
 # CONFIGURAÇÕES
-# ==========================================================
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 
-# Foco exclusivo no sensor ultrassônico
 MIC_B = "ultrasonic_mics"
 CANAL_ALVO = "4"
 N_NORMAL = 5
@@ -30,9 +27,7 @@ def extract_features(y, sr):
     rms = librosa.feature.rms(y=y)[0]
     return np.hstack([np.mean(mfcc, axis=1), np.std(mfcc, axis=1), np.mean(rms), np.std(rms)])
 
-# ==========================================================
-# 1. CARREGAMENTO APENAS DO ULTRASSOM
-# ==========================================================
+# 1. CARREGAMENTO 
 drills_data = {}
 
 print("Iniciando extração do sensor Ultrassônico (ultrasonic_mics)...")
@@ -75,11 +70,9 @@ all_probs = []
 all_labels = []
 regional_results = []
 export_data = []
-lead_times = []  # ADICIONADO: Lista para armazenar o lead-time de cada broca
+lead_times = []  
 
-# ==========================================================
-# 2. VALIDAÇÃO LODO (LEAVE-ONE-DRILL-OUT)
-# ==========================================================
+# 2. VALIDAÇÃO LODO 
 print(f"Validando modelo Ultrassônico in {len(drills_data)} brocas...")
 
 for drill_test in drills_data:
@@ -118,7 +111,7 @@ for drill_test in drills_data:
         if np.all(furos_acima[i-(janela-1) : i+1] == 1):
             preds_persistentes[i] = 1
 
-    # --- ADICIONADO: CÁLCULO CIRÚRGICO DO LEAD-TIME POR BROCA ---
+    #CÁLCULO DO LEAD-TIME POR BROCA 
     alert_indices = np.where(preds_persistentes == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1  # Base 1
@@ -140,12 +133,10 @@ for drill_test in drills_data:
             'label_real': int(y_test[i]),
             'threshold_xgb': thresh_final,
             'prediction': int(preds_persistentes[i]),
-            'drill_lead_time': drill_lead_time  # ADICIONADO
+            'drill_lead_time': drill_lead_time  
         })
 
-# ==========================================================
 # 3. MÉTRICAS E PLOTAGEM
-# ==========================================================
 if regional_results:
     df_res = pd.DataFrame(regional_results)
     cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
@@ -155,18 +146,15 @@ if regional_results:
     accuracy = accuracy_score(df_res['y_true'], df_res['y_pred'])
     auc_real = roc_auc_score(all_labels, all_probs)
 
-    # ADICIONADO: Exportação dedicada para a curva ROC combinada
     fpr, tpr, _ = roc_curve(all_labels, all_probs)
     df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
     df_roc.to_csv("roc_xgboost_ultrassonico_data.csv", index=False)
 
-    print(f"\n=== MÉTRICAS XGBOOST ULTRASSÔNICO ===")
     print(f"F1-score: {f1:.4f}")
     print(f"Recall:   {recall:.4f}")
     print(f"Accuracy: {accuracy:.4f}")
     print(f"AUC:      {auc_real:.4f}")
     print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-    print("========================================")
 
     plt.rcParams.update({"font.family": "serif", "font.serif": ["Times New Roman"], "font.size": 10})
 
@@ -199,4 +187,4 @@ if regional_results:
     nome_csv = "resultados_xgboost_ultrassonico.csv"
     csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), nome_csv)
     df_export.to_csv(csv_path, index=False)
-    print(f"\n[SUCESSO] Dados detalhados exportados para: {csv_path}")
+    print(f"\n Dados detalhados exportados para: {csv_path}")
