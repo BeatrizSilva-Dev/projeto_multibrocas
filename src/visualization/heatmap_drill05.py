@@ -6,21 +6,17 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
-MIC_A = "reg_mics"  # Foco no microfone audível para o mapeamento espectral
+ROOT_DATASET = r"C:\...\data\segmented"
+MIC_A = "reg_mics" 
 CANAL_ALVO = "4"
 N_MFCC = 20
 
-# Definimos o número da broca alvo de forma numérica para fazer a busca flexível
 NUMERO_BROCA_ALVO = 5
 
 def extract_hole_number(filename):
     match = re.search(r"hole(\d+)", filename)
     return int(match.group(1)) if match else None
 
-# ==============================================================================
-# 1. LOCALIZAR A PASTA DA BROCA DE FORMA FLEXÍVEL (IGUAL AO SEU SCRIPT DO XGBOOST)
-# ==============================================================================
 pasta_localizada = None
 nome_pasta_real = ""
 
@@ -35,7 +31,6 @@ for pasta in os.listdir(ROOT_DATASET):
 if pasta_localizada is None:
     raise FileNotFoundError(f"Não foi possível encontrar a pasta para a Broca {NUMERO_BROCA_ALVO:02d} em {ROOT_DATASET}")
 
-# 2. COLETAR OS ARQUIVOS WAV DE FORMA ROBUSTA
 dict_arquivos = {}
 
 for root, _, fs in os.walk(pasta_localizada):
@@ -48,13 +43,10 @@ for root, _, fs in os.walk(pasta_localizada):
 
 furos_ordenados = sorted(dict_arquivos.keys())
 
-# Validação de segurança para garantir que os arquivos foram carregados
 if not furos_ordenados:
     raise ValueError(f"Nenhum arquivo WAV correspondente ao canal {CANAL_ALVO} foi encontrado na pasta {pasta_localizada}. Verifique os subdiretórios.")
 
-# ==============================================================================
 # 3. EXTRAIR A MATRIZ DE ENERGIA (MFCCs) FURO A FURO
-# ==============================================================================
 matriz_energia = []
 
 print(f"Processando análise espectral para a {nome_pasta_real} ({len(furos_ordenados)} furos localizados)...")
@@ -80,9 +72,6 @@ matriz_energia = np.array(matriz_energia).T
 if matriz_energia.size == 0 or matriz_energia.ndim < 2:
     raise ValueError("A matriz de energia gerada está vazia ou corrompida. Não há dados para plotar.")
 
-# ==============================================================================
-# 4. CONFIGURAR A ESTÉTICA ACADÊMICA IGUAL AO GRÁFICO DO SÉRGIO
-# ==============================================================================
 plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman"],
@@ -104,7 +93,7 @@ sns.heatmap(
     cmap="coolwarm",
     #"RdBu_r",
     #"viridis",
-    vmin=-40, vmax=20, # CORREÇÃO DE CONTRASTE: Foca na faixa útil do seu sensor
+    vmin=-40, vmax=20, 
     xticklabels=5,
     yticklabels=yticklabels,
     cbar_kws={'label': 'Energia Relativa Espectral (dB)'},
@@ -115,7 +104,6 @@ sns.heatmap(
 furo_critico_idx = int(matriz_energia_plot.shape[1] * 0.8)
 ax.axvline(x=furo_critico_idx, color='cyan', linestyle='--', linewidth=1.2, alpha=0.8)
 
-# Texto de marcação igual ao "possível pré-falha" da imagem dele
 ax.text(furo_critico_idx + 1, N_MFCC - 2, 'Fase Crítica (Pré-Falha)', color='cyan', fontsize=9, weight='bold')
 
 ax.set_title(f"Mapeamento de Energia por Faixa de Frequência e Vida da Ferramenta ({nome_pasta_real})", fontsize=11, pad=10)

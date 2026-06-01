@@ -4,7 +4,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# 1. LOCALIZAR E CARREGAR O ARQUIVO EXPORTADO PELO SEU SCRIPT
 nome_csv = "resultados_xgboost_hibrido.csv"
 try:
     csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), nome_csv)
@@ -16,7 +15,6 @@ if not os.path.exists(csv_path):
 
 df = pd.read_csv(csv_path)
 
-# 2. PIVOTAR OS DADOS PARA O FORMATO DA MATRIZ (Linhas = Brocas, Colunas = Furos)
 df['drill_short'] = df['drill'].apply(lambda x: re.search(r"drill_4mm_(\d+)", x.lower()).group(0) if re.search(r"drill_4mm_(\d+)", x.lower()) else x)
 
 heatmap_truth = df.pivot(index="drill_short", columns="hole", values="label")
@@ -28,9 +26,7 @@ heatmap_truth = heatmap_truth.sort_index(ascending=True)
 heatmap_score = heatmap_score.sort_index(ascending=True)
 heatmap_alert = heatmap_alert.sort_index(ascending=True)
 
-# ==============================================================================
-# 3. CONFIGURAR E GERAR OS TRÊS HEATMAPS LADO A LADO (PADRÃO ACADÊMICO)
-# ==============================================================================
+# 3. CONFIGURAR E GERAR OS TRÊS HEATMAPS LADO A LADO 
 plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman"],
@@ -50,7 +46,7 @@ kwargs_base = {
     "rasterized": True
 }
 
-# --- Heatmap 1: Ground Truth (Verdade-Terreno de 20%) ---
+# Heatmap 1: Ground Truth 
 sns.heatmap(
     heatmap_truth,
     ax=axes[0],
@@ -62,7 +58,7 @@ axes[0].set_title("1. Ground Truth (Alvo Ideal)", fontsize=11, weight='bold', pa
 axes[0].set_ylabel("Identificação da Broca (Drill)", fontsize=10)
 axes[0].set_xlabel("Sequência de Furos (Hole)", fontsize=10)
 
-# --- Heatmap 2: XGBoost Score (Probabilidade Contínua do Modelo) ---
+# Heatmap 2: XGBoost Score (Probabilidade Contínua do Modelo)
 sns.heatmap(
     heatmap_score,
     ax=axes[1],
@@ -75,7 +71,7 @@ axes[1].set_title("2. XGBoost Score (Evolução Contínua)", fontsize=11, weight
 axes[1].set_xlabel("Sequência de Furos (Hole)", fontsize=10)
 axes[1].set_ylabel("")
 
-# --- Heatmap 3: Alertas Finais (Sistema com Persistência Janela=2) ---
+# Heatmap 3: Alertas Finais 
 sns.heatmap(
     heatmap_alert,
     ax=axes[2],
