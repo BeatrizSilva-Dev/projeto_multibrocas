@@ -1,6 +1,7 @@
 import pandas as pd
 
 dados_escuta = [
+    #BROCA 04
     {"drill": "drill_4mm_04", "hole": 1, "mic_ultrasonic": "normal", "mic_reg": "normal"},
     {"drill": "drill_4mm_04", "hole": 2, "mic_ultrasonic": "normal", "mic_reg": "normal"},
     {"drill": "drill_4mm_04", "hole": 3, "mic_ultrasonic": "guizo fraco no final", "mic_reg": "começo do guizo"},
@@ -55,6 +56,101 @@ dados_escuta = [
     {"drill": "drill_4mm_04", "hole": 52, "mic_ultrasonic": "guizo + travou", "mic_reg": "guizo + travou"},
 ]
 
+# BROCA 05 
+for h in range(1, 108):
+    u, r = "chiado", "guiso"
+    if h in [1, 2]: u, r = "furo normal", "furo normal"
+    elif h == 3: u, r = "começo do guiso no final do áudio", "furo normal"
+    elif h in [4, 5, 6, 7, 9, 10, 11, 12, 19]: u, r = "guiso fraco no final", "guiso fraco" if h != 4 else "começo do guiso"
+    elif h in [8] or (13 <= h <= 30): u, r = "guiso mais forte", "guiso fraco" if h in [13,14,15,16,17,18,20,21] else "guiso"
+    elif 31 <= h <= 41: u, r = "guiso no final", "guiso"
+    elif (42 <= h <= 55) or h in [57, 58, 61]: u, r = "parece chiado de rádio", "guiso"
+    elif h in [56, 59, 60] or (62 <= h <= 71): u, r = "chiado mais forte", "guiso" if h == 56 or h in [59, 60] else "guiso forte"
+    elif (72 <= h <= 102) and h not in [93, 96]: u, r = "chiado insuportável de ouvir", "guiso forte" if h in [72,73,74,75,76,77,78,79,80,90,92] else "parece rádio"
+    elif h in [103, 104, 105, 106]: u, r = "chuva", "guiso" if h == 104 else "parece rádio"
+    elif h in [93, 96, 107]: u, r = "travou", "travou"
+    dados_escuta.append({"drill": "drill_4mm_05", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 06 
+for h in range(1, 27):
+    u, r = "parece radio(insuportável a partir do 17)", "parece radio"
+    if h in [1, 2]: u, r = "furo normal", "furo normal"
+    elif 3 <= h <= 7: u, r = "começo do guiso", "começo do guiso" if h == 3 else ("guiso fraco" if h in [4, 5] else "guiso")
+    elif h in [22, 25, 26]: u, r = "guiso + travou", "travou"
+    dados_escuta.append({"drill": "drill_4mm_06", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 07 
+for h in range(1, 34):
+    u, r = "parece chuvisco/radio dessintonizada", "parece chuvisco/radio dessintonizada"
+    if h in [1, 2]: u, r = "som normal", "furo normal"
+    elif h == 3: u, r = "começo do guiso fraco", "começo do guiso"
+    elif h in [5, 6]: u, r = "guiso fraco no final", "guiso"
+    elif 7 <= h <= 10: u, r = "guiso mais forte", "guiso"
+    elif 11 <= h <= 18: u, r = "guiso estranho e forte", "guiso estranho e forte"
+    elif 19 <= h <= 20: u, r = "parece chuvisco/radio dessintonizada", "guiso estranho e forte"
+    elif h == 31: u, r = "parece chuvisco/radio dessintonizada + travou", "travou"
+    elif h in [4, 32, 33]: u, r = "guiso + travou", "guiso + travou" if h == 4 else "travou"
+    dados_escuta.append({"drill": "drill_4mm_07", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 08 
+for h in range(1, 23):
+    u, r = "parece chuva fraca", "guiso forte"
+    if h in [1, 2, 3]: u, r = "furo normal", "furo normal"
+    elif h in [4, 5]: u, r = "começo guiso", "furo normal" if h == 4 else "começo do guiso"
+    elif h in [6, 8, 17]: u, r = "guiso fraco no final", "guiso fraco"
+    elif h == 14 or h == 15: u, r = "parece chuva fraca", "guiso fraco"
+    elif h == 9: u, r = "guiso fraco no final", "guiso forte"
+    elif h in [10, 11]: u, r = "guiso forte no final", "guiso forte"
+    elif h in [12, 13, 18, 21]: u, r = "parece chuva fraca", "guiso forte"
+    elif h == 20: u, r = "BARULHO ESTRANHO E ALTO", "barulho insuportável e estranho"
+    elif h in [7, 16, 19, 22]: u, r = "guiso fraco + travou" if h==7 else ("guiso fraco + TRAVOU" if h in [16,22] else "parece chuva fraca + TRAVOU"), "travou"
+    dados_escuta.append({"drill": "drill_4mm_08", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 09 
+for h in range(1, 53):
+    u, r = "parece chuva/radio", "parece rádio"
+    if h in [1, 2]: u, r = "furo normal", "furo normal"
+    elif h in [3, 4]: u, r = "começo do guiso", "começo do guiso" if h==3 else "guiso"
+    elif 5 <= h <= 8: u, r = "guiso forte no final", "guiso"
+    elif h in [44, 50, 52]: u, r = "parece chuva + travou", "travou"
+    dados_escuta.append({"drill": "drill_4mm_09", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 10 
+for h in range(1, 61):
+    u, r = "chiado", "guizo"
+    if h == 1: u, r = "furo normal", "furo normal"
+    elif h in [3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]: u, r = "guizo", "guizo"
+    elif h in [2, 9, 14, 50, 58, 60]: u, r = "travou", "travou"
+    elif h in [51, 59]: u, r = "não travou, não ouvir travamento mas pelo jam é esse furo", "não travou, não ouvir travamento mas pelo jam é esse furo"
+    dados_escuta.append({"drill": "drill_4mm_10", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 11 
+for h in range(1, 21):
+    u, r = "parece chiado de rádio", "parece chiado de rádio"
+    if h in [1, 2]: u, r = "furo normal", "furo normal"
+    elif h == 3: u, r = "começo do guiso", "começo do guiso"
+    elif 4 <= h <= 10: u, r = "guiso", "guiso"
+    elif h in [16, 19, 20]: u, r = "chiado + travou", "travou"
+    dados_escuta.append({"drill": "drill_4mm_11", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 12 
+for h in range(1, 19):
+    u, r = "guiso", "guiso"
+    if h in [1, 2, 3, 4, 5]: u, r = "furo normal", "furo normal"
+    elif h == 6: u, r = "começo do guiso", "começo do guiso"
+    elif h == 7: u, r = "guiso", "guiso fraco"
+    elif 13 <= h <= 15: u, r = "guiso estranho", "guiso" if h==13 else "guiso estranho"
+    elif h in [16, 17, 18]: u, r = "guiso estranho + travou" if h==16 else "guiso + travou", "travou"
+    dados_escuta.append({"drill": "drill_4mm_12", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
+
+# BROCA 13 
+for h in range(1, 20):
+    u, r = "guiso", "guiso"
+    if h == 1: u, r = "furo normal", "furo normal"
+    elif h == 2: u, r = "começo do guiso", "começo do guiso"
+    elif h in [3, 4, 5]: u, r = "guiso fraco", "guiso"
+    elif h in [15, 17, 19]: u, r = "guiso + travou", "travou"
+    dados_escuta.append({"drill": "drill_4mm_13", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
 
 # BROCA 14 
 for h in range(1, 23):
@@ -65,7 +161,7 @@ for h in range(1, 23):
     elif h in [13, 21, 22]: u, r = "guiso + travou", "travou"
     dados_escuta.append({"drill": "drill_4mm_14", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
 
-# BROCA 15 
+# BROCA 15
 for h in range(1, 46):
     u, r = "parece radio", "parece radio"
     if h == 1: u, r = "furo normal", "furo normal"
@@ -77,15 +173,15 @@ for h in range(1, 46):
     dados_escuta.append({"drill": "drill_4mm_15", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
 
 # BROCA 16 
-for h in range(1, 42): 
+for h in range(1, 42):
     u, r = "chiado", "guizo"
     if h in [1, 2]: u, r = "furo normal", "furo normal"
     elif h in [3, 4, 5, 6, 8, 10, 11, 12, 13]: u, r = "guizo", "guizo"
     elif h in [7, 14, 17, 29, 33, 38, 39]: u, r = "travou", "travou"
-    elif h in [9, 16, 19, 31, 35, 40, 41]: u, r = "guizo","guizo"
+    elif h in [9, 16, 19, 31, 35, 40, 41]: u, r = "guizo", "guizo"
     dados_escuta.append({"drill": "drill_4mm_16", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
 
-# BROCA 17 
+# BROCA 17
 for h in range(1, 21):
     u, r = "guizo", "guizo"
     if h in [1, 9, 13, 14, 16, 20]: u, r = "travou", "travou"
@@ -144,7 +240,7 @@ for h in range(1, 26):
     elif h in [22, 23, 24, 25]: u, r = "travou", "travou"
     dados_escuta.append({"drill": "drill_4mm_22", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
 
-# BROCA 23 
+# BROCA 23
 for h in range(1, 42):
     u, r = "parece radio", "parece radio"
     if h in [1, 2]: u, r = "normal", "furo normal"
@@ -153,7 +249,6 @@ for h in range(1, 42):
     elif h in [26, 28, 33, 34, 39, 41]: u, r = "travou", "travou"
     dados_escuta.append({"drill": "drill_4mm_23", "hole": h, "mic_ultrasonic": u, "mic_reg": r})
 
-# COMPILAÇÃO E CRIAÇÃO DAS COLUNAS INTELIGENTES 
 df_completo = pd.DataFrame(dados_escuta)
 
 total_furos_dict = df_completo.groupby('drill')['hole'].max().to_dict()
@@ -183,7 +278,6 @@ def classificar_severidade(row):
 
 df_completo['human_severity_score'] = df_completo.apply(classificar_severidade, axis=1)
 
-# Salvar planilha mestre unificada
 df_completo = df_completo[['drill', 'hole', 'duration_pct', 'mic_ultrasonic', 'mic_reg', 'human_severity_score']]
 df_completo.to_csv("escuta_manual_projeto_completo.csv", index=False)
 print(f"[SUCESSO TOTAL] Mapeamento concluído. {len(df_completo)} linhas salvas com indexação temporal %!")
