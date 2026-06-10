@@ -9,8 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
 from xgboost import XGBClassifier
 
-
-# CONFIGURAÇÕES 
+# CONFIGURAÇÕES
 os.environ["PYTHONHASHSEED"] = "42"
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -39,7 +38,7 @@ from tensorflow.keras import backend as K
 
 ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
 FILE_ESCUTA = "escuta_manual_projeto_completo.csv"
-MIC_A = "reg_mics" 
+MIC_ULTRASONIC = "ultrasonic_mics"  # ➔ FOCO EXCLUSIVO: Microfone Ultrassônico
 CANAL_ALVO = "4"
 N_NORMAL = 5
 N_MFCC = 20
@@ -75,25 +74,26 @@ drills_data = {}
 for drill_folder in os.listdir(ROOT_DATASET):
     path = os.path.join(ROOT_DATASET, drill_folder)
     if not os.path.isdir(path): continue
-    dict_a = {}
+    dict_u = {}
     for root, _, fs in os.walk(path):
         for f in fs:
             if not f.lower().endswith(".wav"): continue
             if f"ch{CANAL_ALVO}" in f.lower() or f"tr{CANAL_ALVO}" in f.lower():
                 hole = extract_hole_number(f)
                 if hole is None: continue
-                if MIC_A in root.lower(): dict_a[hole] = os.path.join(root, f)
+                # Filtra apenas o diretório do sensor ultrassônico
+                if MIC_ULTRASONIC in root.lower(): dict_u[hole] = os.path.join(root, f)
 
-    common_holes = sorted(list(dict_a.keys()))
+    common_holes = sorted(list(dict_u.keys()))
     if len(common_holes) <= N_NORMAL + 2: continue
     common_holes = common_holes[:-1]
     X_drill, y_drill, hole_indices = [], [], []
     for i, hole in enumerate(common_holes):
         try:
-            y_a, sr_a = librosa.load(dict_a[hole], sr=None)
-            feat_a = extract_features(y_a, sr_a)
-            #Vetor de 44 dimensões
-            X_drill.append(feat_a)
+            y_u, sr_u = librosa.load(dict_u[hole], sr=None)
+            feat_u = extract_features(y_u, sr_u)
+            # Vetor puramente ultrassônico (44 dimensões)
+            X_drill.append(feat_u)
             y_drill.append(1 if (i/len(common_holes)) >= 0.8 else 0)
             hole_indices.append(hole)
         except: continue
@@ -105,7 +105,6 @@ registros_comparacao = []
 dados_mlp_contínuos = []
 dados_lstm_contínuos = []
 dados_xgb_contínuos = []
-
 
 for drill_test in drills_data:
     K.clear_session()
@@ -133,7 +132,7 @@ for drill_test in drills_data:
     X_test_sc_xgb = scaler_global.transform(X_test)
     n_features = X_train_sc.shape[1]
 
-    # [MODELO 1] MLP Autoencoder 
+    # [MODELO 1] MLP Autoencoder
     scaler_mlp = StandardScaler()
     scaler_mlp.fit(X_test[:N_NORMAL])
     X_test_sc_mlp = scaler_mlp.transform(X_test)
@@ -188,7 +187,7 @@ for drill_test in drills_data:
     thresh_xgb = max(np.percentile(xgb_probs[:N_NORMAL], 97.5), 0.1)
     furos_acima_xgb = (xgb_probs > thresh_xgb).astype(int)
 
-    # FILTROS DE JANELA DE PERSISTÊNCIA
+    # FILTROS DE JANELA DE PERSISTÊNCIA 
     pred_xgb = np.zeros(n_holes)
     pred_mlp = np.zeros(n_holes)
     pred_lstm = np.zeros(n_holes)
@@ -222,7 +221,7 @@ for drill_test in drills_data:
             "alarm_xgb": int(pred_xgb[i]), "alarm_mlp": int(pred_mlp[i]), "alarm_lstm": int(pred_lstm[i])
         })
 
-# MERGE COM DIÁRIO DE ESCUTA ACÚSTICA
+# MERGE COM DIÁRIO DE ESCUTA ACÚSTICA 
 df_models = pd.DataFrame(registros_comparacao)
 df_final = pd.merge(df_models, df_esc, on=['drill', 'hole'])
 
@@ -253,25 +252,25 @@ for p in ax.patches:
 
 ax.set_ylabel("Furos com Alarme Ativo (% de Sensibilidade)", fontsize=10)
 ax.set_xlabel("Categorização da Percepção Acústica Humana (Escuta Manual)", fontsize=10, labelpad=8)
-ax.set_title("Sensibilidade Comparativa Multimodelo (Microfone Comum)", fontsize=11, weight='bold', pad=12)
+ax.set_title("Sensibilidade Comparativa Multimodelo (Microfone Ultrassônico)", fontsize=11, weight='bold', pad=12)
 ax.set_ylim(0, 115)
 plt.setp(ax.get_xticklabels(), rotation=0, ha="center")
 ax.legend(loc='upper left', fontsize=9, frameon=True)
 plt.grid(True, axis='y', linestyle=':', alpha=0.4)
 plt.tight_layout()
 
-plt.savefig("comparacao_multimodelo_comum.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("comparacao_multimodelo_comum.png", dpi=300, bbox_inches='tight')
+plt.savefig("comparacao_multimodelo_ultrasonic.pdf", dpi=600, bbox_inches='tight')
+plt.savefig("comparacao_multimodelo_ultrasonic.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 
 df_mlp_real = pd.DataFrame(dados_mlp_contínuos)
-df_mlp_real.to_csv("resultados_autoencoder_comum.csv", index=False)
+df_mlp_real.to_csv("resultados_autoencoder_ultrassonico.csv", index=False)
 
 df_lstm_real = pd.DataFrame(dados_lstm_contínuos)
-df_lstm_real.to_csv("resultados_lstm_comum.csv", index=False)
+df_lstm_real.to_csv("resultados_lstm_ultrassonico.csv", index=False)
 
 df_xgb_real = pd.DataFrame(dados_xgb_contínuos)
-df_xgb_real.to_csv("resultados_xgboost_comum.csv", index=False)
+df_xgb_real.to_csv("resultados_xgboost_ultrassonico.csv", index=False)
 
-print("\nsensor audível concluído e salvo!")
+print("\nsensor ultrassônico concluído e salvo!")
