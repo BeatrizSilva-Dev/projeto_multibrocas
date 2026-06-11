@@ -1,257 +1,101 @@
 import os
-import re
-import random
-
 import numpy as np
-import librosa
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import tensorflow as tf
+from matplotlib.colors import LinearSegmentedColormap
+from sklearn.metrics import f1_score, confusion_matrix, recall_score, accuracy_score, roc_auc_score, roc_curve
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import f1_score, recall_score, accuracy_score, roc_auc_score, confusion_matrix, roc_curve
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "font.size": 10,
+    "axes.labelweight": "bold",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42
+})
 
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense
-from tensorflow.keras import backend as K  # ADICIONADO: Gerenciamento ativo de memória
+arquivo_comum = "resultados_lstm_comum.csv"
+if not os.path.exists(arquivo_comum):
+    raise FileNotFoundError(f"Gere o arquivo '{arquivo_comum}' executando o pipeline comum primeiro!")
 
-# CONFIG
-ROOT_DATASET = r"C:\...\data\segmented"
+df_lstm = pd.read_csv(arquivo_comum)
 
-MIC_A = "reg_mics"
-CANAL_ALVO = "4"
-
-N_NORMAL = 5
-N_MFCC = 20
-SEQ_LEN = 10   
-
-
-os.environ['TF_DETERMINISTIC_OPS'] = '1'
-random.seed(42)
-np.random.seed(42)
-tf.random.set_seed(42)
-
-
-# FUNÇÕES
-def extract_hole_number(filename):
-    match = re.search(r"hole(\d+)", filename)
-    return int(match.group(1)) if match else None
-
-def extract_features(y, sr):
-    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=N_MFCC)
-    rms = librosa.feature.rms(y=y)[0]
-
-    return np.hstack([
-        np.mean(mfcc, axis=1),
-        np.std(mfcc, axis=1),
-        np.mean(rms),
-        np.std(rms)
-    ])
-
-def create_sequences(X, seq_len):
-    seqs = []
-    for i in range(len(X) - seq_len + 1):
-        seqs.append(X[i:i+seq_len])
-    return np.array(seqs)
-
-# 1. CARREGAMENTO
-drills_data = {}
-
-print("Extraindo features do microfone comum (audível)...")
-
-for drill_folder in os.listdir(ROOT_DATASET):
-    path = os.path.join(ROOT_DATASET, drill_folder)
-    if not os.path.isdir(path):
-        continue
-
-    dict_a = {}
-
-    for root, _, files in os.walk(path):
-        # Filtra apenas a subpasta do microfone comum
-        if MIC_A not in root.lower():
-            continue
-
-        for f in files:
-            if not f.lower().endswith(".wav"):
-                continue
-
-            if f"ch{CANAL_ALVO}" in f.lower() or f"tr{CANAL_ALVO}" in f.lower():
-                hole = extract_hole_number(f)
-                if hole is None:
-                    continue
-
-                full_path = os.path.join(root, f)
-                dict_a[hole] = full_path
-
-    if len(dict_a) <= N_NORMAL + 2:
-        continue
-
-    # Ordena os furos e remove o último (falha total)
-    holes_sorted = sorted(dict_a.keys())[:-1]
-
-    X = []
-    for hole in holes_sorted:
-        try:
-            y, sr = librosa.load(dict_a[hole], sr=None)
-            feat = extract_features(y, sr)
-            X.append(feat) # Vetor de 46 features
-        except:
-            continue
-
-    if len(X) > N_NORMAL:
-        drills_data[drill_folder] = np.array(X)
-
-export_data = []
-all_scores = []
-all_labels = []
-
-# 2. VALIDAÇÃO LODO
+# CÁLCULO DOS RESULTADOS REGIONAIS E LEAD-TIMES 
 regional_results = []
-lead_times = [] 
+lead_times = []
 
-print(f"\nValidando em {len(drills_data)} brocas...")
+for drill in df_lstm['drill'].unique():
+    sub_lstm = df_lstm[df_lstm['drill'] == drill].sort_values('hole').reset_index(drop=True)
+    n_holes = len(sub_lstm)
 
-for drill_name, X in drills_data.items():
-
-    n_holes = len(X)
-
-    scaler = StandardScaler()
-    scaler.fit(X[:N_NORMAL])
-    X_scaled = scaler.transform(X)
-
-    # SEQUÊNCIAS
-    X_seq = create_sequences(X_scaled, SEQ_LEN)
-
-    if len(X_seq) < 5:
-        continue
-
-    X_train_seq = X_seq[:max(1, N_NORMAL - SEQ_LEN + 1)]
-
-    # LSTM AUTOENCODER
-    timesteps = SEQ_LEN
-    n_features = X.shape[1] # Agora será 46
-
-    inputs = Input(shape=(timesteps, n_features))
-    encoded = LSTM(32, activation='relu')(inputs)
-    decoded = RepeatVector(timesteps)(encoded)
-    decoded = LSTM(32, activation='relu', return_sequences=True)(decoded)
-    outputs = TimeDistributed(Dense(n_features))(decoded)
-
-    model = Model(inputs, outputs)
-    model.compile(optimizer='adam', loss='mse')
-
-    model.fit(X_train_seq, X_train_seq,
-              epochs=50,
-              batch_size=8,
-              verbose=0)
-
-    # ERRO DE RECONSTRUÇÃO
-    recon = model.predict(X_seq, verbose=0)
-    errors_seq = np.mean((X_seq - recon) ** 2, axis=(1,2))
-
-    errors = np.zeros(n_holes)
-    errors[SEQ_LEN-1:] = errors_seq
-
-    # CORREÇÃO: Remoção dos zeros do warm-up temporal para evitar contaminação no cálculo do limiar
-    valid_baseline_errors = errors[SEQ_LEN-1:max(N_NORMAL, SEQ_LEN)]
-    if len(valid_baseline_errors) == 0:
-        valid_baseline_errors = errors_seq[:1]
-    threshold = np.percentile(valid_baseline_errors, 99.5)
-
-    flags = (errors > threshold).astype(int)
-
-    # Persistência 
-    preds = np.zeros(n_holes)
-    janela = 8
-    for i in range(janela - 1, n_holes):
-        if np.all(flags[i-(janela-1):i+1] == 1):
-            preds[i] = 1
-
-    # Cálculo do lead-time por broca
-    alert_indices = np.where(preds == 1)[0]
+    # Resgata o lead-time real do arquivo unificado do canal audível com janela=8
+    alert_indices = np.where(sub_lstm['prediction'] == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1
         drill_lead_time = n_holes - first_alert_hole
     else:
         drill_lead_time = 0
-
     lead_times.append(drill_lead_time)
 
-    labels = np.array([1 if (i/n_holes)>=0.8 else 0 for i in range(n_holes)])
-    all_labels.extend(labels)
-    all_scores.extend(errors)
-
-    # Avaliação regional
+    # Avaliação prognóstica regional (Fase Saudável 50% vs Fase de Anomalia Crítica 80%)
     idx_50 = int(n_holes * 0.5)
     idx_80 = int(n_holes * 0.8)
 
-    regional_results.append({
-        'y_true': 0,
-        'y_pred': int(np.any(preds[:idx_50]))
-    })
-    regional_results.append({
-        'y_true': 1,
-        'y_pred': int(np.any(preds[idx_80:]))
-    })
+    regional_results.append({'y_true': 0, 'y_pred': int(np.any(sub_lstm['prediction'].iloc[:idx_50] == 1))})
+    regional_results.append({'y_true': 1, 'y_pred': int(np.any(sub_lstm['prediction'].iloc[idx_80:] == 1))})
 
-    for i in range(n_holes):
-        export_data.append({
-            'drill': drill_name,
-            'hole': i + 1,
-            'mse_comum': errors[i],
-            'adaptive_threshold': threshold,
-            'prediction': preds[i],
-            'label': labels[i],
-            'drill_lead_time': drill_lead_time  
-        })
+df_res = pd.DataFrame(regional_results)
+cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
 
-    K.clear_session()
+# EXTRAÇÃO DAS MÉTRICAS OPERACIONAIS DO TENSOR TEMPORAL
+f1 = f1_score(df_res['y_true'], df_res['y_pred'])
+recall = recall_score(df_res['y_true'], df_res['y_pred'])
+acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
+auc = roc_auc_score(df_lstm['label'], df_lstm['hybrid_mse'])
 
-# 3. MÉTRICAS
-if regional_results:
-    df_res = pd.DataFrame(regional_results)
+print("\nRESULTADOS CONSOLIDADOS LSTM-AE (MICROFONE COMUM)")
+print(f"F1-score: {f1:.4f}")
+print(f"Recall:   {recall:.4f}")
+print(f"Accuracy: {acc:.4f}")
+print(f"AUC:      {auc:.4f}")
+print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
 
-    f1 = f1_score(df_res['y_true'], df_res['y_pred'])
-    recall = recall_score(df_res['y_true'], df_res['y_pred'])
-    acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
-    auc_global = roc_auc_score(all_labels, all_scores)
+# 4. PLOTAGEM DA MATRIZ DE CONFUSÃO
+cmap_roxo = LinearSegmentedColormap.from_list("CustomPurple", ["#ffffff", "#7209b7"])
 
-    print(f"F1-score: {f1:.4f}")
-    print(f"Recall:   {recall:.4f}")
-    print(f"Accuracy: {acc:.4f}")
-    print(f"AUC:      {auc_global:.4f}")
-    print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
+plt.figure(figsize=(3.5, 3))
+sns.heatmap(cm, annot=True, fmt='d', cmap=cmap_roxo, cbar=False,
+            annot_kws={"size": 12, "weight": "bold"},
+            xticklabels=['No Alert', 'Alert'],
+            yticklabels=['Normal', 'Anomaly'])
 
-    # Matriz
-    cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
-    plt.figure(figsize=(3.5,3))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False,
-                annot_kws={"size": 12, "weight": "bold"},
-                xticklabels=['No Alert','Alert'],
-                yticklabels=['Normal','Anomaly'])
-    plt.xlabel("Predicted Label")
-    plt.ylabel("True Label")
-    plt.tight_layout()
-    plt.savefig("matriz_lstm_comum.pdf", dpi=600, bbox_inches='tight')
-    plt.show()
+plt.xlabel("Predicted Label", fontweight='bold')
+plt.ylabel("Ground Truth Label", fontweight='bold')
+plt.tight_layout()
 
-    # Curva ROC
-    fpr, tpr, _ = roc_curve(all_labels, all_scores)
-    plt.figure(figsize=(3.5, 3))
-    plt.plot(fpr, tpr, color='blue', linewidth=1.5, label=f'AUC = {auc_global:.2f}')
-    plt.plot([0, 1], [0, 1], color='gray', linestyle='--')
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.legend()
-    plt.grid(True, linestyle=':', alpha=0.5)
-    plt.tight_layout()
-    plt.savefig("roc_lstm_comum.pdf", dpi=600, bbox_inches='tight')
-    plt.show()
+plt.savefig("matriz_lstm_comum.pdf", dpi=600, bbox_inches='tight')
+plt.savefig("matriz_lstm_comum.png", dpi=300, bbox_inches='tight')
+plt.show()
 
-    df_export = pd.DataFrame(export_data)
-    df_export.to_csv("resultados_lstm_comum.csv", index=False)
-    print("\n[OK] CSV 'resultados_lstm_comum.csv' exportado.")
+# 5. PLOTAGEM DA CURVA ROC 
+fpr, tpr, _ = roc_curve(df_lstm['label'], df_lstm['hybrid_mse'])
 
-else:
-    print("Nenhum dado processado.")
+df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+df_roc.to_csv("roc_lstm_comum_data.csv", index=False)
+
+plt.figure(figsize=(3.5, 3))
+plt.plot(fpr, tpr, color='#7209b7', linewidth=1.5, label=f'AUC = {auc:.2f}')
+plt.plot([0, 1], [0, 1], color='navy', linestyle='--', linewidth=1)
+
+plt.xlabel("False Positive Rate", fontweight='bold')
+plt.ylabel("True Positive Rate", fontweight='bold')
+plt.legend(loc="lower right")
+plt.grid(True, linestyle=':', alpha=0.5)
+plt.tight_layout()
+
+plt.savefig("roc_autoencoder_LSTM_comum.pdf", dpi=600, bbox_inches='tight')
+plt.savefig("roc_autoencoder_LSTM_comum.png", dpi=300, bbox_inches='tight')
+plt.show()
+
+print("[Relatórios individuais do LSTM Autoencoder Comum exportados com consistência absoluta!")
