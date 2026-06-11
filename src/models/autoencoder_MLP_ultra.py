@@ -1,220 +1,101 @@
 import os
-import re
 import numpy as np
-import librosa
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.colors import LinearSegmentedColormap
+from sklearn.metrics import f1_score, confusion_matrix, recall_score, accuracy_score, roc_auc_score, roc_curve
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.neural_network import MLPRegressor
-from sklearn.metrics import f1_score, confusion_matrix, recall_score
-from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "font.size": 10,
+    "axes.labelweight": "bold",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42
+})
 
-# CONFIGURAÇÕES
-ROOT_DATASET = r"C:\...\data\segmented"
+arquivo_ultrasonic = "resultados_autoencoder_ultrassonico.csv"
+if not os.path.exists(arquivo_ultrasonic):
+    raise FileNotFoundError(f"Gere o arquivo '{arquivo_ultrasonic}' executando o pipeline ultrassônico primeiro!")
 
-MIC_B = "ultrasonic_mics"
-CANAL_ALVO = "4"
+df_mlp = pd.read_csv(arquivo_ultrasonic)
 
-N_NORMAL = 5
-N_MFCC = 20
-
-# FUNÇÕES AUXILIARES
-def extract_hole_number(filename):
-    match = re.search(r"hole(\d+)", filename)
-    return int(match.group(1)) if match else None
-
-def extract_features(y, sr):
-    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=N_MFCC)
-    rms = librosa.feature.rms(y=y)[0]
-
-    return np.hstack([
-        np.mean(mfcc, axis=1),
-        np.std(mfcc, axis=1),
-        np.mean(rms),
-        np.std(rms)
-    ])
-
-# 1. CARREGAMENTO DOS DADOS
-drills_data = {}
-
-print("Extraindo features do sensor Ultrassônico...")
-
-for drill_folder in os.listdir(ROOT_DATASET):
-    path = os.path.join(ROOT_DATASET, drill_folder)
-    if not os.path.isdir(path):
-        continue
-
-    dict_b = {}
-
-    for root, _, files in os.walk(path):
-        # Filtra apenas a subpasta do microfone ultrassônico
-        if MIC_B not in root.lower():
-            continue
-
-        for f in files:
-            if not f.lower().endswith(".wav"):
-                continue
-
-            # Canal 4 (ultrassom)
-            if f"ch{CANAL_ALVO}" in f.lower() or f"tr{CANAL_ALVO}" in f.lower():
-                hole = extract_hole_number(f)
-                if hole is None:
-                    continue
-                dict_b[hole] = os.path.join(root, f)
-
-    if len(dict_b) <= N_NORMAL + 2:
-        continue
-
-    # Ordena os furos e remove o último (incompleto/falha total)
-    holes_sorted = sorted(dict_b.keys())[:-1]
-
-    X = []
-    for hole in holes_sorted:
-        try:
-            y, sr = librosa.load(dict_b[hole], sr=None)
-            feat = extract_features(y, sr)
-            X.append(feat)  # Vetor de 46 features
-        except:
-            continue
-
-    if len(X) > N_NORMAL:
-        drills_data[drill_folder] = np.array(X)
-
-all_scores = []
-all_labels = []
-
-# 2. VALIDAÇÃO LODO 
+# CÁLCULO DOS RESULTADOS REGIONAIS E LEAD-TIMES 
 regional_results = []
-export_data = []
-lead_times = []  
+lead_times = []
 
-print(f"\nValidando em {len(drills_data)} brocas...")
+for drill in df_mlp['drill'].unique():
+    sub_mlp = df_mlp[df_mlp['drill'] == drill].sort_values('hole').reset_index(drop=True)
+    n_holes = len(sub_mlp)
 
-for drill_name, X in drills_data.items():
-    n_holes = len(X)
-
-    scaler = StandardScaler()
-    scaler.fit(X[:N_NORMAL])
-    X_scaled = scaler.transform(X)
-
-    # AUTOENCODER
-    ae = MLPRegressor(
-        hidden_layer_sizes=(32, 16, 32),
-        max_iter=1000,
-        random_state=42
-    )
-
-    ae.fit(X_scaled[:N_NORMAL], X_scaled[:N_NORMAL])
-
-    recon = ae.predict(X_scaled)
-    errors = np.mean((X_scaled - recon) ** 2, axis=1)
-    all_scores.extend(errors)
-
-    threshold = np.percentile(errors[:N_NORMAL], 99.5)
-    flags = (errors > threshold).astype(int)
-
-    # PERSISTÊNCIA
-    preds = np.zeros(n_holes)
-    janela = 10
-    for i in range(janela - 1, n_holes):
-        if np.all(flags[i - (janela - 1):i + 1] == 1):
-            preds[i] = 1
-
-    # CÁLCULO DO LEAD-TIME POR BROCA
-    alert_indices = np.where(preds == 1)[0]
+    # Resgata o lead-time real do arquivo unificado do canal ultrassônico
+    alert_indices = np.where(sub_mlp['prediction'] == 1)[0]
     if len(alert_indices) > 0:
-        first_alert_hole = alert_indices[0] + 1  # Base 1 (Furo real)
+        first_alert_hole = alert_indices[0] + 1
         drill_lead_time = n_holes - first_alert_hole
     else:
         drill_lead_time = 0
     lead_times.append(drill_lead_time)
 
-    # AVALIAÇÃO REGIONAL
+    # Fatiamento prognóstico regional (Fase Saudável 50% vs Fase de Falha 80%)
     idx_50 = int(n_holes * 0.5)
     idx_80 = int(n_holes * 0.8)
 
-    regional_results.append({'y_true': 0, 'y_pred': int(np.any(preds[:idx_50]))})
-    regional_results.append({'y_true': 1, 'y_pred': int(np.any(preds[idx_80:]))})
+    regional_results.append({'y_true': 0, 'y_pred': 1 if np.any(sub_mlp['prediction'].iloc[:idx_50] == 1) else 0})
+    regional_results.append({'y_true': 1, 'y_pred': 1 if np.any(sub_mlp['prediction'].iloc[idx_80:] == 1) else 0})
 
-    labels = [1 if (i / n_holes) >= 0.8 else 0 for i in range(n_holes)]
-    all_labels.extend(labels)
+df_res = pd.DataFrame(regional_results)
+cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
 
-    for i in range(n_holes):
-        export_data.append({
-            'drill': drill_name,
-            'hole': i + 1,
-            'ultrasonic_mse': errors[i],
-            'adaptive_threshold': threshold,
-            'prediction': preds[i],
-            'label': labels[i],
-            'drill_lead_time': drill_lead_time 
-        })
+# EXTRAÇÃO DAS MÉTRICAS OPERACIONAIS 
+f1 = f1_score(df_res['y_true'], df_res['y_pred'])
+recall = recall_score(df_res['y_true'], df_res['y_pred'])
+acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
+auc = roc_auc_score(df_mlp['label'], df_mlp['hybrid_mse'])
 
-# 3. RESULTADOS
-if regional_results:
-    df_res = pd.DataFrame(regional_results)
+print("\nRESULTADOS CONSOLIDADOS MLP-AE (MICROFONE ULTRASSÔNICO)")
+print(f"F1-score: {f1:.4f}")
+print(f"Recall:   {recall:.4f}")
+print(f"Accuracy: {acc:.4f}")
+print(f"AUC:      {auc:.4f}")
+print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
 
-    f1 = f1_score(df_res['y_true'], df_res['y_pred'])
-    recall = recall_score(df_res['y_true'], df_res['y_pred'])
-    acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
-    auc = roc_auc_score(all_labels, all_scores)
+# PLOTAGEM DA MATRIZ DE CONFUSÃO INDIVIDUAL 
+cmap_turquesa = LinearSegmentedColormap.from_list("CustomTurquoise", ["#ffffff", "#2ec4b6"])
 
-    plt.rcParams.update({
-        "font.family": "serif",
-        "font.serif": ["Times New Roman"],
-        "font.size": 10,
-        "axes.labelsize": 10,
-        "axes.titlesize": 10,
-        "xtick.labelsize": 9,
-        "ytick.labelsize": 9,
-        "legend.fontsize": 8,
-        "pdf.fonttype": 42,
-        "ps.fonttype": 42
-    })
+plt.figure(figsize=(3.5, 3))
+sns.heatmap(cm, annot=True, fmt='d', cmap=cmap_turquesa, cbar=False,
+            annot_kws={"size": 12, "weight": "bold"},
+            xticklabels=['No Alert', 'Alert'],
+            yticklabels=['Normal', 'Anomaly'])
 
-    print(f"F1-score: {f1:.4f}")
-    print(f"Recall:   {recall:.4f}")
-    print(f"Accuracy: {acc:.4f}")
-    print(f"AUC:      {auc:.4f}")
-    print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
+plt.xlabel("Predicted Label", fontweight='bold')
+plt.ylabel("Ground Truth Label", fontweight='bold')
+plt.tight_layout()
 
-    cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
-    plt.figure(figsize=(3.5, 3))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Oranges', cbar=False,
-                annot_kws={"size": 12, "weight": "bold"},
-                xticklabels=['No Alert', 'Alert'],
-                yticklabels=['Normal', 'Anomaly'])
+plt.savefig("matriz_autoencoder_ultrasonic.pdf", dpi=600, bbox_inches='tight')
+plt.savefig("matriz_autoencoder_ultrasonic.png", dpi=300, bbox_inches='tight')
+plt.show()
 
-    plt.xlabel("Predicted Label", fontweight='bold')
-    plt.ylabel("Ground Truth Label", fontweight='bold')
-    plt.tight_layout()
-    plt.savefig("matriz_autoencoder_ultrassonico.pdf", dpi=600, bbox_inches='tight')
-    plt.show()
+# PLOTAGEM DA CURVA ROC
+fpr, tpr, _ = roc_curve(df_mlp['label'], df_mlp['hybrid_mse'])
 
-    # CURVA ROC
-    fpr, tpr, _ = roc_curve(all_labels, all_scores)
+df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+df_roc.to_csv("roc_mlp_ultrasonic_data.csv", index=False)
 
-    # Exportação dos dados da curva ROC para o DataFrame comparativo
-    df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
-    df_roc.to_csv("roc_mlp_ultrassonico_data.csv", index=False)
+plt.figure(figsize=(3.5, 3))
+plt.plot(fpr, tpr, color='#2ec4b6', linewidth=1.5, label=f'AUC = {auc:.2f}')
+plt.plot([0, 1], [0, 1], color='navy', linestyle='--', linewidth=1)
 
-    plt.figure(figsize=(3.5, 3))
-    plt.plot(fpr, tpr, linewidth=1.5, color='orange', label=f'AUC = {auc:.2f}')
-    plt.plot([0, 1], [0, 1], linestyle='--', color='navy', linewidth=1)
-    plt.xlabel("False Positive Rate", fontweight='bold')
-    plt.ylabel("True Positive Rate", fontweight='bold')
-    plt.legend(loc="lower right")
-    plt.grid(True, linestyle=':', alpha=0.6)
-    plt.tight_layout()
-    plt.savefig("roc_autoencoder_ultrassonico.pdf", dpi=600, bbox_inches='tight')
-    plt.show()
+plt.xlabel("False Positive Rate", fontweight='bold')
+plt.ylabel("True Positive Rate", fontweight='bold')
+plt.legend(loc="lower right")
+plt.grid(True, linestyle=':', alpha=0.5)
+plt.tight_layout()
 
-    # CSV
-    df_export = pd.DataFrame(export_data)
-    df_export.to_csv("resultados_autoencoder_ultrassonico.csv", index=False)
-    print("\n CSV e PDFs (vetoriais) exportados com sucesso.")
+plt.savefig("roc_autoencoder_ultrasonic.pdf", dpi=600, bbox_inches='tight')
+plt.savefig("roc_autoencoder_ultrasonic.png", dpi=300, bbox_inches='tight')
+plt.show()
 
-else:
-    print("Nenhum dado processado.")
+print("Relatórios e plots do MLP-AE Ultrassônico gerados com consistência absoluta!")
