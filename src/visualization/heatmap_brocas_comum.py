@@ -7,10 +7,6 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import matplotlib.patches as mpatches
 
-# ==============================================================================
-# ➔ ALTERAÇÃO CRÍTICA: LEITURA DOS REPOSITÓRIOS EXCLUSIVOS DO MICROFONE COMUM
-# ==============================================================================
-print("Carregando tabelas estáveis do microfone comum...")
 df_xgb  = pd.read_csv("resultados_xgboost_comum.csv")
 df_mlp  = pd.read_csv("resultados_autoencoder_comum.csv")
 df_lstm = pd.read_csv("resultados_lstm_comum.csv")
@@ -18,7 +14,6 @@ df_lstm = pd.read_csv("resultados_lstm_comum.csv")
 for df in [df_xgb, df_mlp, df_lstm]:
     df["drill"] = df["drill"].str.lower().str.strip()
 
-# Configuração visual padrão acadêmico UFRPE / IEEE
 plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman"],
@@ -28,9 +23,6 @@ plt.rcParams.update({
     "ps.fonttype": 42
 })
 
-# ==============================================================================
-# FUNÇÃO PARA GERAR A MATRIZ DE ESTADOS CATEGÓRICOS (101 pontos em %)
-# ==============================================================================
 def gerar_matriz_estados_categoricos(df, coluna_pred="prediction"):
     NORM_POINTS = 101
     matriz_estados = []
@@ -69,18 +61,14 @@ def gerar_matriz_estados_categoricos(df, coluna_pred="prediction"):
 
     return np.array(matriz_estados), nomes
 
-# Gerar as matrizes de estados baseadas nos dados audíveis
 matriz_xgb, nomes = gerar_matriz_estados_categoricos(df_xgb)
 matriz_mlp, _     = gerar_matriz_estados_categoricos(df_mlp)
 matriz_lstm, _    = gerar_matriz_estados_categoricos(df_lstm)
 
-# ==============================================================================
-# FUNÇÃO DE PLOTAGEM COM SUA PALETA DE CORES DEFINITIVA
-# ==============================================================================
+
 def plotar_heatmap_categorico(matriz, nomes, titulo, arquivo_saida):
     fig, ax = plt.subplots(figsize=(8.2, 4.5))
 
-    # Paleta industrial de degradê de risco
     cores_ihm = ['#e6e6e6', '#ffb366', '#d73027', '#ffeb99']
     cmap_categorico = ListedColormap(cores_ihm)
 
@@ -94,10 +82,9 @@ def plotar_heatmap_categorico(matriz, nomes, titulo, arquivo_saida):
         ax=ax
     )
 
-    # Linha vertical divisória exata nos 80% (Coluna 80 - Início da Fase Crítica)
     ax.axvline(x=80, color="black", linestyle="--", linewidth=1.5)
 
-    # Ajuste do Eixo Y (Número da Broca corrigido com zeros à esquerda)
+    # Ajuste do Eixo Y 
     drill_ids = [re.search(r"drill_4mm_(\d+)", nome.lower()).group(1).zfill(2) if re.search(r"drill_4mm_(\d+)", nome.lower()) else nome for nome in nomes]
     ax.set_yticks(np.arange(len(drill_ids)) + 0.5)
     ax.set_yticklabels(drill_ids, rotation=0, fontsize=8)
@@ -111,7 +98,6 @@ def plotar_heatmap_categorico(matriz, nomes, titulo, arquivo_saida):
     ax.set_xlabel("Tool Life (%)", fontsize=11)
     ax.set_ylabel("Drill Number", fontsize=11)
 
-    # Legenda Industrial
     patch_normal     = mpatches.Patch(color='#e6e6e6', label='Nominal State (No Alarm)')
     patch_false      = mpatches.Patch(color='#ffb366', label='False/Early Alarm')
     patch_true       = mpatches.Patch(color='#d73027', label='True Alarm (Critical Phase)')
@@ -127,17 +113,14 @@ def plotar_heatmap_categorico(matriz, nomes, titulo, arquivo_saida):
     )
 
     plt.tight_layout()
-    # ➔ SALVAMENTO COM PREFIXO _comum PARA NÃO CONFIGURAR CONFLITO DE ARQUIVOS
+ 
     plt.savefig(arquivo_saida + "_comum.pdf", dpi=600, bbox_inches="tight")
     plt.savefig(arquivo_saida + "_comum.png", dpi=300, bbox_inches="tight")
     plt.close()
 
-# ==============================================================================
-# GERAÇÃO DOS TRÊS HEATMAPS INDUSTRIAIS (MICROFONE COMUM)
-# ==============================================================================
 print("Plotando painéis de risco...")
 plotar_heatmap_categorico(matriz_xgb, nomes, "XGBoost - Monitoramento Temporal (Microfone Comum)", "heatmap_risk_xgboost")
 plotar_heatmap_categorico(matriz_mlp, nomes, "MLP-AE - Monitoramento Temporal (Microfone Comum)", "heatmap_risk_mlp")
 plotar_heatmap_categorico(matriz_lstm, nomes, "LSTM-AE - Monitoramento Temporal (Microfone Comum)", "heatmap_risk_lstm")
 
-print("\n[SUCESSO] Os 3 heatmaps do microfone comum foram gerados e salvos!")
+print("\nOs 3 heatmaps do microfone comum foram gerados e salvos!")
