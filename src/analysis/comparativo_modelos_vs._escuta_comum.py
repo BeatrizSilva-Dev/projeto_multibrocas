@@ -37,7 +37,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense
 from tensorflow.keras import backend as K
 
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 FILE_ESCUTA = "escuta_manual_projeto_completo.csv"
 MIC_A = "reg_mics" 
 CANAL_ALVO = "4"

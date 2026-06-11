@@ -36,9 +36,9 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense
 from tensorflow.keras import backend as K
 
-ROOT_DATASET = r"C:\Users\beatr\OneDrive\Desktop\Projeto_Brocas_AE\data\segmented"
+ROOT_DATASET = r"C:\...\data\segmented"
 FILE_ESCUTA = "escuta_manual_projeto_completo.csv"
-MIC_ULTRASONIC = "ultrasonic_mics"  # ➔ FOCO EXCLUSIVO: Microfone Ultrassônico
+MIC_ULTRASONIC = "ultrasonic_mics"  
 CANAL_ALVO = "4"
 N_NORMAL = 5
 N_MFCC = 20
