@@ -38,7 +38,6 @@ for drill in df_lstm['drill'].unique():
         drill_lead_time = 0
     lead_times.append(drill_lead_time)
 
-    # Avaliação prognóstica regional (Fase Saudável 50% vs Fase de Anomalia Crítica 80%)
     idx_50 = int(n_holes * 0.5)
     idx_80 = int(n_holes * 0.8)
 

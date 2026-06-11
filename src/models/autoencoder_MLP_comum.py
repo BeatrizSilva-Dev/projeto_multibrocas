@@ -42,7 +42,6 @@ for drill in df_mlp['drill'].unique():
         drill_lead_time = 0
     lead_times.append(drill_lead_time)
 
-    # Fatiamento prognóstico regional (Fase Saudável 50% vs Fase de Falha 80%)
     idx_50 = int(n_holes * 0.5)
     idx_80 = int(n_holes * 0.8)
 
