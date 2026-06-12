@@ -1,805 +1,805 @@
 drill,hole,duration_pct,mic_ultrasonic,mic_reg,human_severity_score
-drill_4mm_04,1,1.92,normal,normal,0
-drill_4mm_04,2,3.85,normal,normal,0
-drill_4mm_04,3,5.77,guizo fraco no final,começo do guizo,1
-drill_4mm_04,4,7.69,guizo fraco no final,guizo fraco,1
-drill_4mm_04,5,9.62,guizo fraco no final,guizo fraco,1
-drill_4mm_04,6,11.54,guizo fraco no final,guizo fraco,1
-drill_4mm_04,7,13.46,guizo no final,guizo,1
-drill_4mm_04,8,15.38,guizo no final,guizo,1
-drill_4mm_04,9,17.31,guizo no final,guizo,1
-drill_4mm_04,10,19.23,guizo no final,guizo,1
-drill_4mm_04,11,21.15,guizo no final,guizo,1
-drill_4mm_04,12,23.08,guizo no final,guizo fraco,1
-drill_4mm_04,13,25.0,guizo um pouco mais forte no final,guizo,1
-drill_4mm_04,14,26.92,guizo um pouco mais forte no final,guizo,1
-drill_4mm_04,15,28.85,guizo no final,guizo,1
-drill_4mm_04,16,30.77,guizo um pouco mais forte no final,guizo fraco,1
-drill_4mm_04,17,32.69,guizo fraco no final,guizo fraco,1
-drill_4mm_04,18,34.62,guizo fraco no final,guizo fraco,1
-drill_4mm_04,19,36.54,guizo no final,guizo,1
-drill_4mm_04,20,38.46,guizo fraco no final,normal,1
-drill_4mm_04,21,40.38,guizo no final,guizo,1
-drill_4mm_04,22,42.31,guizo fraco no final,guizo fraco,1
-drill_4mm_04,23,44.23,guizo fraco no final,guizo fraco,1
-drill_4mm_04,24,46.15,guizo fraco no final,guizo fraco,1
-drill_4mm_04,25,48.08,guizo fraco no final,guizo fraco,1
-drill_4mm_04,26,50.0,guizo no final,guizo fraco,2
-drill_4mm_04,27,51.92,guizo fraco no final,guizo fraco,2
-drill_4mm_04,28,53.85,guizo fraco no final,guizo fraco,2
-drill_4mm_04,29,55.77,guizo um pouco mais forte no final,guizo fraco,2
-drill_4mm_04,30,57.69,guizo um pouco mais forte no final,guizo,2
-drill_4mm_04,31,59.62,guizo um pouco mais forte no final,guizo,2
-drill_4mm_04,32,61.54,guizo no final,guizo,2
-drill_4mm_04,33,63.46,guizo no final,guizo,2
-drill_4mm_04,34,65.38,guizo um pouco mais forte no final,guizo,2
-drill_4mm_04,35,67.31,guizo no final,guizo,2
-drill_4mm_04,36,69.23,guizo forte no final,guizo,2
-drill_4mm_04,37,71.15,guizo um pouco mais forte no final,guizo,2
-drill_4mm_04,38,73.08,guizo forte no final,guizo,2
-drill_4mm_04,39,75.0,guizo + travou,guizo + travou,3
-drill_4mm_04,40,76.92,guizo no final,guizo,2
-drill_4mm_04,41,78.85,guizo fraco no final,guizo fraco,2
-drill_4mm_04,42,80.77,guizo forte no final,guizo fraco,2
-drill_4mm_04,43,82.69,guizo forte no final,guizo,2
-drill_4mm_04,44,84.62,guizo forte no final,guizo,2
-drill_4mm_04,45,86.54,guizo muito forte no final,guizo,2
-drill_4mm_04,46,88.46,guizo muito forte no final,guizo,2
-drill_4mm_04,47,90.38,parece rádio,parece rádio,2
-drill_4mm_04,48,92.31,parece rádio,parece rádio,2
-drill_4mm_04,49,94.23,guizo + travou,guizo + travou,3
-drill_4mm_04,50,96.15,parece rádio,parece rádio,2
-drill_4mm_04,51,98.08,parece rádio,parece rádio,2
-drill_4mm_04,52,100.0,guizo + travou,guizo + travou,3
-drill_4mm_05,1,0.93,furo normal,furo normal,0
-drill_4mm_05,2,1.87,furo normal,furo normal,0
-drill_4mm_05,3,2.8,começo do guiso no final do áudio,furo normal,1
-drill_4mm_05,4,3.74,guiso fraco no final,começo do guiso,1
-drill_4mm_05,5,4.67,guiso fraco no final,guiso fraco,1
-drill_4mm_05,6,5.61,guiso fraco no final,guiso fraco,1
-drill_4mm_05,7,6.54,guiso fraco no final,guiso fraco,1
-drill_4mm_05,8,7.48,guiso mais forte,guiso,1
-drill_4mm_05,9,8.41,guiso fraco no final,guiso fraco,1
-drill_4mm_05,10,9.35,guiso fraco no final,guiso fraco,1
-drill_4mm_05,11,10.28,guiso fraco no final,guiso fraco,1
-drill_4mm_05,12,11.21,guiso fraco no final,guiso fraco,1
-drill_4mm_05,13,12.15,guiso mais forte,guiso fraco,1
-drill_4mm_05,14,13.08,guiso mais forte,guiso fraco,1
-drill_4mm_05,15,14.02,guiso mais forte,guiso fraco,1
-drill_4mm_05,16,14.95,guiso mais forte,guiso fraco,1
-drill_4mm_05,17,15.89,guiso mais forte,guiso fraco,1
-drill_4mm_05,18,16.82,guiso mais forte,guiso fraco,1
-drill_4mm_05,19,17.76,guiso fraco no final,guiso fraco,1
-drill_4mm_05,20,18.69,guiso mais forte,guiso fraco,1
-drill_4mm_05,21,19.63,guiso mais forte,guiso fraco,1
-drill_4mm_05,22,20.56,guiso mais forte,guiso,1
-drill_4mm_05,23,21.5,guiso mais forte,guiso,1
-drill_4mm_05,24,22.43,guiso mais forte,guiso,1
-drill_4mm_05,25,23.36,guiso mais forte,guiso,1
-drill_4mm_05,26,24.3,guiso mais forte,guiso,1
-drill_4mm_05,27,25.23,guiso mais forte,guiso,1
-drill_4mm_05,28,26.17,guiso mais forte,guiso,1
-drill_4mm_05,29,27.1,guiso mais forte,guiso,1
-drill_4mm_05,30,28.04,guiso mais forte,guiso,1
-drill_4mm_05,31,28.97,guiso no final,guiso,1
-drill_4mm_05,32,29.91,guiso no final,guiso,1
-drill_4mm_05,33,30.84,guiso no final,guiso,1
-drill_4mm_05,34,31.78,guiso no final,guiso,1
-drill_4mm_05,35,32.71,guiso no final,guiso,1
-drill_4mm_05,36,33.64,guiso no final,guiso,1
-drill_4mm_05,37,34.58,guiso no final,guiso,1
-drill_4mm_05,38,35.51,guiso no final,guiso,1
-drill_4mm_05,39,36.45,guiso no final,guiso,1
-drill_4mm_05,40,37.38,guiso no final,guiso,1
-drill_4mm_05,41,38.32,guiso no final,guiso,1
-drill_4mm_05,42,39.25,parece chiado de rádio,guiso,2
-drill_4mm_05,43,40.19,parece chiado de rádio,guiso,2
-drill_4mm_05,44,41.12,parece chiado de rádio,guiso,2
-drill_4mm_05,45,42.06,parece chiado de rádio,guiso,2
-drill_4mm_05,46,42.99,parece chiado de rádio,guiso,2
-drill_4mm_05,47,43.93,parece chiado de rádio,guiso,2
-drill_4mm_05,48,44.86,parece chiado de rádio,guiso,2
-drill_4mm_05,49,45.79,parece chiado de rádio,guiso,2
-drill_4mm_05,50,46.73,parece chiado de rádio,guiso,2
-drill_4mm_05,51,47.66,parece chiado de rádio,guiso,2
-drill_4mm_05,52,48.6,parece chiado de rádio,guiso,2
-drill_4mm_05,53,49.53,parece chiado de rádio,guiso,2
-drill_4mm_05,54,50.47,parece chiado de rádio,guiso,2
-drill_4mm_05,55,51.4,parece chiado de rádio,guiso,2
-drill_4mm_05,56,52.34,chiado mais forte,guiso,2
-drill_4mm_05,57,53.27,parece chiado de rádio,guiso,2
-drill_4mm_05,58,54.21,parece chiado de rádio,guiso,2
-drill_4mm_05,59,55.14,chiado mais forte,guiso,2
-drill_4mm_05,60,56.07,chiado mais forte,guiso,2
-drill_4mm_05,61,57.01,parece chiado de rádio,guiso,2
-drill_4mm_05,62,57.94,chiado mais forte,guiso forte,2
-drill_4mm_05,63,58.88,chiado mais forte,guiso forte,2
-drill_4mm_05,64,59.81,chiado mais forte,guiso forte,2
-drill_4mm_05,65,60.75,chiado mais forte,guiso forte,2
-drill_4mm_05,66,61.68,chiado mais forte,guiso forte,2
-drill_4mm_05,67,62.62,chiado mais forte,guiso forte,2
-drill_4mm_05,68,63.55,chiado mais forte,guiso forte,2
-drill_4mm_05,69,64.49,chiado mais forte,guiso forte,2
-drill_4mm_05,70,65.42,chiado mais forte,guiso forte,2
-drill_4mm_05,71,66.36,chiado mais forte,guiso forte,2
-drill_4mm_05,72,67.29,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,73,68.22,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,74,69.16,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,75,70.09,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,76,71.03,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,77,71.96,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,78,72.9,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,79,73.83,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,80,74.77,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,81,75.7,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,82,76.64,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,83,77.57,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,84,78.5,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,85,79.44,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,86,80.37,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,87,81.31,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,88,82.24,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,89,83.18,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,90,84.11,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,91,85.05,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,92,85.98,chiado insuportável de ouvir,guiso forte,2
-drill_4mm_05,93,86.92,travou,travou,3
-drill_4mm_05,94,87.85,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,95,88.79,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,96,89.72,travou,travou,3
-drill_4mm_05,97,90.65,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,98,91.59,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,99,92.52,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,100,93.46,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,101,94.39,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,102,95.33,chiado insuportável de ouvir,parece rádio,2
-drill_4mm_05,103,96.26,chuva,parece rádio,2
-drill_4mm_05,104,97.2,chuva,guiso,2
-drill_4mm_05,105,98.13,chuva,parece rádio,2
-drill_4mm_05,106,99.07,chuva,parece rádio,2
-drill_4mm_05,107,100.0,travou,travou,3
-drill_4mm_06,1,3.85,furo normal,furo normal,0
-drill_4mm_06,2,7.69,furo normal,furo normal,0
-drill_4mm_06,3,11.54,começo do guiso,começo do guiso,1
-drill_4mm_06,4,15.38,começo do guiso,guiso fraco,1
-drill_4mm_06,5,19.23,começo do guiso,guiso fraco,1
-drill_4mm_06,6,23.08,começo do guiso,guiso,1
-drill_4mm_06,7,26.92,começo do guiso,guiso,1
-drill_4mm_06,8,30.77,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,9,34.62,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,10,38.46,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,11,42.31,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,12,46.15,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,13,50.0,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,14,53.85,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,15,57.69,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,16,61.54,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,17,65.38,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,18,69.23,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,19,73.08,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,20,76.92,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,21,80.77,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,22,84.62,guiso + travou,travou,3
-drill_4mm_06,23,88.46,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,24,92.31,parece radio(insuportável a partir do 17),parece radio,2
-drill_4mm_06,25,96.15,guiso + travou,travou,3
-drill_4mm_06,26,100.0,guiso + travou,travou,3
-drill_4mm_07,1,3.03,som normal,furo normal,0
-drill_4mm_07,2,6.06,som normal,furo normal,0
-drill_4mm_07,3,9.09,começo do guiso fraco,começo do guiso,1
-drill_4mm_07,4,12.12,guiso + travou,guiso + travou,3
-drill_4mm_07,5,15.15,guiso fraco no final,guiso,1
-drill_4mm_07,6,18.18,guiso fraco no final,guiso,1
-drill_4mm_07,7,21.21,guiso mais forte,guiso,1
-drill_4mm_07,8,24.24,guiso mais forte,guiso,1
-drill_4mm_07,9,27.27,guiso mais forte,guiso,1
-drill_4mm_07,10,30.3,guiso mais forte,guiso,1
-drill_4mm_07,11,33.33,guiso estranho e forte,guiso estranho e forte,1
-drill_4mm_07,12,36.36,guiso estranho e forte,guiso estranho e forte,1
-drill_4mm_07,13,39.39,guiso estranho e forte,guiso estranho e forte,1
-drill_4mm_07,14,42.42,guiso estranho e forte,guiso estranho e forte,1
-drill_4mm_07,15,45.45,guiso estranho e forte,guiso estranho e forte,1
-drill_4mm_07,16,48.48,guiso estranho e forte,guiso estranho e forte,1
-drill_4mm_07,17,51.52,guiso estranho e forte,guiso estranho e forte,2
-drill_4mm_07,18,54.55,guiso estranho e forte,guiso estranho e forte,2
-drill_4mm_07,19,57.58,parece chuvisco/radio dessintonizada,guiso estranho e forte,2
-drill_4mm_07,20,60.61,parece chuvisco/radio dessintonizada,guiso estranho e forte,2
-drill_4mm_07,21,63.64,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,22,66.67,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,23,69.7,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,24,72.73,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,25,75.76,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,26,78.79,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,27,81.82,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,28,84.85,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,29,87.88,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,30,90.91,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
-drill_4mm_07,31,93.94,parece chuvisco/radio dessintonizada + travou,travou,3
-drill_4mm_07,32,96.97,guiso + travou,travou,3
-drill_4mm_07,33,100.0,guiso + travou,travou,3
-drill_4mm_08,1,4.55,furo normal,furo normal,0
-drill_4mm_08,2,9.09,furo normal,furo normal,0
-drill_4mm_08,3,13.64,furo normal,furo normal,0
-drill_4mm_08,4,18.18,começo guiso,furo normal,1
-drill_4mm_08,5,22.73,começo guiso,começo do guiso,1
-drill_4mm_08,6,27.27,guiso fraco no final,guiso fraco,1
-drill_4mm_08,7,31.82,guiso fraco + travou,travou,3
-drill_4mm_08,8,36.36,guiso fraco no final,guiso fraco,1
-drill_4mm_08,9,40.91,guiso fraco no final,guiso forte,1
-drill_4mm_08,10,45.45,guiso forte no final,guiso forte,1
-drill_4mm_08,11,50.0,guiso forte no final,guiso forte,2
-drill_4mm_08,12,54.55,parece chuva fraca,guiso forte,2
-drill_4mm_08,13,59.09,parece chuva fraca,guiso forte,2
-drill_4mm_08,14,63.64,parece chuva fraca,guiso fraco,2
-drill_4mm_08,15,68.18,parece chuva fraca,guiso fraco,2
-drill_4mm_08,16,72.73,guiso fraco + TRAVOU,travou,3
-drill_4mm_08,17,77.27,guiso fraco no final,guiso fraco,2
-drill_4mm_08,18,81.82,parece chuva fraca,guiso forte,2
-drill_4mm_08,19,86.36,parece chuva fraca + TRAVOU,travou,3
-drill_4mm_08,20,90.91,BARULHO ESTRANHO E ALTO,barulho insuportável e estranho,0
-drill_4mm_08,21,95.45,parece chuva fraca,guiso forte,2
-drill_4mm_08,22,100.0,guiso fraco + TRAVOU,travou,3
-drill_4mm_09,1,1.92,furo normal,furo normal,0
-drill_4mm_09,2,3.85,furo normal,furo normal,0
-drill_4mm_09,3,5.77,começo do guiso,começo do guiso,1
-drill_4mm_09,4,7.69,começo do guiso,guiso,1
-drill_4mm_09,5,9.62,guiso forte no final,guiso,1
-drill_4mm_09,6,11.54,guiso forte no final,guiso,1
-drill_4mm_09,7,13.46,guiso forte no final,guiso,1
-drill_4mm_09,8,15.38,guiso forte no final,guiso,1
-drill_4mm_09,9,17.31,parece chuva/radio,parece rádio,2
-drill_4mm_09,10,19.23,parece chuva/radio,parece rádio,2
-drill_4mm_09,11,21.15,parece chuva/radio,parece rádio,2
-drill_4mm_09,12,23.08,parece chuva/radio,parece rádio,2
-drill_4mm_09,13,25.0,parece chuva/radio,parece rádio,2
-drill_4mm_09,14,26.92,parece chuva/radio,parece rádio,2
-drill_4mm_09,15,28.85,parece chuva/radio,parece rádio,2
-drill_4mm_09,16,30.77,parece chuva/radio,parece rádio,2
-drill_4mm_09,17,32.69,parece chuva/radio,parece rádio,2
-drill_4mm_09,18,34.62,parece chuva/radio,parece rádio,2
-drill_4mm_09,19,36.54,parece chuva/radio,parece rádio,2
-drill_4mm_09,20,38.46,parece chuva/radio,parece rádio,2
-drill_4mm_09,21,40.38,parece chuva/radio,parece rádio,2
-drill_4mm_09,22,42.31,parece chuva/radio,parece rádio,2
-drill_4mm_09,23,44.23,parece chuva/radio,parece rádio,2
-drill_4mm_09,24,46.15,parece chuva/radio,parece rádio,2
-drill_4mm_09,25,48.08,parece chuva/radio,parece rádio,2
-drill_4mm_09,26,50.0,parece chuva/radio,parece rádio,2
-drill_4mm_09,27,51.92,parece chuva/radio,parece rádio,2
-drill_4mm_09,28,53.85,parece chuva/radio,parece rádio,2
-drill_4mm_09,29,55.77,parece chuva/radio,parece rádio,2
-drill_4mm_09,30,57.69,parece chuva/radio,parece rádio,2
-drill_4mm_09,31,59.62,parece chuva/radio,parece rádio,2
-drill_4mm_09,32,61.54,parece chuva/radio,parece rádio,2
-drill_4mm_09,33,63.46,parece chuva/radio,parece rádio,2
-drill_4mm_09,34,65.38,parece chuva/radio,parece rádio,2
-drill_4mm_09,35,67.31,parece chuva/radio,parece rádio,2
-drill_4mm_09,36,69.23,parece chuva/radio,parece rádio,2
-drill_4mm_09,37,71.15,parece chuva/radio,parece rádio,2
-drill_4mm_09,38,73.08,parece chuva/radio,parece rádio,2
-drill_4mm_09,39,75.0,parece chuva/radio,parece rádio,2
-drill_4mm_09,40,76.92,parece chuva/radio,parece rádio,2
-drill_4mm_09,41,78.85,parece chuva/radio,parece rádio,2
-drill_4mm_09,42,80.77,parece chuva/radio,parece rádio,2
-drill_4mm_09,43,82.69,parece chuva/radio,parece rádio,2
-drill_4mm_09,44,84.62,parece chuva + travou,travou,3
-drill_4mm_09,45,86.54,parece chuva/radio,parece rádio,2
-drill_4mm_09,46,88.46,parece chuva/radio,parece rádio,2
-drill_4mm_09,47,90.38,parece chuva/radio,parece rádio,2
-drill_4mm_09,48,92.31,parece chuva/radio,parece rádio,2
-drill_4mm_09,49,94.23,parece chuva/radio,parece rádio,2
-drill_4mm_09,50,96.15,parece chuva + travou,travou,3
-drill_4mm_09,51,98.08,parece chuva/radio,parece rádio,2
-drill_4mm_09,52,100.0,parece chuva + travou,travou,3
-drill_4mm_10,1,1.67,furo normal,furo normal,0
-drill_4mm_10,2,3.33,travou,travou,3
-drill_4mm_10,3,5.0,guizo,guizo,1
-drill_4mm_10,4,6.67,guizo,guizo,1
-drill_4mm_10,5,8.33,guizo,guizo,1
-drill_4mm_10,6,10.0,guizo,guizo,1
-drill_4mm_10,7,11.67,guizo,guizo,1
-drill_4mm_10,8,13.33,guizo,guizo,1
-drill_4mm_10,9,15.0,travou,travou,3
-drill_4mm_10,10,16.67,guizo,guizo,1
-drill_4mm_10,11,18.33,guizo,guizo,1
-drill_4mm_10,12,20.0,guizo,guizo,1
-drill_4mm_10,13,21.67,guizo,guizo,1
-drill_4mm_10,14,23.33,travou,travou,3
-drill_4mm_10,15,25.0,guizo,guizo,1
-drill_4mm_10,16,26.67,guizo,guizo,1
-drill_4mm_10,17,28.33,guizo,guizo,1
-drill_4mm_10,18,30.0,guizo,guizo,1
-drill_4mm_10,19,31.67,guizo,guizo,1
-drill_4mm_10,20,33.33,guizo,guizo,1
-drill_4mm_10,21,35.0,guizo,guizo,1
-drill_4mm_10,22,36.67,guizo,guizo,1
-drill_4mm_10,23,38.33,guizo,guizo,1
-drill_4mm_10,24,40.0,guizo,guizo,1
-drill_4mm_10,25,41.67,guizo,guizo,1
-drill_4mm_10,26,43.33,guizo,guizo,1
-drill_4mm_10,27,45.0,guizo,guizo,1
-drill_4mm_10,28,46.67,guizo,guizo,1
-drill_4mm_10,29,48.33,guizo,guizo,1
-drill_4mm_10,30,50.0,guizo,guizo,2
-drill_4mm_10,31,51.67,guizo,guizo,2
-drill_4mm_10,32,53.33,chiado,guizo,2
-drill_4mm_10,33,55.0,chiado,guizo,2
-drill_4mm_10,34,56.67,chiado,guizo,2
-drill_4mm_10,35,58.33,chiado,guizo,2
-drill_4mm_10,36,60.0,chiado,guizo,2
-drill_4mm_10,37,61.67,chiado,guizo,2
-drill_4mm_10,38,63.33,chiado,guizo,2
-drill_4mm_10,39,65.0,chiado,guizo,2
-drill_4mm_10,40,66.67,chiado,guizo,2
-drill_4mm_10,41,68.33,chiado,guizo,2
-drill_4mm_10,42,70.0,chiado,guizo,2
-drill_4mm_10,43,71.67,chiado,guizo,2
-drill_4mm_10,44,73.33,chiado,guizo,2
-drill_4mm_10,45,75.0,chiado,guizo,2
-drill_4mm_10,46,76.67,chiado,guizo,2
-drill_4mm_10,47,78.33,chiado,guizo,2
-drill_4mm_10,48,80.0,chiado,guizo,2
-drill_4mm_10,49,81.67,chiado,guizo,2
-drill_4mm_10,50,83.33,travou,travou,3
-drill_4mm_10,51,85.0,"não travou, não ouvir travamento mas pelo jam é esse furo","não travou, não ouvir travamento mas pelo jam é esse furo",3
-drill_4mm_10,52,86.67,chiado,guizo,2
-drill_4mm_10,53,88.33,chiado,guizo,2
-drill_4mm_10,54,90.0,chiado,guizo,2
-drill_4mm_10,55,91.67,chiado,guizo,2
-drill_4mm_10,56,93.33,chiado,guizo,2
-drill_4mm_10,57,95.0,chiado,guizo,2
-drill_4mm_10,58,96.67,travou,travou,3
-drill_4mm_10,59,98.33,"não travou, não ouvir travamento mas pelo jam é esse furo","não travou, não ouvir travamento mas pelo jam é esse furo",3
-drill_4mm_10,60,100.0,travou,travou,3
-drill_4mm_11,1,5.0,furo normal,furo normal,0
-drill_4mm_11,2,10.0,furo normal,furo normal,0
-drill_4mm_11,3,15.0,começo do guiso,começo do guiso,1
-drill_4mm_11,4,20.0,guiso,guiso,1
-drill_4mm_11,5,25.0,guiso,guiso,1
-drill_4mm_11,6,30.0,guiso,guiso,1
-drill_4mm_11,7,35.0,guiso,guiso,1
-drill_4mm_11,8,40.0,guiso,guiso,1
-drill_4mm_11,9,45.0,guiso,guiso,1
-drill_4mm_11,10,50.0,guiso,guiso,2
-drill_4mm_11,11,55.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,12,60.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,13,65.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,14,70.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,15,75.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,16,80.0,chiado + travou,travou,3
-drill_4mm_11,17,85.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,18,90.0,parece chiado de rádio,parece chiado de rádio,2
-drill_4mm_11,19,95.0,chiado + travou,travou,3
-drill_4mm_11,20,100.0,chiado + travou,travou,3
-drill_4mm_12,1,5.56,furo normal,furo normal,0
-drill_4mm_12,2,11.11,furo normal,furo normal,0
-drill_4mm_12,3,16.67,furo normal,furo normal,0
-drill_4mm_12,4,22.22,furo normal,furo normal,0
-drill_4mm_12,5,27.78,furo normal,furo normal,0
-drill_4mm_12,6,33.33,começo do guiso,começo do guiso,1
-drill_4mm_12,7,38.89,guiso,guiso fraco,1
-drill_4mm_12,8,44.44,guiso,guiso,1
-drill_4mm_12,9,50.0,guiso,guiso,2
-drill_4mm_12,10,55.56,guiso,guiso,2
-drill_4mm_12,11,61.11,guiso,guiso,2
-drill_4mm_12,12,66.67,guiso,guiso,2
-drill_4mm_12,13,72.22,guiso estranho,guiso,2
-drill_4mm_12,14,77.78,guiso estranho,guiso estranho,2
-drill_4mm_12,15,83.33,guiso estranho,guiso estranho,2
-drill_4mm_12,16,88.89,guiso estranho + travou,travou,3
-drill_4mm_12,17,94.44,guiso + travou,travou,3
-drill_4mm_12,18,100.0,guiso + travou,travou,3
-drill_4mm_13,1,5.26,furo normal,furo normal,0
-drill_4mm_13,2,10.53,começo do guiso,começo do guiso,1
-drill_4mm_13,3,15.79,guiso fraco,guiso,1
-drill_4mm_13,4,21.05,guiso fraco,guiso,1
-drill_4mm_13,5,26.32,guiso fraco,guiso,1
-drill_4mm_13,6,31.58,guiso,guiso,1
-drill_4mm_13,7,36.84,guiso,guiso,1
-drill_4mm_13,8,42.11,guiso,guiso,1
-drill_4mm_13,9,47.37,guiso,guiso,1
-drill_4mm_13,10,52.63,guiso,guiso,2
-drill_4mm_13,11,57.89,guiso,guiso,2
-drill_4mm_13,12,63.16,guiso,guiso,2
-drill_4mm_13,13,68.42,guiso,guiso,2
-drill_4mm_13,14,73.68,guiso,guiso,2
-drill_4mm_13,15,78.95,guiso + travou,travou,3
-drill_4mm_13,16,84.21,guiso,guiso,2
-drill_4mm_13,17,89.47,guiso + travou,travou,3
-drill_4mm_13,18,94.74,guiso,guiso,2
-drill_4mm_13,19,100.0,guiso + travou,travou,3
-drill_4mm_14,1,4.55,furo normal,furo normal,0
-drill_4mm_14,2,9.09,furo normal,furo normal,0
-drill_4mm_14,3,13.64,furo normal,furo normal,0
-drill_4mm_14,4,18.18,começo do guiso,começo do guiso,1
-drill_4mm_14,5,22.73,guiso,guiso,1
-drill_4mm_14,6,27.27,guiso,guiso,1
-drill_4mm_14,7,31.82,guiso,guiso,1
-drill_4mm_14,8,36.36,guiso,guiso,1
-drill_4mm_14,9,40.91,guiso,guiso,1
-drill_4mm_14,10,45.45,guiso,guiso,1
-drill_4mm_14,11,50.0,guiso,guiso,2
-drill_4mm_14,12,54.55,guiso,guiso,2
-drill_4mm_14,13,59.09,guiso + travou,travou,3
-drill_4mm_14,14,63.64,guiso,guiso,2
-drill_4mm_14,15,68.18,guiso,guiso,2
-drill_4mm_14,16,72.73,guiso,guiso,2
-drill_4mm_14,17,77.27,parece radio,parece radio,2
-drill_4mm_14,18,81.82,parece radio,parece radio,2
-drill_4mm_14,19,86.36,parece radio,parece radio,2
-drill_4mm_14,20,90.91,parece radio,parece radio,2
-drill_4mm_14,21,95.45,guiso + travou,travou,3
-drill_4mm_14,22,100.0,guiso + travou,travou,3
-drill_4mm_15,1,2.22,furo normal,furo normal,0
-drill_4mm_15,2,4.44,começo do guiso,começo do guiso,1
-drill_4mm_15,3,6.67,guiso fraco,guiso,1
-drill_4mm_15,4,8.89,guiso + travou,travou,3
-drill_4mm_15,5,11.11,guiso,guiso,1
-drill_4mm_15,6,13.33,guiso,guiso,1
-drill_4mm_15,7,15.56,guiso + travou,travou,3
-drill_4mm_15,8,17.78,guiso,guiso,1
-drill_4mm_15,9,20.0,guiso + travou,travou,3
-drill_4mm_15,10,22.22,guiso,guiso,1
-drill_4mm_15,11,24.44,guiso,guiso,1
-drill_4mm_15,12,26.67,guiso,guiso,1
-drill_4mm_15,13,28.89,guiso,guiso,1
-drill_4mm_15,14,31.11,guiso + travou,travou,3
-drill_4mm_15,15,33.33,guiso,guiso,1
-drill_4mm_15,16,35.56,guiso,guiso,1
-drill_4mm_15,17,37.78,guiso,guiso,1
-drill_4mm_15,18,40.0,parece radio,parece radio,2
-drill_4mm_15,19,42.22,parece radio,parece radio,2
-drill_4mm_15,20,44.44,parece radio,parece radio,2
-drill_4mm_15,21,46.67,parece radio,parece radio,2
-drill_4mm_15,22,48.89,parece radio,parece radio,2
-drill_4mm_15,23,51.11,parece radio,parece radio,2
-drill_4mm_15,24,53.33,parece radio,parece radio,2
-drill_4mm_15,25,55.56,parece radio,parece radio,2
-drill_4mm_15,26,57.78,parece radio,parece radio,2
-drill_4mm_15,27,60.0,parece radio,parece radio,2
-drill_4mm_15,28,62.22,parece radio,parece radio,2
-drill_4mm_15,29,64.44,parece radio,parece radio,2
-drill_4mm_15,30,66.67,parece radio,parece radio,2
-drill_4mm_15,31,68.89,guiso + travou,travou,3
-drill_4mm_15,32,71.11,guiso,parece radio,2
-drill_4mm_15,33,73.33,guiso,parece radio,2
-drill_4mm_15,34,75.56,guiso,parece radio,2
-drill_4mm_15,35,77.78,guiso,parece radio,2
-drill_4mm_15,36,80.0,parece radio,parece radio,2
-drill_4mm_15,37,82.22,guiso + travou,travou,3
-drill_4mm_15,38,84.44,parece radio,parece radio,2
-drill_4mm_15,39,86.67,guiso + travou,travou,3
-drill_4mm_15,40,88.89,parece radio,parece radio,2
-drill_4mm_15,41,91.11,parece radio,parece radio,2
-drill_4mm_15,42,93.33,parece radio,parece radio,2
-drill_4mm_15,43,95.56,guiso + travou,travou,3
-drill_4mm_15,44,97.78,parece radio,parece radio,2
-drill_4mm_15,45,100.0,guiso + travou,travou,3
-drill_4mm_16,1,2.44,furo normal,furo normal,0
-drill_4mm_16,2,4.88,furo normal,furo normal,0
-drill_4mm_16,3,7.32,guizo,guizo,1
-drill_4mm_16,4,9.76,guizo,guizo,1
-drill_4mm_16,5,12.2,guizo,guizo,1
-drill_4mm_16,6,14.63,guizo,guizo,1
-drill_4mm_16,7,17.07,travou,travou,3
-drill_4mm_16,8,19.51,guizo,guizo,1
-drill_4mm_16,9,21.95,guizo,guizo,1
-drill_4mm_16,10,24.39,guizo,guizo,1
-drill_4mm_16,11,26.83,guizo,guizo,1
-drill_4mm_16,12,29.27,guizo,guizo,1
-drill_4mm_16,13,31.71,guizo,guizo,1
-drill_4mm_16,14,34.15,travou,travou,3
-drill_4mm_16,15,36.59,chiado,guizo,2
-drill_4mm_16,16,39.02,guizo,guizo,1
-drill_4mm_16,17,41.46,travou,travou,3
-drill_4mm_16,18,43.9,chiado,guizo,2
-drill_4mm_16,19,46.34,guizo,guizo,1
-drill_4mm_16,20,48.78,chiado,guizo,2
-drill_4mm_16,21,51.22,chiado,guizo,2
-drill_4mm_16,22,53.66,chiado,guizo,2
-drill_4mm_16,23,56.1,chiado,guizo,2
-drill_4mm_16,24,58.54,chiado,guizo,2
-drill_4mm_16,25,60.98,chiado,guizo,2
-drill_4mm_16,26,63.41,chiado,guizo,2
-drill_4mm_16,27,65.85,chiado,guizo,2
-drill_4mm_16,28,68.29,chiado,guizo,2
-drill_4mm_16,29,70.73,travou,travou,3
-drill_4mm_16,30,73.17,chiado,guizo,2
-drill_4mm_16,31,75.61,guizo,guizo,2
-drill_4mm_16,32,78.05,chiado,guizo,2
-drill_4mm_16,33,80.49,travou,travou,3
-drill_4mm_16,34,82.93,chiado,guizo,2
-drill_4mm_16,35,85.37,guizo,guizo,2
-drill_4mm_16,36,87.8,chiado,guizo,2
-drill_4mm_16,37,90.24,chiado,guizo,2
-drill_4mm_16,38,92.68,travou,travou,3
-drill_4mm_16,39,95.12,travou,travou,3
-drill_4mm_16,40,97.56,guizo,guizo,2
-drill_4mm_16,41,100.0,guizo,guizo,2
-drill_4mm_17,1,5.0,travou,travou,3
-drill_4mm_17,2,10.0,furo normal,furo normal,0
-drill_4mm_17,3,15.0,começo do guizo,começo do guizo,1
-drill_4mm_17,4,20.0,guizo,guizo,1
-drill_4mm_17,5,25.0,guizo,guizo,1
-drill_4mm_17,6,30.0,guizo,guizo,1
-drill_4mm_17,7,35.0,guizo,guizo,1
-drill_4mm_17,8,40.0,guizo,guizo,1
-drill_4mm_17,9,45.0,travou,travou,3
-drill_4mm_17,10,50.0,guizo,guizo,2
-drill_4mm_17,11,55.0,guizo,guizo,2
-drill_4mm_17,12,60.0,guizo,guizo,2
-drill_4mm_17,13,65.0,travou,travou,3
-drill_4mm_17,14,70.0,travou,travou,3
-drill_4mm_17,15,75.0,guizo,guizo,2
-drill_4mm_17,16,80.0,travou,travou,3
-drill_4mm_17,17,85.0,guizo,guizo,2
-drill_4mm_17,18,90.0,parece radio,parece rádio,2
-drill_4mm_17,19,95.0,parece radio,parece rádio,2
-drill_4mm_17,20,100.0,travou,travou,3
-drill_4mm_18,1,1.22,furo normal,furo normal,0
-drill_4mm_18,2,2.44,furo normal,furo normal,0
-drill_4mm_18,3,3.66,travou,travou,3
-drill_4mm_18,4,4.88,furo normal,furo normal,0
-drill_4mm_18,5,6.1,furo normal,furo normal,0
-drill_4mm_18,6,7.32,furo normal,furo normal,0
-drill_4mm_18,7,8.54,furo normal,furo normal,0
-drill_4mm_18,8,9.76,furo normal,furo normal,0
-drill_4mm_18,9,10.98,furo normal,furo normal,0
-drill_4mm_18,10,12.2,furo normal,furo normal,0
-drill_4mm_18,11,13.41,chiado,furo normal,2
-drill_4mm_18,12,14.63,guizo,começo do guizo,1
-drill_4mm_18,13,15.85,furo normal,furo normal,0
-drill_4mm_18,14,17.07,furo normal,furo normal,0
-drill_4mm_18,15,18.29,guizo,guizo,1
-drill_4mm_18,16,19.51,guizo,guizo,1
-drill_4mm_18,17,20.73,guizo,guizo,1
-drill_4mm_18,18,21.95,guizo,guizo,1
-drill_4mm_18,19,23.17,guizo,guizo,1
-drill_4mm_18,20,24.39,guizo,guizo,1
-drill_4mm_18,21,25.61,guizo,guizo,1
-drill_4mm_18,22,26.83,guizo,guizo,1
-drill_4mm_18,23,28.05,guizo,guizo,1
-drill_4mm_18,24,29.27,guizo,guizo,1
-drill_4mm_18,25,30.49,guizo,guizo,1
-drill_4mm_18,26,31.71,guizo,guizo,1
-drill_4mm_18,27,32.93,guizo,guizo,1
-drill_4mm_18,28,34.15,guizo,guizo,1
-drill_4mm_18,29,35.37,parece chiado,guizo,2
-drill_4mm_18,30,36.59,parece chiado,guizo,2
-drill_4mm_18,31,37.8,guizo,guizo,1
-drill_4mm_18,32,39.02,guizo,guizo,1
-drill_4mm_18,33,40.24,parece chiado,guizo,2
-drill_4mm_18,34,41.46,guizo,guizo,1
-drill_4mm_18,35,42.68,parece chiado,guizo,2
-drill_4mm_18,36,43.9,parece chiado,guizo,2
-drill_4mm_18,37,45.12,chiado,parece chiado,2
-drill_4mm_18,38,46.34,chiado,parece chiado,2
-drill_4mm_18,39,47.56,chiado,parece chiado,2
-drill_4mm_18,40,48.78,chiado,parece chiado,2
-drill_4mm_18,41,50.0,chiado,parece chiado,2
-drill_4mm_18,42,51.22,chiado,parece chiado,2
-drill_4mm_18,43,52.44,chiado,parece chiado,2
-drill_4mm_18,44,53.66,chiado,parece chiado,2
-drill_4mm_18,45,54.88,travou,travou,3
-drill_4mm_18,46,56.1,chiado,parece chiado,2
-drill_4mm_18,47,57.32,chiado,parece chiado,2
-drill_4mm_18,48,58.54,chiado,parece chiado,2
-drill_4mm_18,49,59.76,chiado,parece chiado,2
-drill_4mm_18,50,60.98,chiado,parece chiado,2
-drill_4mm_18,51,62.2,chiado,parece chiado,2
-drill_4mm_18,52,63.41,travou,travou,3
-drill_4mm_18,53,64.63,chiado,parece chiado,2
-drill_4mm_18,54,65.85,chiado,parece chiado,2
-drill_4mm_18,55,67.07,chiado,parece chiado,2
-drill_4mm_18,56,68.29,chiado,parece chiado,2
-drill_4mm_18,57,69.51,chiado,parece chiado,2
-drill_4mm_18,58,70.73,chiado,parece chiado,2
-drill_4mm_18,59,71.95,chiado,parece chiado,2
-drill_4mm_18,60,73.17,chiado,parece chiado,2
-drill_4mm_18,61,74.39,chiado,parece chiado,2
-drill_4mm_18,62,75.61,chiado,parece chiado,2
-drill_4mm_18,63,76.83,chiado,parece chiado,2
-drill_4mm_18,64,78.05,chiado,parece chiado,2
-drill_4mm_18,65,79.27,chiado,parece chiado,2
-drill_4mm_18,66,80.49,chiado,parece chiado,2
-drill_4mm_18,67,81.71,chiado,parece chiado,2
-drill_4mm_18,68,82.93,travou,travou,3
-drill_4mm_18,69,84.15,chiado,parece chiado,2
-drill_4mm_18,70,85.37,chiado,parece chiado,2
-drill_4mm_18,71,86.59,chiado,parece chiado,2
-drill_4mm_18,72,87.8,chiado,parece chiado,2
-drill_4mm_18,73,89.02,chiado,parece chiado,2
-drill_4mm_18,74,90.24,chiado,parece chiado,2
-drill_4mm_18,75,91.46,travou,travou,3
-drill_4mm_18,76,92.68,chiado,parece chiado,2
-drill_4mm_18,77,93.9,chiado,parece chiado,2
-drill_4mm_18,78,95.12,travou,travou,3
-drill_4mm_18,79,96.34,chiado,parece chiado,2
-drill_4mm_18,80,97.56,travou,travou,3
-drill_4mm_18,81,98.78,chiado,parece chiado,2
-drill_4mm_18,82,100.0,travou,travou,3
-drill_4mm_19,1,1.85,normal,normal,0
-drill_4mm_19,2,3.7,normal,normal,0
-drill_4mm_19,3,5.56,guizo,guizo,1
-drill_4mm_19,4,7.41,guizo,guizo,1
-drill_4mm_19,5,9.26,guizo mais forte,guizo mais forte,1
-drill_4mm_19,6,11.11,guizo mais forte,guizo mais forte,1
-drill_4mm_19,7,12.96,guizo mais forte,guizo mais forte,1
-drill_4mm_19,8,14.81,guizo mais forte,guizo mais forte,1
-drill_4mm_19,9,16.67,guizo mais forte,guizo mais forte,1
-drill_4mm_19,10,18.52,travou,travou,3
-drill_4mm_19,11,20.37,guizo mais forte,guizo mais forte,1
-drill_4mm_19,12,22.22,guizo mais forte,guizo mais forte,1
-drill_4mm_19,13,24.07,guizo mais forte,guizo mais forte,1
-drill_4mm_19,14,25.93,guizo mais forte,guizo mais forte,1
-drill_4mm_19,15,27.78,guizo mais forte,guizo mais forte,1
-drill_4mm_19,16,29.63,guizo mais forte,guizo mais forte,1
-drill_4mm_19,17,31.48,chiado,guizo mais forte,2
-drill_4mm_19,18,33.33,chiado,guizo mais forte,2
-drill_4mm_19,19,35.19,chiado,guizo mais forte,2
-drill_4mm_19,20,37.04,chiado,guizo mais forte,2
-drill_4mm_19,21,38.89,chiado,guizo mais forte,2
-drill_4mm_19,22,40.74,chiado,guizo mais forte,2
-drill_4mm_19,23,42.59,chiado,guizo mais forte,2
-drill_4mm_19,24,44.44,chiado,guizo mais forte,2
-drill_4mm_19,25,46.3,chiado,guizo mais forte,2
-drill_4mm_19,26,48.15,chiado,guizo mais forte,2
-drill_4mm_19,27,50.0,chiado,guizo mais forte,2
-drill_4mm_19,28,51.85,chiado,guizo mais forte,2
-drill_4mm_19,29,53.7,chiado,guizo mais forte,2
-drill_4mm_19,30,55.56,chiado,guizo mais forte,2
-drill_4mm_19,31,57.41,chiado,guizo mais forte,2
-drill_4mm_19,32,59.26,chiado,guizo mais forte,2
-drill_4mm_19,33,61.11,chiado,guizo mais forte,2
-drill_4mm_19,34,62.96,chiado,guizo mais forte,2
-drill_4mm_19,35,64.81,chiado,guizo mais forte,2
-drill_4mm_19,36,66.67,chiado,guizo mais forte,2
-drill_4mm_19,37,68.52,chiado,guizo mais forte,2
-drill_4mm_19,38,70.37,chiado,guizo mais forte,2
-drill_4mm_19,39,72.22,chiado,guizo mais forte,2
-drill_4mm_19,40,74.07,chiado,guizo mais forte,2
-drill_4mm_19,41,75.93,chiado,guizo mais forte,2
-drill_4mm_19,42,77.78,chiado,guizo mais forte,2
-drill_4mm_19,43,79.63,chiado,guizo mais forte,2
-drill_4mm_19,44,81.48,chiado,guizo mais forte,2
-drill_4mm_19,45,83.33,chiado,guizo mais forte,2
-drill_4mm_19,46,85.19,chiado,guizo mais forte,2
-drill_4mm_19,47,87.04,chiado,guizo mais forte,2
-drill_4mm_19,48,88.89,travou,travou,3
-drill_4mm_19,49,90.74,chiado,guizo mais forte,2
-drill_4mm_19,50,92.59,travou,travou,3
-drill_4mm_19,51,94.44,chiado,guizo mais forte,2
-drill_4mm_19,52,96.3,chiado,guizo mais forte,2
-drill_4mm_19,53,98.15,travou,travou,3
-drill_4mm_19,54,100.0,travou,travou,3
-drill_4mm_20,1,2.78,furo normal,furo normal,0
-drill_4mm_20,2,5.56,guizo,começo do guiso,1
-drill_4mm_20,3,8.33,guizo,guizo,1
-drill_4mm_20,4,11.11,guizo,guizo,1
-drill_4mm_20,5,13.89,travou,travou,3
-drill_4mm_20,6,16.67,guizo,guizo,1
-drill_4mm_20,7,19.44,guizo,guizo,1
-drill_4mm_20,8,22.22,guizo,guizo,1
-drill_4mm_20,9,25.0,guizo,guizo,1
-drill_4mm_20,10,27.78,guizo,guizo,1
-drill_4mm_20,11,30.56,parece radio,guizo,2
-drill_4mm_20,12,33.33,travou,travou,3
-drill_4mm_20,13,36.11,parece radio,guizo,2
-drill_4mm_20,14,38.89,parece radio,guizo,2
-drill_4mm_20,15,41.67,parece radio,parece rádio,2
-drill_4mm_20,16,44.44,parece radio,parece rádio,2
-drill_4mm_20,17,47.22,parece radio,parece rádio,2
-drill_4mm_20,18,50.0,parece radio,parece rádio,2
-drill_4mm_20,19,52.78,parece radio,parece rádio,2
-drill_4mm_20,20,55.56,parece radio,parece rádio,2
-drill_4mm_20,21,58.33,parece radio,parece rádio,2
-drill_4mm_20,22,61.11,parece radio,parece rádio,2
-drill_4mm_20,23,63.89,parece radio,parece rádio,2
-drill_4mm_20,24,66.67,travou,travou,3
-drill_4mm_20,25,69.44,parece radio,parece rádio,2
-drill_4mm_20,26,72.22,parece radio,parece rádio,2
-drill_4mm_20,27,75.0,parece radio,parece rádio,2
-drill_4mm_20,28,77.78,parece radio,parece rádio,2
-drill_4mm_20,29,80.56,parece radio,parece rádio,2
-drill_4mm_20,30,83.33,travou,travou,3
-drill_4mm_20,31,86.11,parece radio,parece rádio,2
-drill_4mm_20,32,88.89,travou,travou,3
-drill_4mm_20,33,91.67,parece radio,parece rádio,2
-drill_4mm_20,34,94.44,parece radio,parece rádio,2
-drill_4mm_20,35,97.22,travou,travou,3
-drill_4mm_20,36,100.0,travou,travou,3
-drill_4mm_21,1,3.45,furo normal,furo normal,0
-drill_4mm_21,2,6.9,furo normal,furo normal,0
-drill_4mm_21,3,10.34,começo do guiso,começo do guiso,1
-drill_4mm_21,4,13.79,começo do guiso,começo do guiso,1
-drill_4mm_21,5,17.24,guiso,parece radio,1
-drill_4mm_21,6,20.69,guiso,parece radio,1
-drill_4mm_21,7,24.14,guiso,parece radio,1
-drill_4mm_21,8,27.59,guiso,parece radio,1
-drill_4mm_21,9,31.03,guiso,parece radio,1
-drill_4mm_21,10,34.48,parece radio,parece radio,2
-drill_4mm_21,11,37.93,parece radio,parece radio,2
-drill_4mm_21,12,41.38,parece radio,parece radio,2
-drill_4mm_21,13,44.83,travou,travou,3
-drill_4mm_21,14,48.28,parece radio,parece radio,2
-drill_4mm_21,15,51.72,parece radio,parece radio,2
-drill_4mm_21,16,55.17,parece radio,parece radio,2
-drill_4mm_21,17,58.62,parece radio,parece radio,2
-drill_4mm_21,18,62.07,parece radio,parece radio,2
-drill_4mm_21,19,65.52,parece radio,parece radio,2
-drill_4mm_21,20,68.97,parece radio,parece radio,2
-drill_4mm_21,21,72.41,parece radio,parece radio,2
-drill_4mm_21,22,75.86,travou,travou,3
-drill_4mm_21,23,79.31,parece radio,parece radio,2
-drill_4mm_21,24,82.76,travou,travou,3
-drill_4mm_21,25,86.21,parece radio,parece radio,2
-drill_4mm_21,26,89.66,travou,travou,3
-drill_4mm_21,27,93.1,parece radio,parece radio,2
-drill_4mm_21,28,96.55,parece radio,som diferente e alto,2
-drill_4mm_21,29,100.0,travou,travou,3
-drill_4mm_22,1,4.0,furo normal,furo normal,0
-drill_4mm_22,2,8.0,começo do guizo,começo do guiso,1
-drill_4mm_22,3,12.0,guizo,guizo,1
-drill_4mm_22,4,16.0,guizo,guizo,1
-drill_4mm_22,5,20.0,guizo,guizo,1
-drill_4mm_22,6,24.0,guizo,guizo,1
-drill_4mm_22,7,28.0,guizo,guizo,1
-drill_4mm_22,8,32.0,guizo,guizo,1
-drill_4mm_22,9,36.0,guizo,guizo,1
-drill_4mm_22,10,40.0,guizo,guizo,1
-drill_4mm_22,11,44.0,guizo,guizo,1
-drill_4mm_22,12,48.0,guizo,guizo,1
-drill_4mm_22,13,52.0,guizo,guizo,2
-drill_4mm_22,14,56.0,guizo,guizo,2
-drill_4mm_22,15,60.0,guizo,guizo,2
-drill_4mm_22,16,64.0,guizo,guizo,2
-drill_4mm_22,17,68.0,guizo,guizo,2
-drill_4mm_22,18,72.0,guizo,guizo,2
-drill_4mm_22,19,76.0,parece radio,guizo,2
-drill_4mm_22,20,80.0,parece radio,parece radio,2
-drill_4mm_22,21,84.0,parece radio,parece radio,2
-drill_4mm_22,22,88.0,travou,travou,3
-drill_4mm_22,23,92.0,travou,travou,3
-drill_4mm_22,24,96.0,travou,travou,3
-drill_4mm_22,25,100.0,travou,travou,3
-drill_4mm_23,1,2.44,normal,furo normal,0
-drill_4mm_23,2,4.88,normal,furo normal,0
-drill_4mm_23,3,7.32,começo do guiso,começo do guizo,1
-drill_4mm_23,4,9.76,guiso,guizo,1
-drill_4mm_23,5,12.2,guiso,guizo,1
-drill_4mm_23,6,14.63,parece radio,parece radio,2
-drill_4mm_23,7,17.07,parece radio,parece radio,2
-drill_4mm_23,8,19.51,parece radio,parece radio,2
-drill_4mm_23,9,21.95,parece radio,parece radio,2
-drill_4mm_23,10,24.39,parece radio,parece radio,2
-drill_4mm_23,11,26.83,parece radio,parece radio,2
-drill_4mm_23,12,29.27,parece radio,parece radio,2
-drill_4mm_23,13,31.71,parece radio,parece radio,2
-drill_4mm_23,14,34.15,parece radio,parece radio,2
-drill_4mm_23,15,36.59,parece radio,parece radio,2
-drill_4mm_23,16,39.02,parece radio,parece radio,2
-drill_4mm_23,17,41.46,parece radio,parece radio,2
-drill_4mm_23,18,43.9,parece radio,parece radio,2
-drill_4mm_23,19,46.34,parece radio,parece radio,2
-drill_4mm_23,20,48.78,parece radio,parece radio,2
-drill_4mm_23,21,51.22,parece radio,parece radio,2
-drill_4mm_23,22,53.66,parece radio,parece radio,2
-drill_4mm_23,23,56.1,parece radio,parece radio,2
-drill_4mm_23,24,58.54,parece radio,parece radio,2
-drill_4mm_23,25,60.98,parece radio,parece radio,2
-drill_4mm_23,26,63.41,travou,travou,3
-drill_4mm_23,27,65.85,parece radio,parece radio,2
-drill_4mm_23,28,68.29,travou,travou,3
-drill_4mm_23,29,70.73,parece radio,parece radio,2
-drill_4mm_23,30,73.17,parece radio,parece radio,2
-drill_4mm_23,31,75.61,parece radio,parece radio,2
-drill_4mm_23,32,78.05,parece radio,parece radio,2
-drill_4mm_23,33,80.49,travou,travou,3
-drill_4mm_23,34,82.93,travou,travou,3
-drill_4mm_23,35,85.37,parece radio,parece radio,2
-drill_4mm_23,36,87.8,parece radio,parece radio,2
-drill_4mm_23,37,90.24,parece radio,parece radio,2
-drill_4mm_23,38,92.68,parece radio,parece radio,2
-drill_4mm_23,39,95.12,travou,travou,3
-drill_4mm_23,40,97.56,parece radio,parece radio,2
-drill_4mm_23,41,100.0,travou,travou,3
+drill_4mm_01,1,1.92,normal,normal,0
+drill_4mm_01,2,3.85,normal,normal,0
+drill_4mm_01,3,5.77,guizo fraco no final,começo do guizo,1
+drill_4mm_01,4,7.69,guizo fraco no final,guizo fraco,1
+drill_4mm_01,5,9.62,guizo fraco no final,guizo fraco,1
+drill_4mm_01,6,11.54,guizo fraco no final,guizo fraco,1
+drill_4mm_01,7,13.46,guizo no final,guizo,1
+drill_4mm_01,8,15.38,guizo no final,guizo,1
+drill_4mm_01,9,17.31,guizo no final,guizo,1
+drill_4mm_01,10,19.23,guizo no final,guizo,1
+drill_4mm_01,11,21.15,guizo no final,guizo,1
+drill_4mm_01,12,23.08,guizo no final,guizo fraco,1
+drill_4mm_01,13,25.0,guizo um pouco mais forte no final,guizo,1
+drill_4mm_01,14,26.92,guizo um pouco mais forte no final,guizo,1
+drill_4mm_01,15,28.85,guizo no final,guizo,1
+drill_4mm_01,16,30.77,guizo um pouco mais forte no final,guizo fraco,1
+drill_4mm_01,17,32.69,guizo fraco no final,guizo fraco,1
+drill_4mm_01,18,34.62,guizo fraco no final,guizo fraco,1
+drill_4mm_01,19,36.54,guizo no final,guizo,1
+drill_4mm_01,20,38.46,guizo fraco no final,normal,1
+drill_4mm_01,21,40.38,guizo no final,guizo,1
+drill_4mm_01,22,42.31,guizo fraco no final,guizo fraco,1
+drill_4mm_01,23,44.23,guizo fraco no final,guizo fraco,1
+drill_4mm_01,24,46.15,guizo fraco no final,guizo fraco,1
+drill_4mm_01,25,48.08,guizo fraco no final,guizo fraco,1
+drill_4mm_01,26,50.0,guizo no final,guizo fraco,2
+drill_4mm_01,27,51.92,guizo fraco no final,guizo fraco,2
+drill_4mm_01,28,53.85,guizo fraco no final,guizo fraco,2
+drill_4mm_01,29,55.77,guizo um pouco mais forte no final,guizo fraco,2
+drill_4mm_01,30,57.69,guizo um pouco mais forte no final,guizo,2
+drill_4mm_01,31,59.62,guizo um pouco mais forte no final,guizo,2
+drill_4mm_01,32,61.54,guizo no final,guizo,2
+drill_4mm_01,33,63.46,guizo no final,guizo,2
+drill_4mm_01,34,65.38,guizo um pouco mais forte no final,guizo,2
+drill_4mm_01,35,67.31,guizo no final,guizo,2
+drill_4mm_01,36,69.23,guizo forte no final,guizo,2
+drill_4mm_01,37,71.15,guizo um pouco mais forte no final,guizo,2
+drill_4mm_01,38,73.08,guizo forte no final,guizo,2
+drill_4mm_01,39,75.0,guizo + travou,guizo + travou,3
+drill_4mm_01,40,76.92,guizo no final,guizo,2
+drill_4mm_01,41,78.85,guizo fraco no final,guizo fraco,2
+drill_4mm_01,42,80.77,guizo forte no final,guizo fraco,2
+drill_4mm_01,43,82.69,guizo forte no final,guizo,2
+drill_4mm_01,44,84.62,guizo forte no final,guizo,2
+drill_4mm_01,45,86.54,guizo muito forte no final,guizo,2
+drill_4mm_01,46,88.46,guizo muito forte no final,guizo,2
+drill_4mm_01,47,90.38,parece rádio,parece rádio,2
+drill_4mm_01,48,92.31,parece rádio,parece rádio,2
+drill_4mm_01,49,94.23,guizo + travou,guizo + travou,3
+drill_4mm_01,50,96.15,parece rádio,parece rádio,2
+drill_4mm_01,51,98.08,parece rádio,parece rádio,2
+drill_4mm_01,52,100.0,guizo + travou,guizo + travou,3
+drill_4mm_02,1,0.93,furo normal,furo normal,0
+drill_4mm_02,2,1.87,furo normal,furo normal,0
+drill_4mm_02,3,2.8,começo do guiso no final do áudio,furo normal,1
+drill_4mm_02,4,3.74,guiso fraco no final,começo do guiso,1
+drill_4mm_02,5,4.67,guiso fraco no final,guiso fraco,1
+drill_4mm_02,6,5.61,guiso fraco no final,guiso fraco,1
+drill_4mm_02,7,6.54,guiso fraco no final,guiso fraco,1
+drill_4mm_02,8,7.48,guiso mais forte,guiso,1
+drill_4mm_02,9,8.41,guiso fraco no final,guiso fraco,1
+drill_4mm_02,10,9.35,guiso fraco no final,guiso fraco,1
+drill_4mm_02,11,10.28,guiso fraco no final,guiso fraco,1
+drill_4mm_02,12,11.21,guiso fraco no final,guiso fraco,1
+drill_4mm_02,13,12.15,guiso mais forte,guiso fraco,1
+drill_4mm_02,14,13.08,guiso mais forte,guiso fraco,1
+drill_4mm_02,15,14.02,guiso mais forte,guiso fraco,1
+drill_4mm_02,16,14.95,guiso mais forte,guiso fraco,1
+drill_4mm_02,17,15.89,guiso mais forte,guiso fraco,1
+drill_4mm_02,18,16.82,guiso mais forte,guiso fraco,1
+drill_4mm_02,19,17.76,guiso fraco no final,guiso fraco,1
+drill_4mm_02,20,18.69,guiso mais forte,guiso fraco,1
+drill_4mm_02,21,19.63,guiso mais forte,guiso fraco,1
+drill_4mm_02,22,20.56,guiso mais forte,guiso,1
+drill_4mm_02,23,21.5,guiso mais forte,guiso,1
+drill_4mm_02,24,22.43,guiso mais forte,guiso,1
+drill_4mm_02,25,23.36,guiso mais forte,guiso,1
+drill_4mm_02,26,24.3,guiso mais forte,guiso,1
+drill_4mm_02,27,25.23,guiso mais forte,guiso,1
+drill_4mm_02,28,26.17,guiso mais forte,guiso,1
+drill_4mm_02,29,27.1,guiso mais forte,guiso,1
+drill_4mm_02,30,28.04,guiso mais forte,guiso,1
+drill_4mm_02,31,28.97,guiso no final,guiso,1
+drill_4mm_02,32,29.91,guiso no final,guiso,1
+drill_4mm_02,33,30.84,guiso no final,guiso,1
+drill_4mm_02,34,31.78,guiso no final,guiso,1
+drill_4mm_02,35,32.71,guiso no final,guiso,1
+drill_4mm_02,36,33.64,guiso no final,guiso,1
+drill_4mm_02,37,34.58,guiso no final,guiso,1
+drill_4mm_02,38,35.51,guiso no final,guiso,1
+drill_4mm_02,39,36.45,guiso no final,guiso,1
+drill_4mm_02,40,37.38,guiso no final,guiso,1
+drill_4mm_02,41,38.32,guiso no final,guiso,1
+drill_4mm_02,42,39.25,parece chiado de rádio,guiso,2
+drill_4mm_02,43,40.19,parece chiado de rádio,guiso,2
+drill_4mm_02,44,41.12,parece chiado de rádio,guiso,2
+drill_4mm_02,45,42.06,parece chiado de rádio,guiso,2
+drill_4mm_02,46,42.99,parece chiado de rádio,guiso,2
+drill_4mm_02,47,43.93,parece chiado de rádio,guiso,2
+drill_4mm_02,48,44.86,parece chiado de rádio,guiso,2
+drill_4mm_02,49,45.79,parece chiado de rádio,guiso,2
+drill_4mm_02,50,46.73,parece chiado de rádio,guiso,2
+drill_4mm_02,51,47.66,parece chiado de rádio,guiso,2
+drill_4mm_02,52,48.6,parece chiado de rádio,guiso,2
+drill_4mm_02,53,49.53,parece chiado de rádio,guiso,2
+drill_4mm_02,54,50.47,parece chiado de rádio,guiso,2
+drill_4mm_02,55,51.4,parece chiado de rádio,guiso,2
+drill_4mm_02,56,52.34,chiado mais forte,guiso,2
+drill_4mm_02,57,53.27,parece chiado de rádio,guiso,2
+drill_4mm_02,58,54.21,parece chiado de rádio,guiso,2
+drill_4mm_02,59,55.14,chiado mais forte,guiso,2
+drill_4mm_02,60,56.07,chiado mais forte,guiso,2
+drill_4mm_02,61,57.01,parece chiado de rádio,guiso,2
+drill_4mm_02,62,57.94,chiado mais forte,guiso forte,2
+drill_4mm_02,63,58.88,chiado mais forte,guiso forte,2
+drill_4mm_02,64,59.81,chiado mais forte,guiso forte,2
+drill_4mm_02,65,60.75,chiado mais forte,guiso forte,2
+drill_4mm_02,66,61.68,chiado mais forte,guiso forte,2
+drill_4mm_02,67,62.62,chiado mais forte,guiso forte,2
+drill_4mm_02,68,63.55,chiado mais forte,guiso forte,2
+drill_4mm_02,69,64.49,chiado mais forte,guiso forte,2
+drill_4mm_02,70,65.42,chiado mais forte,guiso forte,2
+drill_4mm_02,71,66.36,chiado mais forte,guiso forte,2
+drill_4mm_02,72,67.29,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,73,68.22,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,74,69.16,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,75,70.09,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,76,71.03,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,77,71.96,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,78,72.9,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,79,73.83,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,80,74.77,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,81,75.7,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,82,76.64,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,83,77.57,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,84,78.5,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,85,79.44,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,86,80.37,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,87,81.31,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,88,82.24,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,89,83.18,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,90,84.11,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,91,85.05,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,92,85.98,chiado insuportável de ouvir,guiso forte,2
+drill_4mm_02,93,86.92,travou,travou,3
+drill_4mm_02,94,87.85,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,95,88.79,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,96,89.72,travou,travou,3
+drill_4mm_02,97,90.65,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,98,91.59,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,99,92.52,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,100,93.46,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,101,94.39,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,102,95.33,chiado insuportável de ouvir,parece rádio,2
+drill_4mm_02,103,96.26,chuva,parece rádio,2
+drill_4mm_02,104,97.2,chuva,guiso,2
+drill_4mm_02,105,98.13,chuva,parece rádio,2
+drill_4mm_02,106,99.07,chuva,parece rádio,2
+drill_4mm_02,107,100.0,travou,travou,3
+drill_4mm_03,1,3.85,furo normal,furo normal,0
+drill_4mm_03,2,7.69,furo normal,furo normal,0
+drill_4mm_03,3,11.54,começo do guiso,começo do guiso,1
+drill_4mm_03,4,15.38,começo do guiso,guiso fraco,1
+drill_4mm_03,5,19.23,começo do guiso,guiso fraco,1
+drill_4mm_03,6,23.08,começo do guiso,guiso,1
+drill_4mm_03,7,26.92,começo do guiso,guiso,1
+drill_4mm_03,8,30.77,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,9,34.62,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,10,38.46,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,11,42.31,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,12,46.15,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,13,50.0,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,14,53.85,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,15,57.69,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,16,61.54,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,17,65.38,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,18,69.23,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,19,73.08,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,20,76.92,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,21,80.77,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,22,84.62,guiso + travou,travou,3
+drill_4mm_03,23,88.46,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,24,92.31,parece radio(insuportável a partir do 17),parece radio,2
+drill_4mm_03,25,96.15,guiso + travou,travou,3
+drill_4mm_03,26,100.0,guiso + travou,travou,3
+drill_4mm_04,1,3.03,som normal,furo normal,0
+drill_4mm_04,2,6.06,som normal,furo normal,0
+drill_4mm_04,3,9.09,começo do guiso fraco,começo do guiso,1
+drill_4mm_04,4,12.12,guiso + travou,guiso + travou,3
+drill_4mm_04,5,15.15,guiso fraco no final,guiso,1
+drill_4mm_04,6,18.18,guiso fraco no final,guiso,1
+drill_4mm_04,7,21.21,guiso mais forte,guiso,1
+drill_4mm_04,8,24.24,guiso mais forte,guiso,1
+drill_4mm_04,9,27.27,guiso mais forte,guiso,1
+drill_4mm_04,10,30.3,guiso mais forte,guiso,1
+drill_4mm_04,11,33.33,guiso estranho e forte,guiso estranho e forte,1
+drill_4mm_04,12,36.36,guiso estranho e forte,guiso estranho e forte,1
+drill_4mm_04,13,39.39,guiso estranho e forte,guiso estranho e forte,1
+drill_4mm_04,14,42.42,guiso estranho e forte,guiso estranho e forte,1
+drill_4mm_04,15,45.45,guiso estranho e forte,guiso estranho e forte,1
+drill_4mm_04,16,48.48,guiso estranho e forte,guiso estranho e forte,1
+drill_4mm_04,17,51.52,guiso estranho e forte,guiso estranho e forte,2
+drill_4mm_04,18,54.55,guiso estranho e forte,guiso estranho e forte,2
+drill_4mm_04,19,57.58,parece chuvisco/radio dessintonizada,guiso estranho e forte,2
+drill_4mm_04,20,60.61,parece chuvisco/radio dessintonizada,guiso estranho e forte,2
+drill_4mm_04,21,63.64,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,22,66.67,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,23,69.7,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,24,72.73,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,25,75.76,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,26,78.79,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,27,81.82,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,28,84.85,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,29,87.88,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,30,90.91,parece chuvisco/radio dessintonizada,parece chuvisco/radio dessintonizada,2
+drill_4mm_04,31,93.94,parece chuvisco/radio dessintonizada + travou,travou,3
+drill_4mm_04,32,96.97,guiso + travou,travou,3
+drill_4mm_04,33,100.0,guiso + travou,travou,3
+drill_4mm_05,1,4.55,furo normal,furo normal,0
+drill_4mm_05,2,9.09,furo normal,furo normal,0
+drill_4mm_05,3,13.64,furo normal,furo normal,0
+drill_4mm_05,4,18.18,começo guiso,furo normal,1
+drill_4mm_05,5,22.73,começo guiso,começo do guiso,1
+drill_4mm_05,6,27.27,guiso fraco no final,guiso fraco,1
+drill_4mm_05,7,31.82,guiso fraco + travou,travou,3
+drill_4mm_05,8,36.36,guiso fraco no final,guiso fraco,1
+drill_4mm_05,9,40.91,guiso fraco no final,guiso forte,1
+drill_4mm_05,10,45.45,guiso forte no final,guiso forte,1
+drill_4mm_05,11,50.0,guiso forte no final,guiso forte,2
+drill_4mm_05,12,54.55,parece chuva fraca,guiso forte,2
+drill_4mm_05,13,59.09,parece chuva fraca,guiso forte,2
+drill_4mm_05,14,63.64,parece chuva fraca,guiso fraco,2
+drill_4mm_05,15,68.18,parece chuva fraca,guiso fraco,2
+drill_4mm_05,16,72.73,guiso fraco + TRAVOU,travou,3
+drill_4mm_05,17,77.27,guiso fraco no final,guiso fraco,2
+drill_4mm_05,18,81.82,parece chuva fraca,guiso forte,2
+drill_4mm_05,19,86.36,parece chuva fraca + TRAVOU,travou,3
+drill_4mm_05,20,90.91,BARULHO ESTRANHO E ALTO,barulho insuportável e estranho,0
+drill_4mm_05,21,95.45,parece chuva fraca,guiso forte,2
+drill_4mm_05,22,100.0,guiso fraco + TRAVOU,travou,3
+drill_4mm_06,1,1.92,furo normal,furo normal,0
+drill_4mm_06,2,3.85,furo normal,furo normal,0
+drill_4mm_06,3,5.77,começo do guiso,começo do guiso,1
+drill_4mm_06,4,7.69,começo do guiso,guiso,1
+drill_4mm_06,5,9.62,guiso forte no final,guiso,1
+drill_4mm_06,6,11.54,guiso forte no final,guiso,1
+drill_4mm_06,7,13.46,guiso forte no final,guiso,1
+drill_4mm_06,8,15.38,guiso forte no final,guiso,1
+drill_4mm_06,9,17.31,parece chuva/radio,parece rádio,2
+drill_4mm_06,10,19.23,parece chuva/radio,parece rádio,2
+drill_4mm_06,11,21.15,parece chuva/radio,parece rádio,2
+drill_4mm_06,12,23.08,parece chuva/radio,parece rádio,2
+drill_4mm_06,13,25.0,parece chuva/radio,parece rádio,2
+drill_4mm_06,14,26.92,parece chuva/radio,parece rádio,2
+drill_4mm_06,15,28.85,parece chuva/radio,parece rádio,2
+drill_4mm_06,16,30.77,parece chuva/radio,parece rádio,2
+drill_4mm_06,17,32.69,parece chuva/radio,parece rádio,2
+drill_4mm_06,18,34.62,parece chuva/radio,parece rádio,2
+drill_4mm_06,19,36.54,parece chuva/radio,parece rádio,2
+drill_4mm_06,20,38.46,parece chuva/radio,parece rádio,2
+drill_4mm_06,21,40.38,parece chuva/radio,parece rádio,2
+drill_4mm_06,22,42.31,parece chuva/radio,parece rádio,2
+drill_4mm_06,23,44.23,parece chuva/radio,parece rádio,2
+drill_4mm_06,24,46.15,parece chuva/radio,parece rádio,2
+drill_4mm_06,25,48.08,parece chuva/radio,parece rádio,2
+drill_4mm_06,26,50.0,parece chuva/radio,parece rádio,2
+drill_4mm_06,27,51.92,parece chuva/radio,parece rádio,2
+drill_4mm_06,28,53.85,parece chuva/radio,parece rádio,2
+drill_4mm_06,29,55.77,parece chuva/radio,parece rádio,2
+drill_4mm_06,30,57.69,parece chuva/radio,parece rádio,2
+drill_4mm_06,31,59.62,parece chuva/radio,parece rádio,2
+drill_4mm_06,32,61.54,parece chuva/radio,parece rádio,2
+drill_4mm_06,33,63.46,parece chuva/radio,parece rádio,2
+drill_4mm_06,34,65.38,parece chuva/radio,parece rádio,2
+drill_4mm_06,35,67.31,parece chuva/radio,parece rádio,2
+drill_4mm_06,36,69.23,parece chuva/radio,parece rádio,2
+drill_4mm_06,37,71.15,parece chuva/radio,parece rádio,2
+drill_4mm_06,38,73.08,parece chuva/radio,parece rádio,2
+drill_4mm_06,39,75.0,parece chuva/radio,parece rádio,2
+drill_4mm_06,40,76.92,parece chuva/radio,parece rádio,2
+drill_4mm_06,41,78.85,parece chuva/radio,parece rádio,2
+drill_4mm_06,42,80.77,parece chuva/radio,parece rádio,2
+drill_4mm_06,43,82.69,parece chuva/radio,parece rádio,2
+drill_4mm_06,44,84.62,parece chuva + travou,travou,3
+drill_4mm_06,45,86.54,parece chuva/radio,parece rádio,2
+drill_4mm_06,46,88.46,parece chuva/radio,parece rádio,2
+drill_4mm_06,47,90.38,parece chuva/radio,parece rádio,2
+drill_4mm_06,48,92.31,parece chuva/radio,parece rádio,2
+drill_4mm_06,49,94.23,parece chuva/radio,parece rádio,2
+drill_4mm_06,50,96.15,parece chuva + travou,travou,3
+drill_4mm_06,51,98.08,parece chuva/radio,parece rádio,2
+drill_4mm_06,52,100.0,parece chuva + travou,travou,3
+drill_4mm_07,1,1.67,furo normal,furo normal,0
+drill_4mm_07,2,3.33,travou,travou,3
+drill_4mm_07,3,5.0,guizo,guizo,1
+drill_4mm_07,4,6.67,guizo,guizo,1
+drill_4mm_07,5,8.33,guizo,guizo,1
+drill_4mm_07,6,10.0,guizo,guizo,1
+drill_4mm_07,7,11.67,guizo,guizo,1
+drill_4mm_07,8,13.33,guizo,guizo,1
+drill_4mm_07,9,15.0,travou,travou,3
+drill_4mm_07,10,16.67,guizo,guizo,1
+drill_4mm_07,11,18.33,guizo,guizo,1
+drill_4mm_07,12,20.0,guizo,guizo,1
+drill_4mm_07,13,21.67,guizo,guizo,1
+drill_4mm_07,14,23.33,travou,travou,3
+drill_4mm_07,15,25.0,guizo,guizo,1
+drill_4mm_07,16,26.67,guizo,guizo,1
+drill_4mm_07,17,28.33,guizo,guizo,1
+drill_4mm_07,18,30.0,guizo,guizo,1
+drill_4mm_07,19,31.67,guizo,guizo,1
+drill_4mm_07,20,33.33,guizo,guizo,1
+drill_4mm_07,21,35.0,guizo,guizo,1
+drill_4mm_07,22,36.67,guizo,guizo,1
+drill_4mm_07,23,38.33,guizo,guizo,1
+drill_4mm_07,24,40.0,guizo,guizo,1
+drill_4mm_07,25,41.67,guizo,guizo,1
+drill_4mm_07,26,43.33,guizo,guizo,1
+drill_4mm_07,27,45.0,guizo,guizo,1
+drill_4mm_07,28,46.67,guizo,guizo,1
+drill_4mm_07,29,48.33,guizo,guizo,1
+drill_4mm_07,30,50.0,guizo,guizo,2
+drill_4mm_07,31,51.67,guizo,guizo,2
+drill_4mm_07,32,53.33,chiado,guizo,2
+drill_4mm_07,33,55.0,chiado,guizo,2
+drill_4mm_07,34,56.67,chiado,guizo,2
+drill_4mm_07,35,58.33,chiado,guizo,2
+drill_4mm_07,36,60.0,chiado,guizo,2
+drill_4mm_07,37,61.67,chiado,guizo,2
+drill_4mm_07,38,63.33,chiado,guizo,2
+drill_4mm_07,39,65.0,chiado,guizo,2
+drill_4mm_07,40,66.67,chiado,guizo,2
+drill_4mm_07,41,68.33,chiado,guizo,2
+drill_4mm_07,42,70.0,chiado,guizo,2
+drill_4mm_07,43,71.67,chiado,guizo,2
+drill_4mm_07,44,73.33,chiado,guizo,2
+drill_4mm_07,45,75.0,chiado,guizo,2
+drill_4mm_07,46,76.67,chiado,guizo,2
+drill_4mm_07,47,78.33,chiado,guizo,2
+drill_4mm_07,48,80.0,chiado,guizo,2
+drill_4mm_07,49,81.67,chiado,guizo,2
+drill_4mm_07,50,83.33,travou,travou,3
+drill_4mm_07,51,85.0,"não travou, não ouvir travamento mas pelo jam é esse furo","não travou, não ouvir travamento mas pelo jam é esse furo",3
+drill_4mm_07,52,86.67,chiado,guizo,2
+drill_4mm_07,53,88.33,chiado,guizo,2
+drill_4mm_07,54,90.0,chiado,guizo,2
+drill_4mm_07,55,91.67,chiado,guizo,2
+drill_4mm_07,56,93.33,chiado,guizo,2
+drill_4mm_07,57,95.0,chiado,guizo,2
+drill_4mm_07,58,96.67,travou,travou,3
+drill_4mm_07,59,98.33,"não travou, não ouvir travamento mas pelo jam é esse furo","não travou, não ouvir travamento mas pelo jam é esse furo",3
+drill_4mm_07,60,100.0,travou,travou,3
+drill_4mm_08,1,5.0,furo normal,furo normal,0
+drill_4mm_08,2,10.0,furo normal,furo normal,0
+drill_4mm_08,3,15.0,começo do guiso,começo do guiso,1
+drill_4mm_08,4,20.0,guiso,guiso,1
+drill_4mm_08,5,25.0,guiso,guiso,1
+drill_4mm_08,6,30.0,guiso,guiso,1
+drill_4mm_08,7,35.0,guiso,guiso,1
+drill_4mm_08,8,40.0,guiso,guiso,1
+drill_4mm_08,9,45.0,guiso,guiso,1
+drill_4mm_08,10,50.0,guiso,guiso,2
+drill_4mm_08,11,55.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,12,60.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,13,65.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,14,70.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,15,75.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,16,80.0,chiado + travou,travou,3
+drill_4mm_08,17,85.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,18,90.0,parece chiado de rádio,parece chiado de rádio,2
+drill_4mm_08,19,95.0,chiado + travou,travou,3
+drill_4mm_08,20,100.0,chiado + travou,travou,3
+drill_4mm_09,1,5.56,furo normal,furo normal,0
+drill_4mm_09,2,11.11,furo normal,furo normal,0
+drill_4mm_09,3,16.67,furo normal,furo normal,0
+drill_4mm_09,4,22.22,furo normal,furo normal,0
+drill_4mm_09,5,27.78,furo normal,furo normal,0
+drill_4mm_09,6,33.33,começo do guiso,começo do guiso,1
+drill_4mm_09,7,38.89,guiso,guiso fraco,1
+drill_4mm_09,8,44.44,guiso,guiso,1
+drill_4mm_09,9,50.0,guiso,guiso,2
+drill_4mm_09,10,55.56,guiso,guiso,2
+drill_4mm_09,11,61.11,guiso,guiso,2
+drill_4mm_09,12,66.67,guiso,guiso,2
+drill_4mm_09,13,72.22,guiso estranho,guiso,2
+drill_4mm_09,14,77.78,guiso estranho,guiso estranho,2
+drill_4mm_09,15,83.33,guiso estranho,guiso estranho,2
+drill_4mm_09,16,88.89,guiso estranho + travou,travou,3
+drill_4mm_09,17,94.44,guiso + travou,travou,3
+drill_4mm_09,18,100.0,guiso + travou,travou,3
+drill_4mm_10,1,5.26,furo normal,furo normal,0
+drill_4mm_10,2,10.53,começo do guiso,começo do guiso,1
+drill_4mm_10,3,15.79,guiso fraco,guiso,1
+drill_4mm_10,4,21.05,guiso fraco,guiso,1
+drill_4mm_10,5,26.32,guiso fraco,guiso,1
+drill_4mm_10,6,31.58,guiso,guiso,1
+drill_4mm_10,7,36.84,guiso,guiso,1
+drill_4mm_10,8,42.11,guiso,guiso,1
+drill_4mm_10,9,47.37,guiso,guiso,1
+drill_4mm_10,10,52.63,guiso,guiso,2
+drill_4mm_10,11,57.89,guiso,guiso,2
+drill_4mm_10,12,63.16,guiso,guiso,2
+drill_4mm_10,13,68.42,guiso,guiso,2
+drill_4mm_10,14,73.68,guiso,guiso,2
+drill_4mm_10,15,78.95,guiso + travou,travou,3
+drill_4mm_10,16,84.21,guiso,guiso,2
+drill_4mm_10,17,89.47,guiso + travou,travou,3
+drill_4mm_10,18,94.74,guiso,guiso,2
+drill_4mm_10,19,100.0,guiso + travou,travou,3
+drill_4mm_11,1,4.55,furo normal,furo normal,0
+drill_4mm_11,2,9.09,furo normal,furo normal,0
+drill_4mm_11,3,13.64,furo normal,furo normal,0
+drill_4mm_11,4,18.18,começo do guiso,começo do guiso,1
+drill_4mm_11,5,22.73,guiso,guiso,1
+drill_4mm_11,6,27.27,guiso,guiso,1
+drill_4mm_11,7,31.82,guiso,guiso,1
+drill_4mm_11,8,36.36,guiso,guiso,1
+drill_4mm_11,9,40.91,guiso,guiso,1
+drill_4mm_11,10,45.45,guiso,guiso,1
+drill_4mm_11,11,50.0,guiso,guiso,2
+drill_4mm_11,12,54.55,guiso,guiso,2
+drill_4mm_11,13,59.09,guiso + travou,travou,3
+drill_4mm_11,14,63.64,guiso,guiso,2
+drill_4mm_11,15,68.18,guiso,guiso,2
+drill_4mm_11,16,72.73,guiso,guiso,2
+drill_4mm_11,17,77.27,parece radio,parece radio,2
+drill_4mm_11,18,81.82,parece radio,parece radio,2
+drill_4mm_11,19,86.36,parece radio,parece radio,2
+drill_4mm_11,20,90.91,parece radio,parece radio,2
+drill_4mm_11,21,95.45,guiso + travou,travou,3
+drill_4mm_11,22,100.0,guiso + travou,travou,3
+drill_4mm_12,1,2.22,furo normal,furo normal,0
+drill_4mm_12,2,4.44,começo do guiso,começo do guiso,1
+drill_4mm_12,3,6.67,guiso fraco,guiso,1
+drill_4mm_12,4,8.89,guiso + travou,travou,3
+drill_4mm_12,5,11.11,guiso,guiso,1
+drill_4mm_12,6,13.33,guiso,guiso,1
+drill_4mm_12,7,15.56,guiso + travou,travou,3
+drill_4mm_12,8,17.78,guiso,guiso,1
+drill_4mm_12,9,20.0,guiso + travou,travou,3
+drill_4mm_12,10,22.22,guiso,guiso,1
+drill_4mm_12,11,24.44,guiso,guiso,1
+drill_4mm_12,12,26.67,guiso,guiso,1
+drill_4mm_12,13,28.89,guiso,guiso,1
+drill_4mm_12,14,31.11,guiso + travou,travou,3
+drill_4mm_12,15,33.33,guiso,guiso,1
+drill_4mm_12,16,35.56,guiso,guiso,1
+drill_4mm_12,17,37.78,guiso,guiso,1
+drill_4mm_12,18,40.0,parece radio,parece radio,2
+drill_4mm_12,19,42.22,parece radio,parece radio,2
+drill_4mm_12,20,44.44,parece radio,parece radio,2
+drill_4mm_12,21,46.67,parece radio,parece radio,2
+drill_4mm_12,22,48.89,parece radio,parece radio,2
+drill_4mm_12,23,51.11,parece radio,parece radio,2
+drill_4mm_12,24,53.33,parece radio,parece radio,2
+drill_4mm_12,25,55.56,parece radio,parece radio,2
+drill_4mm_12,26,57.78,parece radio,parece radio,2
+drill_4mm_12,27,60.0,parece radio,parece radio,2
+drill_4mm_12,28,62.22,parece radio,parece radio,2
+drill_4mm_12,29,64.44,parece radio,parece radio,2
+drill_4mm_12,30,66.67,parece radio,parece radio,2
+drill_4mm_12,31,68.89,guiso + travou,travou,3
+drill_4mm_12,32,71.11,guiso,parece radio,2
+drill_4mm_12,33,73.33,guiso,parece radio,2
+drill_4mm_12,34,75.56,guiso,parece radio,2
+drill_4mm_12,35,77.78,guiso,parece radio,2
+drill_4mm_12,36,80.0,parece radio,parece radio,2
+drill_4mm_12,37,82.22,guiso + travou,travou,3
+drill_4mm_12,38,84.44,parece radio,parece radio,2
+drill_4mm_12,39,86.67,guiso + travou,travou,3
+drill_4mm_12,40,88.89,parece radio,parece radio,2
+drill_4mm_12,41,91.11,parece radio,parece radio,2
+drill_4mm_12,42,93.33,parece radio,parece radio,2
+drill_4mm_12,43,95.56,guiso + travou,travou,3
+drill_4mm_12,44,97.78,parece radio,parece radio,2
+drill_4mm_12,45,100.0,guiso + travou,travou,3
+drill_4mm_13,1,2.44,furo normal,furo normal,0
+drill_4mm_13,2,4.88,furo normal,furo normal,0
+drill_4mm_13,3,7.32,guizo,guizo,1
+drill_4mm_13,4,9.76,guizo,guizo,1
+drill_4mm_13,5,12.2,guizo,guizo,1
+drill_4mm_13,6,14.63,guizo,guizo,1
+drill_4mm_13,7,17.07,travou,travou,3
+drill_4mm_13,8,19.51,guizo,guizo,1
+drill_4mm_13,9,21.95,guizo,guizo,1
+drill_4mm_13,10,24.39,guizo,guizo,1
+drill_4mm_13,11,26.83,guizo,guizo,1
+drill_4mm_13,12,29.27,guizo,guizo,1
+drill_4mm_13,13,31.71,guizo,guizo,1
+drill_4mm_13,14,34.15,travou,travou,3
+drill_4mm_13,15,36.59,chiado,guizo,2
+drill_4mm_13,16,39.02,guizo,guizo,1
+drill_4mm_13,17,41.46,travou,travou,3
+drill_4mm_13,18,43.9,chiado,guizo,2
+drill_4mm_13,19,46.34,guizo,guizo,1
+drill_4mm_13,20,48.78,chiado,guizo,2
+drill_4mm_13,21,51.22,chiado,guizo,2
+drill_4mm_13,22,53.66,chiado,guizo,2
+drill_4mm_13,23,56.1,chiado,guizo,2
+drill_4mm_13,24,58.54,chiado,guizo,2
+drill_4mm_13,25,60.98,chiado,guizo,2
+drill_4mm_13,26,63.41,chiado,guizo,2
+drill_4mm_13,27,65.85,chiado,guizo,2
+drill_4mm_13,28,68.29,chiado,guizo,2
+drill_4mm_13,29,70.73,travou,travou,3
+drill_4mm_13,30,73.17,chiado,guizo,2
+drill_4mm_13,31,75.61,guizo,guizo,2
+drill_4mm_13,32,78.05,chiado,guizo,2
+drill_4mm_13,33,80.49,travou,travou,3
+drill_4mm_13,34,82.93,chiado,guizo,2
+drill_4mm_13,35,85.37,guizo,guizo,2
+drill_4mm_13,36,87.8,chiado,guizo,2
+drill_4mm_13,37,90.24,chiado,guizo,2
+drill_4mm_13,38,92.68,travou,travou,3
+drill_4mm_13,39,95.12,travou,travou,3
+drill_4mm_13,40,97.56,guizo,guizo,2
+drill_4mm_13,41,100.0,guizo,guizo,2
+drill_4mm_14,1,5.0,travou,travou,3
+drill_4mm_14,2,10.0,furo normal,furo normal,0
+drill_4mm_14,3,15.0,começo do guizo,começo do guizo,1
+drill_4mm_14,4,20.0,guizo,guizo,1
+drill_4mm_14,5,25.0,guizo,guizo,1
+drill_4mm_14,6,30.0,guizo,guizo,1
+drill_4mm_14,7,35.0,guizo,guizo,1
+drill_4mm_14,8,40.0,guizo,guizo,1
+drill_4mm_14,9,45.0,travou,travou,3
+drill_4mm_14,10,50.0,guizo,guizo,2
+drill_4mm_14,11,55.0,guizo,guizo,2
+drill_4mm_14,12,60.0,guizo,guizo,2
+drill_4mm_14,13,65.0,travou,travou,3
+drill_4mm_14,14,70.0,travou,travou,3
+drill_4mm_14,15,75.0,guizo,guizo,2
+drill_4mm_14,16,80.0,travou,travou,3
+drill_4mm_14,17,85.0,guizo,guizo,2
+drill_4mm_14,18,90.0,parece radio,parece rádio,2
+drill_4mm_14,19,95.0,parece radio,parece rádio,2
+drill_4mm_14,20,100.0,travou,travou,3
+drill_4mm_15,1,1.22,furo normal,furo normal,0
+drill_4mm_15,2,2.44,furo normal,furo normal,0
+drill_4mm_15,3,3.66,travou,travou,3
+drill_4mm_15,4,4.88,furo normal,furo normal,0
+drill_4mm_15,5,6.1,furo normal,furo normal,0
+drill_4mm_15,6,7.32,furo normal,furo normal,0
+drill_4mm_15,7,8.54,furo normal,furo normal,0
+drill_4mm_15,8,9.76,furo normal,furo normal,0
+drill_4mm_15,9,10.98,furo normal,furo normal,0
+drill_4mm_15,10,12.2,furo normal,furo normal,0
+drill_4mm_15,11,13.41,chiado,furo normal,2
+drill_4mm_15,12,14.63,guizo,começo do guizo,1
+drill_4mm_15,13,15.85,furo normal,furo normal,0
+drill_4mm_15,14,17.07,furo normal,furo normal,0
+drill_4mm_15,15,18.29,guizo,guizo,1
+drill_4mm_15,16,19.51,guizo,guizo,1
+drill_4mm_15,17,20.73,guizo,guizo,1
+drill_4mm_15,18,21.95,guizo,guizo,1
+drill_4mm_15,19,23.17,guizo,guizo,1
+drill_4mm_15,20,24.39,guizo,guizo,1
+drill_4mm_15,21,25.61,guizo,guizo,1
+drill_4mm_15,22,26.83,guizo,guizo,1
+drill_4mm_15,23,28.05,guizo,guizo,1
+drill_4mm_15,24,29.27,guizo,guizo,1
+drill_4mm_15,25,30.49,guizo,guizo,1
+drill_4mm_15,26,31.71,guizo,guizo,1
+drill_4mm_15,27,32.93,guizo,guizo,1
+drill_4mm_15,28,34.15,guizo,guizo,1
+drill_4mm_15,29,35.37,parece chiado,guizo,2
+drill_4mm_15,30,36.59,parece chiado,guizo,2
+drill_4mm_15,31,37.8,guizo,guizo,1
+drill_4mm_15,32,39.02,guizo,guizo,1
+drill_4mm_15,33,40.24,parece chiado,guizo,2
+drill_4mm_15,34,41.46,guizo,guizo,1
+drill_4mm_15,35,42.68,parece chiado,guizo,2
+drill_4mm_15,36,43.9,parece chiado,guizo,2
+drill_4mm_15,37,45.12,chiado,parece chiado,2
+drill_4mm_15,38,46.34,chiado,parece chiado,2
+drill_4mm_15,39,47.56,chiado,parece chiado,2
+drill_4mm_15,40,48.78,chiado,parece chiado,2
+drill_4mm_15,41,50.0,chiado,parece chiado,2
+drill_4mm_15,42,51.22,chiado,parece chiado,2
+drill_4mm_15,43,52.44,chiado,parece chiado,2
+drill_4mm_15,44,53.66,chiado,parece chiado,2
+drill_4mm_15,45,54.88,travou,travou,3
+drill_4mm_15,46,56.1,chiado,parece chiado,2
+drill_4mm_15,47,57.32,chiado,parece chiado,2
+drill_4mm_15,48,58.54,chiado,parece chiado,2
+drill_4mm_15,49,59.76,chiado,parece chiado,2
+drill_4mm_15,50,60.98,chiado,parece chiado,2
+drill_4mm_15,51,62.2,chiado,parece chiado,2
+drill_4mm_15,52,63.41,travou,travou,3
+drill_4mm_15,53,64.63,chiado,parece chiado,2
+drill_4mm_15,54,65.85,chiado,parece chiado,2
+drill_4mm_15,55,67.07,chiado,parece chiado,2
+drill_4mm_15,56,68.29,chiado,parece chiado,2
+drill_4mm_15,57,69.51,chiado,parece chiado,2
+drill_4mm_15,58,70.73,chiado,parece chiado,2
+drill_4mm_15,59,71.95,chiado,parece chiado,2
+drill_4mm_15,60,73.17,chiado,parece chiado,2
+drill_4mm_15,61,74.39,chiado,parece chiado,2
+drill_4mm_15,62,75.61,chiado,parece chiado,2
+drill_4mm_15,63,76.83,chiado,parece chiado,2
+drill_4mm_15,64,78.05,chiado,parece chiado,2
+drill_4mm_15,65,79.27,chiado,parece chiado,2
+drill_4mm_15,66,80.49,chiado,parece chiado,2
+drill_4mm_15,67,81.71,chiado,parece chiado,2
+drill_4mm_15,68,82.93,travou,travou,3
+drill_4mm_15,69,84.15,chiado,parece chiado,2
+drill_4mm_15,70,85.37,chiado,parece chiado,2
+drill_4mm_15,71,86.59,chiado,parece chiado,2
+drill_4mm_15,72,87.8,chiado,parece chiado,2
+drill_4mm_15,73,89.02,chiado,parece chiado,2
+drill_4mm_15,74,90.24,chiado,parece chiado,2
+drill_4mm_15,75,91.46,travou,travou,3
+drill_4mm_15,76,92.68,chiado,parece chiado,2
+drill_4mm_15,77,93.9,chiado,parece chiado,2
+drill_4mm_15,78,95.12,travou,travou,3
+drill_4mm_15,79,96.34,chiado,parece chiado,2
+drill_4mm_15,80,97.56,travou,travou,3
+drill_4mm_15,81,98.78,chiado,parece chiado,2
+drill_4mm_15,82,100.0,travou,travou,3
+drill_4mm_16,1,1.85,normal,normal,0
+drill_4mm_16,2,3.7,normal,normal,0
+drill_4mm_16,3,5.56,guizo,guizo,1
+drill_4mm_16,4,7.41,guizo,guizo,1
+drill_4mm_16,5,9.26,guizo mais forte,guizo mais forte,1
+drill_4mm_16,6,11.11,guizo mais forte,guizo mais forte,1
+drill_4mm_16,7,12.96,guizo mais forte,guizo mais forte,1
+drill_4mm_16,8,14.81,guizo mais forte,guizo mais forte,1
+drill_4mm_16,9,16.67,guizo mais forte,guizo mais forte,1
+drill_4mm_16,10,18.52,travou,travou,3
+drill_4mm_16,11,20.37,guizo mais forte,guizo mais forte,1
+drill_4mm_16,12,22.22,guizo mais forte,guizo mais forte,1
+drill_4mm_16,13,24.07,guizo mais forte,guizo mais forte,1
+drill_4mm_16,14,25.93,guizo mais forte,guizo mais forte,1
+drill_4mm_16,15,27.78,guizo mais forte,guizo mais forte,1
+drill_4mm_16,16,29.63,guizo mais forte,guizo mais forte,1
+drill_4mm_16,17,31.48,chiado,guizo mais forte,2
+drill_4mm_16,18,33.33,chiado,guizo mais forte,2
+drill_4mm_16,19,35.19,chiado,guizo mais forte,2
+drill_4mm_16,20,37.04,chiado,guizo mais forte,2
+drill_4mm_16,21,38.89,chiado,guizo mais forte,2
+drill_4mm_16,22,40.74,chiado,guizo mais forte,2
+drill_4mm_16,23,42.59,chiado,guizo mais forte,2
+drill_4mm_16,24,44.44,chiado,guizo mais forte,2
+drill_4mm_16,25,46.3,chiado,guizo mais forte,2
+drill_4mm_16,26,48.15,chiado,guizo mais forte,2
+drill_4mm_16,27,50.0,chiado,guizo mais forte,2
+drill_4mm_16,28,51.85,chiado,guizo mais forte,2
+drill_4mm_16,29,53.7,chiado,guizo mais forte,2
+drill_4mm_16,30,55.56,chiado,guizo mais forte,2
+drill_4mm_16,31,57.41,chiado,guizo mais forte,2
+drill_4mm_16,32,59.26,chiado,guizo mais forte,2
+drill_4mm_16,33,61.11,chiado,guizo mais forte,2
+drill_4mm_16,34,62.96,chiado,guizo mais forte,2
+drill_4mm_16,35,64.81,chiado,guizo mais forte,2
+drill_4mm_16,36,66.67,chiado,guizo mais forte,2
+drill_4mm_16,37,68.52,chiado,guizo mais forte,2
+drill_4mm_16,38,70.37,chiado,guizo mais forte,2
+drill_4mm_16,39,72.22,chiado,guizo mais forte,2
+drill_4mm_16,40,74.07,chiado,guizo mais forte,2
+drill_4mm_16,41,75.93,chiado,guizo mais forte,2
+drill_4mm_16,42,77.78,chiado,guizo mais forte,2
+drill_4mm_16,43,79.63,chiado,guizo mais forte,2
+drill_4mm_16,44,81.48,chiado,guizo mais forte,2
+drill_4mm_16,45,83.33,chiado,guizo mais forte,2
+drill_4mm_16,46,85.19,chiado,guizo mais forte,2
+drill_4mm_16,47,87.04,chiado,guizo mais forte,2
+drill_4mm_16,48,88.89,travou,travou,3
+drill_4mm_16,49,90.74,chiado,guizo mais forte,2
+drill_4mm_16,50,92.59,travou,travou,3
+drill_4mm_16,51,94.44,chiado,guizo mais forte,2
+drill_4mm_16,52,96.3,chiado,guizo mais forte,2
+drill_4mm_16,53,98.15,travou,travou,3
+drill_4mm_16,54,100.0,travou,travou,3
+drill_4mm_17,1,2.78,furo normal,furo normal,0
+drill_4mm_17,2,5.56,guizo,começo do guiso,1
+drill_4mm_17,3,8.33,guizo,guizo,1
+drill_4mm_17,4,11.11,guizo,guizo,1
+drill_4mm_17,5,13.89,travou,travou,3
+drill_4mm_17,6,16.67,guizo,guizo,1
+drill_4mm_17,7,19.44,guizo,guizo,1
+drill_4mm_17,8,22.22,guizo,guizo,1
+drill_4mm_17,9,25.0,guizo,guizo,1
+drill_4mm_17,10,27.78,guizo,guizo,1
+drill_4mm_17,11,30.56,parece radio,guizo,2
+drill_4mm_17,12,33.33,travou,travou,3
+drill_4mm_17,13,36.11,parece radio,guizo,2
+drill_4mm_17,14,38.89,parece radio,guizo,2
+drill_4mm_17,15,41.67,parece radio,parece rádio,2
+drill_4mm_17,16,44.44,parece radio,parece rádio,2
+drill_4mm_17,17,47.22,parece radio,parece rádio,2
+drill_4mm_17,18,50.0,parece radio,parece rádio,2
+drill_4mm_17,19,52.78,parece radio,parece rádio,2
+drill_4mm_17,20,55.56,parece radio,parece rádio,2
+drill_4mm_17,21,58.33,parece radio,parece rádio,2
+drill_4mm_17,22,61.11,parece radio,parece rádio,2
+drill_4mm_17,23,63.89,parece radio,parece rádio,2
+drill_4mm_17,24,66.67,travou,travou,3
+drill_4mm_17,25,69.44,parece radio,parece rádio,2
+drill_4mm_17,26,72.22,parece radio,parece rádio,2
+drill_4mm_17,27,75.0,parece radio,parece rádio,2
+drill_4mm_17,28,77.78,parece radio,parece rádio,2
+drill_4mm_17,29,80.56,parece radio,parece rádio,2
+drill_4mm_17,30,83.33,travou,travou,3
+drill_4mm_17,31,86.11,parece radio,parece rádio,2
+drill_4mm_17,32,88.89,travou,travou,3
+drill_4mm_17,33,91.67,parece radio,parece rádio,2
+drill_4mm_17,34,94.44,parece radio,parece rádio,2
+drill_4mm_17,35,97.22,travou,travou,3
+drill_4mm_17,36,100.0,travou,travou,3
+drill_4mm_18,1,3.45,furo normal,furo normal,0
+drill_4mm_18,2,6.9,furo normal,furo normal,0
+drill_4mm_18,3,10.34,começo do guiso,começo do guiso,1
+drill_4mm_18,4,13.79,começo do guiso,começo do guiso,1
+drill_4mm_18,5,17.24,guiso,parece radio,1
+drill_4mm_18,6,20.69,guiso,parece radio,1
+drill_4mm_18,7,24.14,guiso,parece radio,1
+drill_4mm_18,8,27.59,guiso,parece radio,1
+drill_4mm_18,9,31.03,guiso,parece radio,1
+drill_4mm_18,10,34.48,parece radio,parece radio,2
+drill_4mm_18,11,37.93,parece radio,parece radio,2
+drill_4mm_18,12,41.38,parece radio,parece radio,2
+drill_4mm_18,13,44.83,travou,travou,3
+drill_4mm_18,14,48.28,parece radio,parece radio,2
+drill_4mm_18,15,51.72,parece radio,parece radio,2
+drill_4mm_18,16,55.17,parece radio,parece radio,2
+drill_4mm_18,17,58.62,parece radio,parece radio,2
+drill_4mm_18,18,62.07,parece radio,parece radio,2
+drill_4mm_18,19,65.52,parece radio,parece radio,2
+drill_4mm_18,20,68.97,parece radio,parece radio,2
+drill_4mm_18,21,72.41,parece radio,parece radio,2
+drill_4mm_18,22,75.86,travou,travou,3
+drill_4mm_18,23,79.31,parece radio,parece radio,2
+drill_4mm_18,24,82.76,travou,travou,3
+drill_4mm_18,25,86.21,parece radio,parece radio,2
+drill_4mm_18,26,89.66,travou,travou,3
+drill_4mm_18,27,93.1,parece radio,parece radio,2
+drill_4mm_18,28,96.55,parece radio,som diferente e alto,2
+drill_4mm_18,29,100.0,travou,travou,3
+drill_4mm_19,1,4.0,furo normal,furo normal,0
+drill_4mm_19,2,8.0,começo do guizo,começo do guiso,1
+drill_4mm_19,3,12.0,guizo,guizo,1
+drill_4mm_19,4,16.0,guizo,guizo,1
+drill_4mm_19,5,20.0,guizo,guizo,1
+drill_4mm_19,6,24.0,guizo,guizo,1
+drill_4mm_19,7,28.0,guizo,guizo,1
+drill_4mm_19,8,32.0,guizo,guizo,1
+drill_4mm_19,9,36.0,guizo,guizo,1
+drill_4mm_19,10,40.0,guizo,guizo,1
+drill_4mm_19,11,44.0,guizo,guizo,1
+drill_4mm_19,12,48.0,guizo,guizo,1
+drill_4mm_19,13,52.0,guizo,guizo,2
+drill_4mm_19,14,56.0,guizo,guizo,2
+drill_4mm_19,15,60.0,guizo,guizo,2
+drill_4mm_19,16,64.0,guizo,guizo,2
+drill_4mm_19,17,68.0,guizo,guizo,2
+drill_4mm_19,18,72.0,guizo,guizo,2
+drill_4mm_19,19,76.0,parece radio,guizo,2
+drill_4mm_19,20,80.0,parece radio,parece radio,2
+drill_4mm_19,21,84.0,parece radio,parece radio,2
+drill_4mm_19,22,88.0,travou,travou,3
+drill_4mm_19,23,92.0,travou,travou,3
+drill_4mm_19,24,96.0,travou,travou,3
+drill_4mm_19,25,100.0,travou,travou,3
+drill_4mm_20,1,2.44,normal,furo normal,0
+drill_4mm_20,2,4.88,normal,furo normal,0
+drill_4mm_20,3,7.32,começo do guiso,começo do guizo,1
+drill_4mm_20,4,9.76,guiso,guiso,1
+drill_4mm_20,5,12.2,guiso,guiso,1
+drill_4mm_20,6,14.63,parece radio,parece radio,2
+drill_4mm_20,7,17.07,parece radio,parece radio,2
+drill_4mm_20,8,19.51,parece radio,parece radio,2
+drill_4mm_20,9,21.95,parece radio,parece radio,2
+drill_4mm_20,10,24.39,parece radio,parece radio,2
+drill_4mm_20,11,26.83,parece radio,parece radio,2
+drill_4mm_20,12,29.27,parece radio,parece radio,2
+drill_4mm_20,13,31.71,parece radio,parece radio,2
+drill_4mm_20,14,34.15,parece radio,parece radio,2
+drill_4mm_20,15,36.59,parece radio,parece radio,2
+drill_4mm_20,16,39.02,parece radio,parece radio,2
+drill_4mm_20,17,41.46,parece radio,parece radio,2
+drill_4mm_20,18,43.9,parece radio,parece radio,2
+drill_4mm_20,19,46.34,parece radio,parece radio,2
+drill_4mm_20,20,48.78,parece radio,parece radio,2
+drill_4mm_20,21,51.22,parece radio,parece radio,2
+drill_4mm_20,22,53.66,parece radio,parece radio,2
+drill_4mm_20,23,56.1,parece radio,parece radio,2
+drill_4mm_20,24,58.54,parece radio,parece radio,2
+drill_4mm_20,25,60.98,parece radio,parece radio,2
+drill_4mm_20,26,63.41,travou,travou,3
+drill_4mm_20,27,65.85,parece radio,parece radio,2
+drill_4mm_20,28,68.29,travou,travou,3
+drill_4mm_20,29,70.73,parece radio,parece radio,2
+drill_4mm_20,30,73.17,parece radio,parece radio,2
+drill_4mm_20,31,75.61,parece radio,parece radio,2
+drill_4mm_20,32,78.05,parece radio,parece radio,2
+drill_4mm_20,33,80.49,travou,travou,3
+drill_4mm_20,34,82.93,travou,travou,3
+drill_4mm_20,35,85.37,parece radio,parece radio,2
+drill_4mm_20,36,87.8,parece radio,parece radio,2
+drill_4mm_20,37,90.24,parece radio,parece radio,2
+drill_4mm_20,38,92.68,parece radio,parece radio,2
+drill_4mm_20,39,95.12,travou,travou,3
+drill_4mm_20,40,97.56,parece radio,parece radio,2
+drill_4mm_20,41,100.0,travou,travou,3
