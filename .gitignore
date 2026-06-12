@@ -1,0 +1,33 @@
+# === Python sub-products ===
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+ENV/
+env/
+
+# === IDE settings ===
+.vscode/
+.idea/
+
+# === Data and Heavy Files Exclusion ===
+# Ignora todos os áudios brutos e segmentados para não estourar o limite do GitHub
+data/raw/
+data/segmented/
+
+# Ignora os arquivos CSV de resultados gerados automaticamente pelos modelos
+# (Isso garante que seu GitHub não fique poluído com megabytes de scores temporais)
+data/processed/
+*.csv
+# Mas abre uma exceção crucial para não ignorar o diário de escuta humana!
+!data/metadata/escuta_manual_projeto_completo.csv
+
+# === Plots Exclusion (Optional) ===
+# Se você quiser que os PDFs e PNGs gerados fiquem salvos apenas localmente, 
+# descomente a linha abaixo. Caso queira subir as figuras pro GitHub, deixe com o '#'
+# plots/
+
+# === OS temporary files ===
+.DS_Store
+Thumbs.db
