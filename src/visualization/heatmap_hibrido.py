@@ -109,28 +109,30 @@ plt.rcParams.update({
 fig, ax = plt.subplots(figsize=(7, 4.8))
 
 # Inverte o eixo Y para colocar a Banda 1 na base e a Banda 20 no topo do gráfico
-yticklabels = [f"Banda MFCC {i}" for i in range(N_MFCC, 0, -1)]
+yticklabels = [f"MFCC Band {i}" for i in range(N_MFCC, 0, -1)]
 matriz_energia_plot = np.flipud(matriz_media)
 
+# Gerar o Heatmap de Energia Relativa
 sns.heatmap(
     matriz_energia_plot,
     cmap="coolwarm",
     vmin=-40, vmax=20,
     xticklabels=10,
     yticklabels=yticklabels,
-    cbar_kws={'label': 'Energia Relativa Espectral (dB)'},
+    cbar_kws={'label': 'Relative Spectral Energy (dB)'},
     ax=ax
 )
 
+# Ajuste milimétrico da linha vertical tracejada indicando os 80% de ciclo de vida
 furo_critico_idx = 80
 ax.axvline(x=furo_critico_idx, color='black', linestyle='--', linewidth=1.5, alpha=0.9)
 
+# Texto indicador da transição para a Fase Crítica (Alinhado com a terminologia do artigo)
+ax.text(furo_critico_idx + 1.5, 2, 'Critical Phase', color='black', fontsize=9, weight='bold')
 
-ax.text(furo_critico_idx + 1.5, 2, 'Fase Crítica', color='black', fontsize=9, weight='bold')
-
-ax.set_title("Average MFCC Energy Evolution Across All Drills (Hybrid Fusion)", fontsize=11, pad=12, weight='bold')
+#ax.set_title("Average MFCC Energy Evolution Across All Drills (Hybrid Fusion)", fontsize=11, pad=12, weight='bold')
 ax.set_xlabel("Tool Life (%)", fontsize=10)
-ax.set_ylabel("Representação de Faixas de Frequência (MFCCs)", fontsize=10)
+ax.set_ylabel("Frequency Band Representation (MFCCs)", fontsize=10)
 
 plt.tight_layout()
 plt.savefig("heatmap_espectral_drill_hibrido.pdf", dpi=600, bbox_inches='tight')
