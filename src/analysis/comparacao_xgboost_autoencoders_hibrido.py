@@ -38,12 +38,20 @@ for drill in lista_brocas:
     furos = sub_xgb['hole'].values
     n_holes = len(furos)
 
-    # Extração dos thresholds 
+    # Extração dos thresholds estritos calculados pelo Mestre Unificado
     thresh_xgb = max(np.percentile(sub_xgb['score'].iloc[:N_NORMAL], 97.5), 0.1)
     thresh_mlp = np.percentile(sub_mlp['hybrid_mse'].iloc[:N_NORMAL], 99.5)
-    thresh_lstm = np.percentile(sub_lstm['hybrid_mse'].iloc[:N_NORMAL], 99.5)
 
-    fig, ax1 = plt.subplots(figsize=(4.5, 3.5))
+    # Filtra os valores maiores que zero para ignorar a janela morta inicial do LSTM
+    lstm_validos = sub_lstm['hybrid_mse'][sub_lstm['hybrid_mse'] > 0]
+    if len(lstm_validos) >= N_NORMAL:
+        # Pega os primeiros 5 furos reais em que o LSTM de fato gerou erro de reconstrução
+        thresh_lstm = np.percentile(lstm_validos.iloc[:N_NORMAL], 99.5)
+    else:
+        # Fallback de segurança caso a série seja muito curta
+        thresh_lstm = np.percentile(sub_lstm['hybrid_mse'].iloc[:N_NORMAL], 99.5)
+
+    fig, ax1 = plt.subplots(figsize=(3.5, 3.2))
 
     idx_falha = int(n_holes * 0.8)
     ax1.axvspan(furos[idx_falha], furos[-1], color='red', alpha=0.06, label='Critical Phase (20%)')
@@ -56,9 +64,9 @@ for drill in lista_brocas:
 
     # Linhas de Threshold dos Autoencoders
     ax1.axhline(y=thresh_lstm, color='#7209b7', linestyle=':', linewidth=0.9, alpha=0.8,
-                label=f'Thresh LSTM ({thresh_lstm:.2f})')
+                label=f'Thresh LSTM ({thresh_lstm:.2e})')
     ax1.axhline(y=thresh_mlp, color='#2ec4b6', linestyle=':', linewidth=0.9, alpha=0.8,
-                label=f'Thresh MLP ({thresh_mlp:.2f})')
+                label=f'Thresh MLP ({thresh_mlp:.2e})')
 
     ax1.set_xlabel('Hole Sequence (Chronological Process)', labelpad=2)
     ax1.set_ylabel('Reconstruction Error (MSE)', color='#7209b7', labelpad=2)
