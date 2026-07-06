@@ -10,9 +10,8 @@ from sklearn.neural_network import MLPRegressor
 from xgboost import XGBClassifier
 from sklearn.metrics import roc_auc_score
 
-# CONFIGURAÇÕES 
 os.environ["PYTHONHASHSEED"] = "42"
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1" # Garante estrito processamento em CPU
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1" 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 random.seed(42)
@@ -37,7 +36,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense
 from tensorflow.keras import backend as K
 
-ROOT_DATASET = r"C:\...\data\segmented"
+ROOT_DATASET = r"C:\Users\...\segmented"
 FILE_ESCUTA = "escuta_manual_projeto_completo.csv"
 MIC_A = "reg_mics"
 MIC_B = "ultrasonic_mics"
@@ -73,6 +72,7 @@ def create_sequences(X, seq_len):
     return np.array(seqs)
 
 drills_data = {}
+print("Carregando base híbrida para alinhamento multimodelo...")
 for drill_folder in os.listdir(ROOT_DATASET):
     path = os.path.join(ROOT_DATASET, drill_folder)
     if not os.path.isdir(path): continue
@@ -108,6 +108,7 @@ dados_mlp_contínuos = []
 dados_lstm_contínuos = []
 dados_xgb_contínuos = []
 
+
 for drill_test in drills_data:
     K.clear_session()
 
@@ -129,13 +130,12 @@ for drill_test in drills_data:
     n_holes = len(X_test)
     y_test = drills_data[drill_test]["y"]
 
-    # BASE DO XGBOOST: Scaler unificado da partição LODO de treino
     scaler_global = StandardScaler()
     X_train_sc = scaler_global.fit_transform(X_train)
     X_test_sc_xgb = scaler_global.transform(X_test)
     n_features = X_train_sc.shape[1]
 
-    # [MODELO 1] MLP Autoencoder
+    #  MLP Autoencoder 
     scaler_mlp = StandardScaler()
     scaler_mlp.fit(X_test[:N_NORMAL])
     X_test_sc_mlp = scaler_mlp.transform(X_test)
@@ -146,7 +146,7 @@ for drill_test in drills_data:
     thresh_mlp = np.percentile(mlp_test_errors[:N_NORMAL], 99.5)
     furos_acima_mlp = (mlp_test_errors > thresh_mlp).astype(int)
 
-    # [MODELO 2] LSTM Autoencoder 
+    # LSTM Autoencoder 
     scaler_lstm = StandardScaler()
     scaler_lstm.fit(X_test[:N_NORMAL])
     X_test_sc_lstm = scaler_lstm.transform(X_test)
@@ -181,7 +181,7 @@ for drill_test in drills_data:
         thresh_lstm = np.percentile(valid_baseline, 99.5)
         furos_acima_lstm = (lstm_test_errors > thresh_lstm).astype(int)
 
-    # [MODELO 3] XGBoost 
+    # XGBoost 
     xgb = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=3,
                         random_state=42, objective='binary:logistic', scale_pos_weight=8)
     xgb.fit(X_train_sc, y_train)
@@ -199,15 +199,16 @@ for drill_test in drills_data:
         # XGBoost (Janela = 2)
         if furos_acima_xgb[i] == 1 and furos_acima_xgb[i-1] == 1: pred_xgb[i] = 1
 
+    # MLP-AE (Janela = 10)
     janela_mlp = 10
     for i in range(janela_mlp - 1, n_holes):
         if np.all(furos_acima_mlp[i - (janela_mlp - 1):i + 1] == 1): pred_mlp[i] = 1
 
+    # LSTM-AE (Janela = 8)
     janela_lstm = 8
     for i in range(janela_lstm - 1, n_holes):
         if np.all(furos_acima_lstm[i - (janela_lstm - 1):i + 1] == 1): pred_lstm[i] = 1
 
-    # Guardando os arrays contínuos sincronizados
     for i in range(n_holes):
         h_furo = furos_teste[i]
         dados_mlp_contínuos.append({
@@ -226,48 +227,69 @@ for drill_test in drills_data:
             "alarm_xgb": int(pred_xgb[i]), "alarm_mlp": int(pred_mlp[i]), "alarm_lstm": int(pred_lstm[i])
         })
 
-#  MERGE COM DIÁRIO DE ESCUTA ACÚSTICA 
 df_models = pd.DataFrame(registros_comparacao)
 df_final = pd.merge(df_models, df_esc, on=['drill', 'hole'])
 
 if df_final.empty:
     raise ValueError("ERRO CRÍTICO: O cruzamento de dados resultou vazio.")
 
-# GRÁFICO COMPARATIVO TRI-MODELO DE BARRAS 
 plt.rcParams.update({
-    "font.family": "serif", "font.serif": ["Times New Roman"], "font.size": 10,
-    "axes.labelweight": "bold", "pdf.fonttype": 42, "ps.fonttype": 42
+    "font.family": "serif",
+    "font.serif": ["Times New Roman"],
+    "font.size": 9,
+    "axes.labelweight": "bold",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42
 })
 
+# Agrupamento e cálculo da média percentual
 grouped = df_final.groupby('human_severity_score')[['alarm_xgb', 'alarm_mlp', 'alarm_lstm']].mean() * 100
-grouped.columns = ['Supervisionado (XGBoost)', 'Semi-Supervisionado (MLP-AE)', 'Semi-Supervisionado (LSTM-AE)']
+
+grouped.columns = ['Supervised (XGBoost)', 'Semi-Supervised (MLP-AE)', 'Semi-Supervised (LSTM-AE)']
 
 labels_severidade = [
-    '0: Normal\n(Som Limpo)', '1: Anomalia Leve\n(Início do Guizo)',
-    '2: Pré-Falha Severa\n(Chiado/Rádio)', '3: Falha Crítica\n(Travamento)'
+    'Level 0:\nNormal',
+    'Level 1:\nIncipient Anom.',
+    'Level 2:\nSevere Pre-Fail.',
+    'Level 3:\nCritical Fail.'
 ]
 grouped.index = [labels_severidade[i] for i in grouped.index]
 
-fig, ax = plt.subplots(figsize=(7.5, 4.5))
-grouped.plot(kind='bar', ax=ax, color=['#e67e22', '#2ec4b6', '#7209b7'], edgecolor='black', linewidth=0.6, width=0.7)
+fig, ax = plt.subplots(figsize=(3.5, 3.8))
+
+cores_originais = ['#e67e22', '#008000', '#7209b7']
+grouped.plot(kind='bar', ax=ax, color=cores_originais, edgecolor='black', linewidth=0.5, width=0.75)
 
 for p in ax.patches:
     height = p.get_height()
-    if height >= 0:
-        ax.text(p.get_x() + p.get_width()/2., height + 1.5, f'{height:.1f}%', ha='center', va='bottom', fontsize=8, weight='bold')
+    if height > 0:
+        texto_porcentagem = f"{height:.1f}%"
+        ax.text(p.get_x() + p.get_width()/2., height + 3.0, texto_porcentagem,
+                ha='center', va='bottom', fontsize=8, weight='bold', rotation=90)
+    elif height == 0:
+        ax.text(p.get_x() + p.get_width()/2., 3.0, "0.0%",
+                ha='center', va='bottom', fontsize=8, weight='bold', rotation=90)
 
-ax.set_ylabel("Furos com Alarme Ativo (% de Sensibilidade)", fontsize=10)
-ax.set_xlabel("Categorização da Percepção Acústica Humana (Escuta Manual)", fontsize=10, labelpad=8)
-ax.set_title("Sensibilidade Comparativa Multimodelo por Severidade do Áudio", fontsize=11, weight='bold', pad=12)
-ax.set_ylim(0, 115)
-plt.setp(ax.get_xticklabels(), rotation=0, ha="center")
-ax.legend(loc='upper left', fontsize=9, frameon=True)
+ax.set_ylim(0, 140)
+
+ax.set_ylabel("Alarm Sensitivity, S_alarm (%) ", fontsize=9)
+ax.set_xlabel("Operational Acoustic Severity Levels", fontsize=9, labelpad=6)
+#ax.set_title("Multi-Model Sensitivity Evaluation", fontsize=10, weight='bold', pad=10)
+
+plt.setp(ax.get_xticklabels(), rotation=15, ha="right", fontsize=8)
+plt.setp(ax.get_yticklabels(), fontsize=8)
+
+
+ax.legend(loc='upper left', fontsize=7.5, frameon=True)
 plt.grid(True, axis='y', linestyle=':', alpha=0.4)
-plt.tight_layout()
 
-plt.savefig("comparacao_multimodelo_severidade_audio.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("comparacao_multimodelo_severidade_audio.png", dpi=300, bbox_inches='tight')
+fig.subplots_adjust(bottom=0.20, left=0.15, right=0.95, top=0.90)
+
+plt.savefig("comparacao_multimodelo_severidade_audio.pdf", dpi=600)
+plt.savefig("comparacao_multimodelo_severidade_audio.png", dpi=300)
 plt.show()
+plt.close()
+
 
 
 df_mlp_real = pd.DataFrame(dados_mlp_contínuos)
@@ -279,4 +301,4 @@ df_lstm_real.to_csv("resultados_LSTM_ae.csv", index=False)
 df_xgb_real = pd.DataFrame(dados_xgb_contínuos)
 df_xgb_real.to_csv("resultados_xgboost_hibrido.csv", index=False)
 
-print("\nFramework integrado e sincronizado!")
+print("\nFramework integrado, sincronizado e travado com sucesso!")
