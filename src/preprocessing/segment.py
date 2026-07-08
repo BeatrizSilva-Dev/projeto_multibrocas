@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
 """
-Segmenta áudios padronizados em furos individuais, com detecção automática de furos quebrados ("jam"),
-sincronizando os furos detectados no mic de referência com os demais mics (incluindo ultrassônicos).
-Ajustado: sincronização A (detectar no mic referência e alinhar outros mics), tolerância 5 ms.
-Modificação: contador de furos por mic (arquivo) reinicia por drill.
+Segments standardized audio into individual holes, with automatic detection of broken holes ("jam"),
+synchronizing the holes detected in the reference microphone with the remaining microphones (including ultrasonic ones).
+Updated: synchronization A (detect on the reference microphone and align the other microphones), 5 ms tolerance.
+Modification: hole counter per microphone (file) resets for each drill.
 """
 
 import os
@@ -20,18 +19,14 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from tqdm import tqdm
 
-# =========================================================
-# CONFIGURAÇÃO DE PASTAS
-# =========================================================
+# DIRECTORY CONFIGURATION
 STANDARDIZED_DIR = "data/standardized"
 SEGMENTED_DIR = "data/segmented"
 DOCS_IMG_DIR = "docs/img/spectrograms"
 METADATA_DIR = "data/metadata"
 METADATA_CSV = os.path.join(METADATA_DIR, "segmented_metadata.csv")
 
-# =========================================================
-# PARÂMETROS GLOBAIS (AJUSTADOS)
-# =========================================================
+# GLOBAL PARAMETERS
 MIN_HOLE_DURATION = 2.0
 SMOOTH_WINDOW = 11
 VALLEY_WINDOW_SEC = 1.6
@@ -46,7 +41,7 @@ MERGE_GAP_SEC = 2.0
 
 DROP_PROMINENCE = 0.015
 DROP_SEARCH_SEC = 1.5
-START_FACTOR = 0.10 # multiplicador do pico local para início
+START_FACTOR = 0.10 
 START_ABS_THRESH = 0.02
 START_SEARCH_SEC = 20.0
 
@@ -55,14 +50,11 @@ REFINE_AGGRESSIVE_FACTOR = 2.5
 
 MERGE_SHORT_ZTHRESH = 0.1
 
-# Alinhamento temporal para mics diferentes (5 ms conforme pedido)
 ALIGN_TOLERANCE_MS = 5.0
 ALIGN_TOLERANCE_SEC = ALIGN_TOLERANCE_MS / 1000.0
 
 
-# =========================================================
-# UTILITÁRIOS
-# =========================================================
+# UTILITIES
 def ensure_dir(path):
     os.makedirs(path, exist_ok=True)
 
@@ -78,7 +70,6 @@ def parse_jams_text(path):
         with open(path, "r", encoding="latin-1") as f:
             text = f.read()
 
-    # aceita vírgula ou quebra de linha
     text = text.replace(",", "\n")
 
     values = []
@@ -90,7 +81,6 @@ def parse_jams_text(path):
         if m:
             values.append(int(m.group(1)))
 
-    # ---- lógica acumulativa ----
     jams = []
     current = None
     for v in values:
@@ -106,7 +96,7 @@ def load_jams_for_drill(drill_folder_path):
     p = os.path.join(drill_folder_path, "jams.txt")
     if os.path.exists(p):
         jams = parse_jams_text(p)
-        print(f"   ▶ Arquivo de jams carregado: {p} -> {jams}")
+        print(f" Jams file loaded: {p} -> {jams}")
         return jams
     return []
 
@@ -127,13 +117,11 @@ def find_datalogger(drill_path, drill_name):
                 return None, None, None, None
     return None, None, None, None
 
-# =========================================================
-# DETECÇÃO DE FUROS (VERSÃO APRIMORADA)
-# =========================================================
+# HOLE DETECTION 
 def detect_holes_by_deep_valleys(y, sr):
     hop_length = HOP_LENGTH
     frame_length = FRAME_LENGTH
-    END_MARGIN_SEC = 0.0 # original 4.0
+    END_MARGIN_SEC = 0.0
 
     if np.max(np.abs(y)) == 0:
         return [], np.array([]), np.array([]), [], [], [], [], hop_length
@@ -274,22 +262,21 @@ def detect_holes_by_deep_valleys(y, sr):
 
 def merge_small_outlier_holes(holes, sr, k):
     """
-    Junta apenas furos muito menores que a média (outliers),
-    com base em média - k*desvio padrão.
+    Merges only holes that are significantly smaller than the average (outliers),
+    based on mean - k * standard deviation.
 
-    holes: lista de (inicio, fim) em samples
-    sr: taxa de amostragem
-    k: intensidade do filtro (1.0 = moderado, 1.5 = mais restritivo)
+    holes: list of (start, end) in samples
+    sr: sampling rate
+    k: filter intensity (1.0 = moderate, 1.5 = more restrictive)
     """
     if not holes or len(holes) < 2:
         return holes
 
-    # calcula durações em segundos
+    # computes durations in seconds
     durations = np.array([(e - s) / sr for s, e in holes])
     mean_dur = durations.mean()
     std_dur = durations.std()
 
-    # limiar para considerar furo muito pequeno
     threshold = mean_dur - k * std_dur
 
     merged = []
@@ -297,7 +284,6 @@ def merge_small_outlier_holes(holes, sr, k):
         dur = durations[i]
 
         if dur < threshold and len(merged) > 0:
-            # merge com o anterior
             prev_s, prev_e = merged[-1]
             merged[-1] = (prev_s, e)
         else:
@@ -305,28 +291,22 @@ def merge_small_outlier_holes(holes, sr, k):
 
     return merged
 
-# =========================================================
-# DETECÇÃO CUSTOM (usa temporariamente parâmetros diferentes)
-# =========================================================
+
 def detect_holes_by_deep_valleys_custom(y, sr, DEPTH_THRESH_param=0.15, GROUP_GAP_SEC_param=3.0, MERGE_GAP_SEC_param=2.0):
     """
-    Chama detect_holes_by_deep_valleys trocando temporariamente alguns parâmetros globais.
-    Retorna o mesmo que detect_holes_by_deep_valleys.
+    Calls detect_holes_by_deep_valleys while temporarily overriding some global parameters.
+    Returns the same output as detect_holes_by_deep_valleys.
     """
-    # guarda originais
     orig_DEPTH = globals().get('DEPTH_THRESH', DEPTH_THRESH)
     orig_GROUP = globals().get('GROUP_GAP_SEC', GROUP_GAP_SEC)
     orig_MERGE = globals().get('MERGE_GAP_SEC', MERGE_GAP_SEC)
 
-    # substitui temporariamente
     globals()['DEPTH_THRESH'] = DEPTH_THRESH_param
     globals()['GROUP_GAP_SEC'] = GROUP_GAP_SEC_param
     globals()['MERGE_GAP_SEC'] = MERGE_GAP_SEC_param
 
-    # executa
     results = detect_holes_by_deep_valleys(y, sr)
 
-    # restaura
     globals()['DEPTH_THRESH'] = orig_DEPTH
     globals()['GROUP_GAP_SEC'] = orig_GROUP
     globals()['MERGE_GAP_SEC'] = orig_MERGE
@@ -341,13 +321,13 @@ def refine_long_holes_sensive(
         aggressive_factor
 ):
     """
-    Refina furos anormalmente longos com detecção recursiva mais sensível.
+    Refines abnormally long holes using more sensitive recursive detection.
 
     duration_factor:
-        furo > (duration_factor × mediana) entra em refinamento
+        A hole longer than (duration_factor × median) is selected for refinement.
 
     aggressive_factor:
-        furo > (aggressive_factor × mediana) entra em modo agressivo
+        A hole longer than (aggressive_factor × median) enters aggressive refinement mode.
     """
 
     if not holes:
@@ -358,17 +338,13 @@ def refine_long_holes_sensive(
 
     refined_holes = []
 
-    # parâmetros auxiliares
-    MIN_SUB_HOLE_SEC = 0.05  # 50 ms
-    RMS_OSC_RATIO = 0.15    # variação relativa mínima para forçar refinamento
+    MIN_SUB_HOLE_SEC = 0.05
+    RMS_OSC_RATIO = 0.15    
 
     for (s, e), dur in zip(holes, durations):
 
         y_seg = y[s:e]
 
-        # ==========================
-        # RMS para detectar oscilação interna
-        # ==========================
         rms = librosa.feature.rms(
             y=y_seg,
             frame_length=FRAME_LENGTH,
@@ -381,9 +357,6 @@ def refine_long_holes_sensive(
                 rms_mean > 0 and (rms_std / rms_mean) > RMS_OSC_RATIO
         )
 
-        # ==========================
-        # Decisão de refinamento
-        # ==========================
         must_refine = (
                 median_dur > 0 and (
                 dur > duration_factor * median_dur or
@@ -396,47 +369,35 @@ def refine_long_holes_sensive(
             continue
 
         print(
-            f"→ Refinando furo ({dur:.2f}s | "
-            f"{'RMS oscilante' if rms_oscillating else 'longo'})"
+            f"→ Refining hole ({dur:.2f}s | "
+            f"{'Oscillating RMS' if rms_oscillating else 'long'})"
         )
 
-        # ==========================
-        # Parâmetros sensíveis
-        # ==========================
         if median_dur > 0 and dur > aggressive_factor * median_dur:
-            # modo agressivo
             params = dict(
                 DEPTH_THRESH_param=0.035,
                 GROUP_GAP_SEC_param=0.35,
                 MERGE_GAP_SEC_param=0.15
             )
         else:
-            # modo sensível padrão
             params = dict(
                 DEPTH_THRESH_param=0.06,
                 GROUP_GAP_SEC_param=0.7,
                 MERGE_GAP_SEC_param=0.35
             )
 
-        # ==========================
-        # Sub-detecção
-        # ==========================
         sub_holes, *_ = detect_holes_by_deep_valleys_custom(
             y_seg,
             sr,
             **params
         )
 
-        # ==========================
-        # Converter para coordenadas globais
-        # ==========================
         sub_holes_global = [
             (s + s2, s + e2)
             for (s2, e2) in sub_holes
             if (e2 - s2) / sr >= MIN_SUB_HOLE_SEC
         ]
 
-        # fallback se nada foi detectado
         if len(sub_holes_global) == 0:
             refined_holes.append((s, e))
         else:
@@ -448,9 +409,10 @@ def refine_long_holes_sensive(
 
 def refine_long_holes(y, sr, holes, duration_factor=REFINE_DURATION_FACTOR, aggressive_factor=REFINE_AGGRESSIVE_FACTOR):
     """
-    Refina furos anormalmente longos com detecção recursiva mais sensível.
-    duration_factor: limite (x mediana) acima do qual o furo é refinado
-    aggressive_factor: se muito acima, aplica parâmetros ainda mais finos
+    Refines abnormally long holes using more sensitive recursive detection.
+
+    duration_factor: threshold (× median) above which a hole is refined.
+    aggressive_factor: if the hole is much longer than the threshold, even more sensitive parameters are applied.
     """
     if not holes:
         return holes
@@ -464,18 +426,16 @@ def refine_long_holes(y, sr, holes, duration_factor=REFINE_DURATION_FACTOR, aggr
             refined_holes.append((s, e))
             continue
 
-        print(f"→ Refinando furo longo ({dur:.2f}s)...")
+        print(f"Refining long hole ({dur:.2f}s)..")
 
         y_seg = y[s:e]
 
-        # sensibilidade conforme tamanho
         if dur > aggressive_factor * median_dur:
             params = dict(DEPTH_THRESH_param=0.05, GROUP_GAP_SEC_param=0.5, MERGE_GAP_SEC_param=0.25)
         else:
             params = dict(DEPTH_THRESH_param=0.08, GROUP_GAP_SEC_param=1.0, MERGE_GAP_SEC_param=0.5)
 
         sub_holes, *_ = detect_holes_by_deep_valleys_custom(y_seg, sr, **params)
-        # converter para coordenadas globais
         sub_holes_global = [(s + s2, s + e2) for (s2, e2) in sub_holes]
 
         if len(sub_holes_global) == 0:
@@ -487,25 +447,23 @@ def refine_long_holes(y, sr, holes, duration_factor=REFINE_DURATION_FACTOR, aggr
 
 def expand_holes_backward(holes):
     """
-    Expande o início de cada furo (a partir do segundo)
-    até o final do furo anterior, garantindo que não haja
-    espaço entre eles.
+    Expands the start of each hole (starting from the second one)
+    up to the end of the previous hole, ensuring that no
+    gap remains between them.
 
-    holes: lista de (start_sample, end_sample)
+    holes: list of (start_sample, end_sample)
     """
     if not holes or len(holes) < 2:
         return holes
 
-    # garante ordenação
     holes = sorted(holes, key=lambda x: x[0])
 
-    expanded = [holes[0]]  # primeiro permanece inalterado
+    expanded = [holes[0]]  
 
     for i in range(1, len(holes)):
         prev_s, prev_e = expanded[-1]
         s, e = holes[i]
 
-        # expande início até o final do anterior
         expanded.append((prev_e, e))
 
     return expanded
@@ -513,15 +471,14 @@ def expand_holes_backward(holes):
 
 def expand_holes_to_next(holes):
     """
-    Expande o final de cada furo até o início do próximo,
-    garantindo que não haja espaço entre eles.
+    Expands the end of each hole up to the start of the next one,
+    ensuring that no gap remains between them.
 
-    holes: lista de (start_sample, end_sample)
+    holes: list of (start_sample, end_sample)
     """
     if not holes or len(holes) < 2:
         return holes
 
-    # garante ordenação
     holes = sorted(holes, key=lambda x: x[0])
 
     expanded = []
@@ -530,39 +487,34 @@ def expand_holes_to_next(holes):
         s, e = holes[i]
         next_s, _ = holes[i + 1]
 
-        # expande final até o início do próximo
         expanded.append((s, next_s))
 
-    # último furo permanece inalterado
     expanded.append(holes[-1])
 
     return expanded
 
-
-# =========================================================
-# ALINHAMENTO: mapeia furos da referência para outro mic
-# =========================================================
 def align_holes_to_reference(holes_ref, y_other, sr, tolerance_sec=ALIGN_TOLERANCE_SEC, hop_length=HOP_LENGTH, frame_length=FRAME_LENGTH):
     """
-    Alinha os furos detectados no mic de referência com o mic 'other'.
-    Estratégia:
-    - calcula RMS do mic 'other' com os mesmos frame/hop
-    - para cada furo da referência, pega o centro (em samples) e procura o frame RMS mais energético
-      dentro de uma janela de tolerância (em frames).
-    - ajusta início/fim usando metade da duração do furo de referência (preservando proporcionalidade)
-      expandindo com a tolerância em samples.
-    Retorna: lista de (s_sample, e_sample) no domínio do mic 'other' (amostras).
+    Aligns the holes detected in the reference microphone with the "other" microphone.
+
+    Strategy:
+    - Computes the RMS of the "other" microphone using the same frame and hop lengths.
+    - For each hole detected in the reference microphone, takes its center (in samples)
+    and searches for the highest-energy RMS frame within a tolerance window (in frames).
+    - Adjusts the start and end positions using half the duration of the reference hole
+    (preserving proportionality), expanding them by the tolerance in samples.
+
+    Returns:
+        List of (start_sample, end_sample) in the "other" microphone sample domain.
     """
     if len(holes_ref) == 0:
         return []
 
-    # mono para cálculo de envelope (y_other pode ser 1D ou 2D)
     if isinstance(y_other, np.ndarray) and y_other.ndim == 2:
         mono = np.mean(y_other, axis=1)
     else:
         mono = np.array(y_other, dtype=float)
 
-    # RMS do mic other
     rms_other = librosa.feature.rms(y=mono, frame_length=frame_length, hop_length=hop_length)[0]
     n_frames = len(rms_other)
     frames_time_samples = np.arange(n_frames) * hop_length  # position in samples for each frame
@@ -595,7 +547,6 @@ def align_holes_to_reference(holes_ref, y_other, sr, tolerance_sec=ALIGN_TOLERAN
         s_adj = max(0, mapped_sample - half_width - tol_samples)
         e_adj = min(len(mono), mapped_sample + half_width + tol_samples)
 
-        # garante não sobrepor com furo anterior neste mic
         if s_adj < prev_end:
             s_adj = prev_end
             if s_adj >= e_adj:
@@ -609,14 +560,14 @@ def align_holes_to_reference(holes_ref, y_other, sr, tolerance_sec=ALIGN_TOLERAN
 
 def merge_short_holes_by_recursion(holes, sr, factor):
     """
-    Junta furos com duração muito abaixo da mediana.
+    Merges holes whose duration is significantly shorter than the median.
 
-    Estratégia:
-    - Calcula a mediana das durações
-    - Encontra o PRIMEIRO furo abaixo do limiar
-    - Junta esse furo com o PRÓXIMO
-    - Reavalia toda a lista
-    - Repete até não haver mais furos espúrios
+    Strategy:
+    - Computes the median hole duration.
+    - Finds the FIRST hole below the threshold.
+    - Merges that hole with the NEXT one.
+    - Re-evaluates the entire list.
+    - Repeats until no spurious holes remain.
     """
     if not holes or len(holes) < 2:
         return holes
@@ -636,11 +587,9 @@ def merge_short_holes_by_recursion(holes, sr, factor):
             s, e = holes[i]
             dur = (e - s) / sr
 
-            # 👉 primeiro furo abaixo da mediana
             if dur < threshold and i + 1 < len(holes):
                 ns, ne = holes[i + 1]
 
-                # junta com o próximo
                 new_holes.append((s, ne))
                 i += 2
                 merged_any = True
@@ -649,13 +598,11 @@ def merge_short_holes_by_recursion(holes, sr, factor):
                 new_holes.append((s, e))
                 i += 1
 
-        # adiciona os furos restantes sem modificação
         if i < len(holes):
             new_holes.extend(holes[i:])
 
         holes = new_holes
 
-        # se não teve merge nessa passada, terminou
         if not merged_any:
             break
 
@@ -663,19 +610,18 @@ def merge_short_holes_by_recursion(holes, sr, factor):
 
 def merge_holes_by_index(holes, idx1, idx2):
     """
-    Junta o furo idx1 com o furo idx2 em um único furo.
+    Merges hole idx1 with hole idx2 into a single hole.
 
-    holes: lista de (start_sample, end_sample)
-    idx1, idx2: índices dos furos a serem unidos
+    holes: list of (start_sample, end_sample)
+    idx1, idx2: indices of the holes to be merged
     """
     if idx1 == idx2:
         return holes
 
     n = len(holes)
     if not (0 <= idx1 < n and 0 <= idx2 < n):
-        raise IndexError("Índice de furo fora do intervalo")
+        raise IndexError("Hole index out of range")
 
-    # garante ordem
     i, j = sorted([idx1, idx2])
 
     s1, e1 = holes[i]
@@ -683,83 +629,71 @@ def merge_holes_by_index(holes, idx1, idx2):
 
     new_hole = (min(s1, s2), max(e1, e2))
 
-    # remove de trás pra frente
     new_holes = [
         h for k, h in enumerate(holes)
         if k not in (i, j)
     ]
 
     new_holes.append(new_hole)
-
-    # mantém ordenado
     new_holes.sort(key=lambda x: x[0])
 
     return new_holes
 
 def add_initial_hole_and_reduce(holes, sr, duration_sec):
     """
-    Adiciona um furo no início consumindo parte da duração
-    do único furo existente.
+    Adds a hole at the beginning by consuming part of the duration
+    of the only existing hole.
 
-    Espera exatamente 1 furo na entrada.
+    Expects exactly one hole as input.
 
     holes: [(start_sample, end_sample)]
     sr: sample rate (Hz)
-    duration_sec: duração do novo furo inicial (segundos)
+    duration_sec: duration of the new initial hole (seconds)
     """
     if len(holes) != 1:
-        raise ValueError("Função espera exatamente 1 furo")
+        raise ValueError("Function expects exactly one hole")
 
     shift = int(duration_sec * sr)
 
     s, e = holes[0]
     original_duration = e - s
 
-    # se consumir tudo, sobra apenas o furo inicial
     if shift >= original_duration:
         return [(0, original_duration)]
 
     new_holes = []
 
-    # furo artificial
     new_holes.append((0, shift))
 
-    # furo original reduzido
     new_start = s + shift
     new_holes.append((new_start, e))
 
     return new_holes
 
-
-
-
 def adjust_hole_boundary(holes, sr, hole_idx, side, delta_sec):
     """
-    Ajusta manualmente o início ou o fim de um furo,
-    compensando automaticamente o furo vizinho.
+    Manually adjusts the start or end of a hole,
+    automatically compensating the neighboring hole.
 
-    holes: lista de (start_sample, end_sample)
+    holes: list of (start_sample, end_sample)
     sr: sample rate
-    hole_idx: índice do furo a ajustar
-    side: "start" ou "end"
-    delta_sec: valor em segundos
-        > 0 → aumenta
-        < 0 → diminui
+    hole_idx: index of the hole to adjust
+    side: "start" or "end"
+    delta_sec: value in seconds
+        > 0 → increases
+        < 0 → decreases
     """
     if hole_idx < 0 or hole_idx >= len(holes):
-        raise IndexError("hole_idx fora do intervalo")
+        raise IndexError("hole_idx out of range")
 
     delta_samples = int(delta_sec * sr)
-    holes = list(holes)  # cópia segura
+    holes = list(holes)  
 
     s, e = holes[hole_idx]
 
-    # =========================================
-    # AJUSTE DO FINAL DO FURO
-    # =========================================
     if side == "end":
         if hole_idx + 1 >= len(holes):
-            raise ValueError("Não existe próximo furo para compensação")
+            raise ValueError("There is no next hole to compensate")
 
         ns, ne = holes[hole_idx + 1]
 
@@ -767,19 +701,16 @@ def adjust_hole_boundary(holes, sr, hole_idx, side, delta_sec):
         new_ns = ns + delta_samples
 
         if new_e <= s:
-            raise ValueError("Furo ficaria com duração inválida")
+            raise ValueError("Hole would have an invalid duration")
         if new_ns >= ne:
-            raise ValueError("Próximo furo ficaria inválido")
+            raise ValueError("Next hole would become invalid")
 
         holes[hole_idx] = (s, new_e)
         holes[hole_idx + 1] = (new_ns, ne)
 
-    # =========================================
-    # AJUSTE DO INÍCIO DO FURO
-    # =========================================
     elif side == "start":
         if hole_idx - 1 < 0:
-            raise ValueError("Não existe furo anterior para compensação")
+            raise ValueError("There is no previous hole to compensate")
 
         ps, pe = holes[hole_idx - 1]
 
@@ -787,32 +718,32 @@ def adjust_hole_boundary(holes, sr, hole_idx, side, delta_sec):
         new_pe = pe + delta_samples
 
         if new_s >= e:
-            raise ValueError("Furo ficaria com duração inválida")
+            raise ValueError("Hole would have an invalid duration")
         if new_pe <= ps:
-            raise ValueError("Furo anterior ficaria inválido")
+            raise ValueError("Previous hole would become invalid")
 
         holes[hole_idx] = (new_s, e)
         holes[hole_idx - 1] = (ps, new_pe)
 
     else:
-        raise ValueError("side deve ser 'start' ou 'end'")
+        raise ValueError("side must be 'start' or 'end'")
 
     return holes
 
 def adjust_hole_boundaries_by_ids(holes, sr, hole_ids, side, delta_sec):
     """
-    Ajusta manualmente o início ou o fim de vários furos,
-    compensando automaticamente o furo vizinho correspondente.
+    Manually adjusts the start or end of multiple holes,
+    automatically compensating the corresponding neighboring hole.
 
-    holes: lista de (start_sample, end_sample)
+    holes: list of (start_sample, end_sample)
     sr: sample rate
-    hole_ids: lista de índices dos furos a ajustar
-    side: "start" ou "end"
-    delta_sec: valor em segundos
-        > 0 → aumenta
-        < 0 → diminui
+    hole_ids: list of indices of the holes to adjust
+    side: "start" or "end"
+    delta_sec: value in seconds
+        > 0 → increases
+        < 0 → decreases
 
-    Exemplo:
+    Example:
         adjust_hole_boundaries_by_ids(
             holes,
             sr=44100,
@@ -821,21 +752,19 @@ def adjust_hole_boundaries_by_ids(holes, sr, hole_ids, side, delta_sec):
             delta_sec=0.2
         )
     """
-    holes = list(holes)  # cópia segura
+    holes = list(holes) 
     delta_samples = int(delta_sec * sr)
 
-    # Evita conflitos ao atualizar múltiplos furos
     if side == "end":
-        # Processa do maior para o menor para não sobrescrever vizinhos
         ordered_ids = sorted(hole_ids, reverse=True)
 
         for hole_idx in ordered_ids:
             if hole_idx < 0 or hole_idx >= len(holes):
-                raise IndexError(f"hole_idx {hole_idx} fora do intervalo")
+                raise IndexError(f"hole_idx {hole_idx} out of range")
 
             if hole_idx + 1 >= len(holes):
                 raise ValueError(
-                    f"Furo {hole_idx} não possui próximo furo para compensação"
+                    f"Hole {hole_idx} has no subsequent hole for compensation"
                 )
 
             s, e = holes[hole_idx]
@@ -846,28 +775,27 @@ def adjust_hole_boundaries_by_ids(holes, sr, hole_ids, side, delta_sec):
 
             if new_e <= s:
                 raise ValueError(
-                    f"Furo {hole_idx} ficaria com duração inválida"
+                    f"Hole {hole_idx} would have an invalid duration"
                 )
 
             if new_ns >= ne:
                 raise ValueError(
-                    f"Próximo furo do índice {hole_idx} ficaria inválido"
+                    f"The next hole after index {hole_idx} would become invalid"
                 )
 
             holes[hole_idx] = (s, new_e)
             holes[hole_idx + 1] = (new_ns, ne)
 
     elif side == "start":
-        # Processa do menor para o maior para evitar conflito com furos anteriores
         ordered_ids = sorted(hole_ids)
 
         for hole_idx in ordered_ids:
             if hole_idx < 0 or hole_idx >= len(holes):
-                raise IndexError(f"hole_idx {hole_idx} fora do intervalo")
+                raise IndexError(f"hole_idx {hole_idx} out of range")
 
             if hole_idx - 1 < 0:
                 raise ValueError(
-                    f"Furo {hole_idx} não possui furo anterior para compensação"
+                    f"Hole {hole_idx} does not have a previous hole for compensation"
                 )
 
             s, e = holes[hole_idx]
@@ -878,19 +806,19 @@ def adjust_hole_boundaries_by_ids(holes, sr, hole_ids, side, delta_sec):
 
             if new_s >= e:
                 raise ValueError(
-                    f"Furo {hole_idx} ficaria com duração inválida"
+                    f"Hole {hole_idx} would have an invalid duration"
                 )
 
             if new_pe <= ps:
                 raise ValueError(
-                    f"Furo anterior ao índice {hole_idx} ficaria inválido"
+                    f"Previous hole at index {hole_idx} would become invalid"
                 )
 
             holes[hole_idx] = (new_s, e)
             holes[hole_idx - 1] = (ps, new_pe)
 
     else:
-        raise ValueError("side deve ser 'start' ou 'end'")
+        raise ValueError("side must be 'start' or 'end'")
 
     return holes
 
@@ -898,9 +826,9 @@ def adjust_hole_boundaries_by_ids(holes, sr, hole_ids, side, delta_sec):
 
 def merge_short_holes_by_median(holes, sr, factor):
     """
-    Junta furos com duração muito abaixo da mediana.
+    Merges holes with duration far below the median.
 
-    factor = 0.4 → furo < 40% da duração mediana é considerado espúrio
+    factor = 0.4 → hole < 40% of median duration is considered spurious
     """
     if not holes or len(holes) < 2:
         return holes
@@ -917,11 +845,9 @@ def merge_short_holes_by_median(holes, sr, factor):
         dur = (e - s) / sr
 
         if dur < threshold:
-            # tenta merge com o anterior
             if merged:
                 ps, pe = merged[-1]
                 merged[-1] = (ps, e)
-            # senão, tenta merge com o próximo
             elif i + 1 < len(holes):
                 ns, ne = holes[i + 1]
                 merged.append((s, ne))
@@ -946,13 +872,13 @@ def fix_internal_energy_split(
         search_ratio
 ):
     """
-    Corrige casos onde o início do furo N contém energia do furo N-1,
-    identificando uma queda real de energia DENTRO do furo.
+    Fixes cases where the start of hole N contains energy from hole N-1,
+    by identifying a real energy drop WITHIN the hole.
 
-    Estratégia:
-    - Analisa o início de cada furo (exceto o primeiro)
-    - Procura um vale energético consistente
-    - Usa RMS + diff (mesma base do detector principal)
+    Strategy:
+    - Analyzes the start of each hole (except the first)
+    - Looks for a consistent energy valley
+    - Uses RMS + diff (same basis as the main detector)
     """
 
     if not holes or len(holes) < 2:
@@ -964,11 +890,8 @@ def fix_internal_energy_split(
         prev_s, prev_e = fixed[-1]
         cur_s, cur_e = holes[i]
 
-        # converte para frames
         s_frame = int(cur_s / hop_length)
         e_frame = int(cur_e / hop_length)
-
-        # analisa apenas o começo do furo
         search_end = s_frame + int((e_frame - s_frame) * search_ratio)
         search_end = min(search_end, e_frame)
 
@@ -983,20 +906,16 @@ def fix_internal_energy_split(
             fixed.append((cur_s, cur_e))
             continue
 
-        # pico inicial de energia do furo
         peak_energy = np.max(rms_seg)
 
-        # vale candidato: energia caiu significativamente
         valley_idxs = np.where(rms_seg < peak_energy * (1 - min_rel_drop))[0]
 
         if valley_idxs.size == 0:
             fixed.append((cur_s, cur_e))
             continue
 
-        # escolhe o primeiro vale consistente
         valley_idx = valley_idxs[0]
 
-        # refina usando diff (queda real)
         local_diff = diff_seg[max(0, valley_idx - 2): valley_idx + 2]
         if np.max(local_diff) < DROP_PROMINENCE:
             fixed.append((cur_s, cur_e))
@@ -1005,23 +924,19 @@ def fix_internal_energy_split(
         split_frame = s_frame + valley_idx
         split_sample = int(split_frame * hop_length)
 
-        # segurança temporal
         split_sample = max(prev_s + 1, split_sample)
         split_sample = min(cur_e - 1, split_sample)
 
-        # ajusta os limites
         fixed[-1] = (prev_s, split_sample)
         fixed.append((split_sample, cur_e))
 
     return fixed
 
-# =========================================================
 # DATALOGGER
-# =========================================================
 def find_column_root(take_path):
     """
-    Sobe a árvore de diretórios até encontrar a pasta column_X.
-    Retorna o caminho absoluto da pasta column.
+    Walks up the directory tree until it finds the column_X folder.
+    Returns the absolute path of the column folder.
     """
     cur = os.path.abspath(take_path)
 
@@ -1031,7 +946,7 @@ def find_column_root(take_path):
             return cur
 
         parent = os.path.dirname(cur)
-        if parent == cur:  # chegou na raiz
+        if parent == cur:  
             return None
 
         cur = parent
@@ -1047,10 +962,6 @@ def load_datalogger_xls(datalogger_dir):
         return None
 
     path = os.path.join(datalogger_dir, files[0])
-
-    # -------------------------------------------------
-    # Leitura bruta
-    # -------------------------------------------------
     try:
         with open(path, "rb") as f:
             raw_bytes = f.read()
@@ -1070,9 +981,6 @@ def load_datalogger_xls(datalogger_dir):
 
     lines = [l.strip() for l in text.splitlines() if l.strip()]
 
-    # -------------------------------------------------
-    # Regex
-    # -------------------------------------------------
     voltage_re = re.compile(r"([\d.,]+)\s*V", re.IGNORECASE)
     current_re = re.compile(r"([\d.,]+)\s*A", re.IGNORECASE)
     time_re = re.compile(
@@ -1114,9 +1022,6 @@ def load_datalogger_xls(datalogger_dir):
 
     return pd.DataFrame(records).reset_index(drop=True)
 
-
-
-
 def extract_datalogger_window(
         datalog_df,
         hole_start_sec,
@@ -1124,9 +1029,9 @@ def extract_datalogger_window(
         audio_start_time
 ):
     """
-    Retorna listas de Voltage e Current correspondentes ao intervalo do furo.
+    Returns lists of Voltage and Current corresponding to the hole's interval.
 
-    audio_start_time: datetime absoluto correspondente ao t=0 do áudio
+    audio_start_time: absolute datetime corresponding to t=0 of the audio
     """
     if datalog_df is None or datalog_df.empty:
         return [], []
@@ -1146,15 +1051,12 @@ def extract_datalogger_window(
     )
 
 
-# =========================================================
-# PLOTAGEM DE ESPECTROGRAMAS
-# =========================================================
 def plot_spectrogram_with_holes(y, sr, holes, output_path):
     plt.figure(figsize=(14, 6))
     S = librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
     librosa.display.specshow(S, sr=sr, x_axis='time', y_axis='log', cmap='magma')
     plt.colorbar(format='%+2.0f dB')
-    plt.title('Espectrograma com furos detectados')
+    plt.title('Spectrogram with detected holes')
     for i, (s, e) in enumerate(holes, 1):
         plt.axvspan(s / sr, e / sr, color='lime', alpha=0.3)
         plt.axvline(s / sr, color='white', linestyle='--', linewidth=0.6)
@@ -1165,9 +1067,7 @@ def plot_spectrogram_with_holes(y, sr, holes, output_path):
     plt.savefig(output_path, dpi=150)
     plt.close()
 
-# =========================================================
-# PROCESSAMENTO DE TAKE
-# =========================================================
+
 def force_temporal_split_holes(
         holes,
         sr,
@@ -1176,27 +1076,24 @@ def force_temporal_split_holes(
         max_parts=8
 ):
     """
-    Força o corte temporal de furos anormalmente longos.
+    Forces the temporal cut of abnormally long holes.
 
-    holes: lista de (start_sample, end_sample)
+    holes: list of (start_sample, end_sample)
     sr: sample rate
 
     duration_factor:
-        furo > duration_factor × mediana → será dividido
+        hole > duration_factor × median → will be split
 
     min_hole_sec:
-        duração mínima aceitável de cada sub-furo
+        minimum acceptable duration of each sub-hole
 
     max_parts:
-        limite superior de divisões para evitar explosão
+        upper limit of splits to avoid explosion
     """
 
     if not holes or len(holes) < 2:
         return holes
-
-    # ==========================
-    # Mediana das durações
-    # ==========================
+    
     durations = np.array([(e - s) / sr for s, e in holes])
     median_dur = np.median(durations)
 
@@ -1207,23 +1104,16 @@ def force_temporal_split_holes(
 
     for s, e in holes:
         dur = (e - s) / sr
-
-        # ==========================
-        # Furo normal → mantém
-        # ==========================
         if dur <= duration_factor * median_dur:
             refined.append((s, e))
             continue
 
-        # ==========================
-        # Furo longo → split forçado
-        # ==========================
         n_parts = int(np.round(dur / median_dur))
         n_parts = max(2, min(n_parts, max_parts))
 
         print(
-            f"⚠️ Corte temporal forçado: "
-            f"{dur:.2f}s → {n_parts} partes"
+            f"Forced temporal cut: "
+            f"{dur:.2f}s → {n_parts} parts"
         )
 
         step = (e - s) // n_parts
@@ -1241,10 +1131,10 @@ def force_temporal_split_holes(
 
 def compute_holes_before_fail(hole_num, jams_list):
     """
-    Retorna quantos furos faltam até a próxima falha (jam).
-    - 0  → o próprio furo é jam
-    - n>0 → faltam n furos até o jam
-    - None → não existe jam futuro
+    Returns how many holes remain until the next failure (jam).
+    - 0  → the hole itself is a jam
+    - n>0 → n holes remain until the jam
+    - None → there is no future jam
     """
     future_jams = [j for j in jams_list if j >= hole_num]
     if not future_jams:
@@ -1256,7 +1146,6 @@ def column_folder_key(name: str):
     col_match = re.search(r'column_(\d+)', name)
     col_num = int(col_match.group(1)) if col_match else 999
 
-    # pastas ordinais como 1st, 2nd, 3rd vêm antes de no_jam
     if re.search(r'(^|_)no_jam(_|$)', name):
         ord_num = 999
     else:
@@ -1265,8 +1154,6 @@ def column_folder_key(name: str):
 
     return (col_num, ord_num)
 
-
-
 def get_experiment_root(path):
     parts = os.path.normpath(path).split(os.sep)
 
@@ -1274,7 +1161,7 @@ def get_experiment_root(path):
         idx = parts.index("standardized")
         return os.sep.join(parts[:idx + 2])
     except ValueError:
-        raise RuntimeError(f"Path inválido (standardized não encontrado): {path}")
+        raise RuntimeError(f"Invalid path (standardized not found): {path}")
 
 def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                         standardized_root=STANDARDIZED_DIR,
@@ -1284,46 +1171,28 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
     if not wavs:
         return
 
-
-
-    # =========================================================
-    # MIC DE REFERÊNCIA
-    # =========================================================
     ref_path = os.path.join(take_path, wavs[0])
     try:
         y_ref, sr_ref = librosa.load(ref_path, sr=None, mono=True)
     except Exception as ex:
-        print(f"⚠️ Falha ao carregar {ref_path}: {ex}")
+        print(f"Failed to load {ref_path}: {ex}")
         return
 
-    # =========================================================
-    # DATALOGGER (1x por TAKE)
-    # =========================================================
     column_root = find_column_root(take_path)
 
     datalogger_dir = None
     if column_root is not None:
         datalogger_dir = os.path.join(column_root, "datalogger")
 
-    # =========================================================
-    # Consertar essa bomba aqui
-    # =======================================================
     datalog_df = load_datalogger_xls(datalogger_dir)
 
     audio_start_time = None
     if datalog_df is not None and not datalog_df.empty:
         audio_start_time = datalog_df["time"].iloc[0]
 
-    # =========================================================
-    # DETECÇÃO DE FUROS (REFERÊNCIA)
-    # =========================================================
     holes, rms_norm, diff, valleys_all, valleys_kept, depths, drop_peaks, hop_length = \
         detect_holes_by_deep_valleys(y_ref, sr_ref)
 
-
-    # =========================================================
-    # REFINAMENTOS
-    # =========================================================
     holes = merge_small_outlier_holes(holes, sr_ref, k=1.5)
 
     holes = refine_long_holes(
@@ -1790,7 +1659,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
             )
         elif holes == [(0, 4804800)]:
             print("limpo")
-            # holes = add_initial_hole_and_reduce(holes, sr_ref, duration_sec=20.0)
         elif holes == [(0, 1527296), (1527296, 3366400), (3366400, 5301760), (5301760, 7631872), (7631872, 11520000)]:
             holes = merge_holes_by_index(holes, 0, 1)
             holes = force_temporal_split_holes(
@@ -1879,7 +1747,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
             )
         elif holes == [(0, 2304000)]:
             print("limpo")
-            # holes = add_initial_hole_and_reduce(holes, sr_ref, duration_sec=20.5)
         elif holes == [(0, 3175424), (3175424, 5259264), (5259264, 7610880), (7610880, 9894400), (9894400, 12259328), (12259328, 14587904), (14587904, 17088000)]:
             holes = adjust_hole_boundary(
                 holes, sr_ref,
@@ -2287,13 +2154,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 sr_ref,
                 duration_factor=1.0
             )
-            # holes = add_initial_hole_and_reduce(holes, sr_ref, duration_sec=5.0)
-            # holes = refine_long_holes_sensive(
-            #     y_ref, sr_ref, holes,
-            #     duration_factor=0.1,
-            #     aggressive_factor=0.2
-            # )
-            # holes = merge_holes_by_index(holes, 0, 1)
             holes = adjust_hole_boundary(
                 holes, sr_ref,
                 hole_idx=2,
@@ -2301,18 +2161,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 delta_sec=5.00
             )
         elif holes == [(0, 3588608), (3588608, 5863424), (5863424, 7916544), (7916544, 10231296), (10231296, 12276736), (12276736, 14620160), (14620160, 17166848), (17166848, 19264512), (19264512, 21598720), (21598720, 23923712), (23923712, 26217472), (26217472, 28584448), (28584448, 30048000)]:
-            # holes = force_temporal_split_holes(
-            #     holes,
-            #     sr_ref,
-            #     duration_factor=1.0
-            # )
-            # holes = add_initial_hole_and_reduce(holes, sr_ref, duration_sec=5.0)
-            # holes = refine_long_holes_sensive(
-            #     y_ref, sr_ref, holes,
-            #     duration_factor=0.1,
-            #     aggressive_factor=0.2
-            # )
-            # holes = merge_holes_by_index(holes, 0, 1)
             holes = adjust_hole_boundary(
                 holes, sr_ref,
                 hole_idx=0,
@@ -2331,12 +2179,7 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 sr_ref,
                 duration_factor=1.0
             )
-            # holes = add_initial_hole_and_reduce(holes, sr_ref, duration_sec=5.0)
-            # holes = refine_long_holes_sensive(
-            #     y_ref, sr_ref, holes,
-            #     duration_factor=0.1,
-            #     aggressive_factor=0.2
-            # )
+            
             holes = merge_holes_by_index(holes, 0, 1)
             holes = merge_holes_by_index(holes, 2, 3)
             holes = merge_holes_by_index(holes, 5, 6)
@@ -2589,11 +2432,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 side="start",
                 delta_sec=-6.00
             )
-            # holes = refine_long_holes_sensive(
-            #     y_ref, sr_ref, holes,
-            #     duration_factor=1.0,
-            #     aggressive_factor=1.5
-            # )
 
         if holes == [(0, 10942132)]:
             holes = refine_long_holes_sensive(
@@ -2662,8 +2500,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
         else:
             pass
 
-
-
     if drill.lower() == 'drill_4mm_12_batch_01_collet_1_05-02-2025':
         if holes == [(0, 15930368), (15930368, 22124032), (22124032, 24016896), (24016896, 28717568), (28717568, 33323008), (33323008, 38022656), (38022656, 42737152), (42737152, 47281152), (47281152, 51937280), (51937280, 56591360), (56591360, 61260288), (61260288, 65971712), (65971712, 70627840), (70627840, 77568692)]:
             holes = force_temporal_split_holes(
@@ -2683,12 +2519,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 sr_ref,
                 duration_factor=2.0
             )
-            # holes = adjust_hole_boundary(
-            #     holes, sr_ref,
-            #     hole_idx=4,
-            #     side="start",
-            #     delta_sec=-8.00
-            # )
         elif holes == [(0, 740864), (740864, 1190400), (1190400, 5752948)]:
             holes = merge_short_holes_by_recursion(holes, sr_ref, factor=0.9)
         elif holes == [(0, 1085440), (1085440, 4036032)]:
@@ -3433,16 +3263,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 sr_ref,
                 duration_factor=1.0
             )
-
-
-            # holes = merge_short_holes_by_median(holes, sr_ref, factor=0.6)
-        # holes = refine_long_holes_sensive(
-        #         y_ref, sr_ref, holes,
-        #         duration_factor=0.5,
-        #         aggressive_factor=1.0
-        #     )
-        # holes = expand_holes_to_next(holes)
-        # holes = merge_short_holes_by_median(holes, sr_ref, factor=0.5)
     if drill.lower() == 'drill_4mm_15_batch_01_collet_1_06-02-2025':
 
         holes = refine_long_holes_sensive(
@@ -3654,11 +3474,8 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
     holes_ref = holes
     N = len(holes_ref)
 
-    print(f"   ▶ TAKE {os.path.basename(take_path)}: {N} furos detectados")
+    print(f"TAKE {os.path.basename(take_path)}: {N}")
 
-    # =========================================================
-    # PASTAS DE SAÍDA
-    # =========================================================
     rel_path = os.path.relpath(take_path, standardized_root)
     take_dir = os.path.join(segmented_root, rel_path)
     ensure_dir(take_dir)
@@ -3674,19 +3491,10 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
     jam_problem_flag = len(jams_list) > 0 and N < len(jams_list)
     overview_records = []
 
-    # =========================================================
-    # ID INICIAL DA COLUMN (vem do main)
-    # =========================================================
     column_hole_id = hole_counter["column_id"]
 
-    # =========================================================
-    # CONTADOR LOCAL DO TAKE (NÃO do mic)
-    # =========================================================
-    take_hole_index = 0 + column_hole_id # cresce a cada furo salvo
+    take_hole_index = 0 + column_hole_id
 
-    # =========================================================
-    # PROCESSA CADA MIC
-    # =========================================================
     for idx, file in enumerate(wavs):
         file_path = os.path.join(take_path, file)
         filebase = os.path.splitext(file)[0]
@@ -3694,11 +3502,11 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
         fname = file.lower()
 
         is_ultra = ("ultrasonic" in fname) or ("ult" in fname) or ("ts" in fname)
-        mic_type = "ultra" if is_ultra else "comum"
+        mic_type = "ultra" if is_ultra else "common"
 
         position = (
-            "interno" if "_int" in fname
-            else "externo" if "_ext" in fname
+            "internal" if "_int" in fname
+            else "external" if "_ext" in fname
             else "unknown"
         )
 
@@ -3709,7 +3517,7 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
             else:
                 y_mono, sr = librosa.load(file_path, sr=sr_ref, mono=True)
         except Exception as ex:
-            print(f"⚠️ Falha ao carregar {file_path}: {ex}")
+            print(f"Failed to load {file_path}: {ex}")
             continue
 
         holes_this_mic = align_holes_to_reference(
@@ -3722,22 +3530,11 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
         if len(holes_this_mic) != N:
             holes_this_mic = holes_ref.copy()
 
-        # =====================================================
-        # SALVA FUROS + METADATA
-        # =====================================================
         for local_idx, (s, e) in enumerate(holes_this_mic, start=1):
-
-            # 🔑 ID GLOBAL REAL DO FURO
-            hole_num = local_idx + column_hole_id -1#local_idx +
+            hole_num = local_idx + column_hole_id -1
 
             jam = hole_num in jams_list
             suffix = "_jam" if jam else ""
-
-            # print(
-            #     f"[DEBUG] mic={filebase} "
-            #     f"local_idx={local_idx} "
-            #     f"global_id={hole_num}"
-            # )
 
             out_name = f"{filebase}_hole{hole_num:05d}{suffix}.wav"
             out_path = os.path.join(take_dir, out_name)
@@ -3775,25 +3572,14 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 Current=current_list
             ))
 
-            # 🔺 incrementa UMA VEZ por furo
             take_hole_index += 1
 
-
-    # =========================================================
-    # METADATA
-    # =========================================================
     df = pd.DataFrame(overview_records)
     if not df.empty:
         metadata.append(df)
 
-    # número de furos GERADOS neste take
-    num_holes = local_idx #+ column_hole_id
+    num_holes = local_idx 
     return num_holes
-
-
-
-
-
 
 def extract_column_key(path):
     import os
@@ -3806,16 +3592,12 @@ def extract_column_key(path):
         print("DEBUG part:", part)
 
         if part.lower().startswith("column_"):
-            print("DEBUG column key encontrada:", part)
+            print("DEBUG column key found:", part)
             return part
 
-    print("DEBUG nenhuma column encontrada")
+    print("DEBUG no column found")
     return None
 
-
-# =========================================================
-# EXECUÇÃO PRINCIPAL
-# =========================================================
 if __name__ == "__main__":
     print("Starting script")
 
@@ -3824,39 +3606,24 @@ if __name__ == "__main__":
     ensure_dir(DOCS_IMG_DIR)
 
     metadata_all = []
-
-    # drills = [
-    #     d for d in os.listdir(STANDARDIZED_DIR)
-    #     if os.path.isdir(os.path.join(STANDARDIZED_DIR, d))
-    # ]
-
     drills = ['drill_4mm_10_batch_00_collet_1_04-02-2025']
 
-    print(f"▶ Iniciando processamento de drills em {STANDARDIZED_DIR}...")
+    print(f"Starting drill processing in {STANDARDIZED_DIR}...")
 
     for drill in drills:
         drill_path = os.path.join(STANDARDIZED_DIR, drill)
         jams_list = load_jams_for_drill(drill_path)
 
-        # Total acumulado de furos já processados
         global_hole_offset = 0
 
-        # Contexto atual
         current_column_key = None
         current_take_root = None
 
-        # Quantidade de furos da "column" atual
         column_holes_count = 0
-
-        # Primeiro ID da faixa atual
         column_start_id = 1
 
-        # Contador compartilhado
         hole_counter = {"column_id": 1}
 
-        # -------------------------------------------------
-        # Descobre todos os diretórios com WAV
-        # -------------------------------------------------
         roots_to_process = []
 
         for root, dirs, files in os.walk(drill_path):
@@ -3875,9 +3642,6 @@ if __name__ == "__main__":
 
         roots_to_process.sort(key=column_folder_key)
 
-        # -------------------------------------------------
-        # PROCESSAMENTO
-        # -------------------------------------------------
         for root in roots_to_process:
 
             sensor_parent = os.path.dirname(root)
@@ -3890,13 +3654,8 @@ if __name__ == "__main__":
                 take_name
             )
 
-            # Ex:
-            # column_1_1st_jam_10_holes
-            # column_1_no_jam_28_holes
-            # column_2_2nd_jam_38_holes
             column_key = extract_column_key(take_root)
 
-            print("\n----------------------------------------")
             print("root:", root)
             print("sensor_type:", sensor_type)
             print("take_root:", take_root)
@@ -3907,63 +3666,51 @@ if __name__ == "__main__":
             print("column_start_id:", column_start_id)
             print("hole_counter antes:", hole_counter)
 
-            # =================================================
-            # NOVA "COLUMN" LÓGICA
-            # =================================================
             if column_key != current_column_key:
-
-                # Fecha a faixa anterior
                 if current_column_key is not None:
                     global_hole_offset += column_holes_count
 
                     print(
-                        f"➡ Finalizando {current_column_key}: "
-                        f"{column_holes_count} furos"
+                        f"Finishing {current_column_key}: "
+                        f"{column_holes_count} holes"
                     )
                     print(
-                        f"➡ global_hole_offset atualizado para "
+                        f"global_hole_offset updated to "
                         f"{global_hole_offset}"
                     )
 
                 current_column_key = column_key
                 current_take_root = take_root
 
-                # Reinicia contagem da nova faixa
                 column_holes_count = 0
 
-                # Nova faixa começa em 1 + total anterior
                 column_start_id = global_hole_offset + 1
 
                 hole_counter = {
                     "column_id": column_start_id
                 }
 
-                print(f"🔄 Nova column detectada: {column_key}")
+                print(f"New column detected: {column_key}")
                 print(
-                    f"hole_counter iniciado em "
+                    f"hole_counter started at "
                     f"{hole_counter['column_id']}"
                 )
 
-            # =================================================
-            # NOVO TAKE DA MESMA "COLUMN"
-            # =================================================
             elif take_root != current_take_root:
 
                 current_take_root = take_root
 
                 print(
-                    f"📂 Novo TAKE detectado na mesma column: "
+                    f"New TAKE detected in the same column: "
                     f"{take_root}"
                 )
 
-                # Todos os takes da mesma column reutilizam
-                # exatamente o mesmo início da faixa
                 hole_counter = {
                     "column_id": column_start_id
                 }
 
                 print(
-                    f"hole_counter reiniciado para "
+                    f"hole_counter reset to "
                     f"{hole_counter['column_id']}"
                 )
 
@@ -3979,7 +3726,7 @@ if __name__ == "__main__":
                 )
 
             except Exception as e:
-                print(f"❌ Error processing {root}: {e}")
+                print(f"Error processing {root}: {e}")
                 holes_in_take = 0
 
             print(
@@ -3989,19 +3736,13 @@ if __name__ == "__main__":
                 f"sensor_type={sensor_type}"
             )
 
-            # =================================================
-            # Apenas ultrasonic_mics define o tamanho da faixa
-            # =================================================
             if holes_in_take and sensor_type == "ultrasonic_mics":
 
-                # Guarda quantos furos esta "column" possui
                 column_holes_count = holes_in_take
 
-                # Atualiza apenas o próximo ID temporário
                 hole_counter["column_id"] = column_start_id + holes_in_take
 
                 print(
-                    f"✔ ultrasonic_mics -> próximo column_id="
                     f"{hole_counter['column_id']} | "
                     f"column_holes_count={column_holes_count}"
                 )
@@ -4009,31 +3750,25 @@ if __name__ == "__main__":
             elif holes_in_take:
 
                 print(
-                    "ℹ reg_mics detectado: contador não incrementado"
+                    "ℹ reg_mics detected: counter not incremented"
                 )
 
-        # -------------------------------------------------
-        # Fecha última column
-        # -------------------------------------------------
         if current_column_key is not None:
             global_hole_offset += column_holes_count
 
             print(
-                f"➡ Finalizando última column {current_column_key}: "
-                f"{column_holes_count} furos"
+                f"Finishing last column {current_column_key}: "
+                f"{column_holes_count} holes"
             )
             print(
-                f"➡ Total acumulado final = {global_hole_offset}"
+                f"Final accumulated total = {global_hole_offset}"
             )
 
         print(
-            f"🏁 Drill finalizado: {drill} | "
-            f"Total de furos acumulados = {global_hole_offset}"
+            f"Drill finished: {drill} | "
+            f"Total accumulated holes = {global_hole_offset}"
         )
 
-    # -------------------------------------------------
-    # Salva metadata
-    # -------------------------------------------------
     if metadata_all:
 
         metadata_valid = [
@@ -4045,9 +3780,9 @@ if __name__ == "__main__":
             df_all = pd.concat(metadata_valid, ignore_index=True)
             df_all.to_csv(METADATA_CSV, index=False)
 
-            print(f"✔ Metadata completo salvo em {METADATA_CSV}")
+            print(f"Complete metadata saved to {METADATA_CSV}")
 
         else:
-            print("⚠ Nenhum metadata válido para salvar.")
+            print("No valid metadata to save.")
 
-    print("Processamento concluído.")
+    print("Processing complete.")

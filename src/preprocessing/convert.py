@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-convert.py — Processamento de áudios e cópia de jams.txt
-- Padroniza WAVs mono ou multicanais
-- Mantém espelhamento de pastas em data/standardized
-- Cria metadata inicial
-- Copia jams.txt de cada drill, mesmo que esteja na raiz antes das subpastas
-- Cria subpasta única (UUID) para casos de ultrasonic_mics sem subpastas específicas
+convert.py — Audio processing and jams.txt copying
+- Standardizes mono and multichannel WAV files
+- Preserves directory structure in data/standardized
+- Creates initial metadata
+- Copies jams.txt from each drill, even if it is located in the drill root before subfolders
+- Creates a single subfolder (UUID) for ultrasonic_mics when no specific subfolders exist
 """
 
 import os
@@ -42,7 +42,8 @@ def process_channel(y_channel, sr, out_path):
 
 def process_multichannel(filepath, drill_id, mic_type, position, out_dir, metadata_list):
     """
-    Separa canais multicanais e salva individualmente no mesmo espelhamento de pastas.
+    Splits multichannel recordings and saves each channel individually while
+    preserving the directory structure.
     """
     y, sr = sf.read(filepath, always_2d=True)
     num_channels = y.shape[1]
@@ -62,7 +63,7 @@ def process_multichannel(filepath, drill_id, mic_type, position, out_dir, metada
             "sr": sr,
             "filepath_wav": out_path
         })
-        print(f"✅ Canal {ch+1}/{num_channels} salvo: {out_path}")
+        print(f" Channel {ch+1}/{num_channels} saved: {out_path}")
 
 def process_wav(filepath, drill_id, mic_type, position, mic_id, out_dir, metadata_list):
     y, sr = librosa.load(filepath, sr=None, mono=True)
@@ -80,52 +81,44 @@ def process_wav(filepath, drill_id, mic_type, position, mic_id, out_dir, metadat
         "sr": sr,
         "filepath_wav": out_path
     })
-    print(f"✅ Processado: {out_path}")
+    print(f" Processed: {out_path}")
 
 def main():
     metadata_list = []
 
     for drill_folder in os.listdir(RAW_DIR):
-        drill_folder = 'drill_4mm_18_batch_01_collet_1_07-02-2025'  # REMOVER ESTA LINHA APÓS TESTES
+        drill_folder = 'drill_4mm_18_batch_01_collet_1_07-02-2025'  # REMOVE THIS LINE AFTER TESTING
         drill_path = os.path.join(RAW_DIR, drill_folder)
         if not os.path.isdir(drill_path):
             continue
 
-        # Ajuste do drill_id conforme sua convenção
+        # Adjust drill_id according to your naming convention
         drill_id = drill_folder.split("_")[2]
 
-        # --------------------------------------------------
-        # 📄 Copiar jams.txt da raiz do drill (se existir)
-        # --------------------------------------------------
+        # Copy jams.txt from the drill root (if available)
         jams_file_root = os.path.join(drill_path, "jams.txt")
         if os.path.exists(jams_file_root):
             out_dir_root = os.path.join(OUTPUT_DIR, os.path.relpath(drill_path, RAW_DIR))
             ensure_dir(out_dir_root)
             shutil.copy2(jams_file_root, out_dir_root)
-            print(f"📄 jams.txt copiado da raiz do drill: {out_dir_root}")
+            print(f"jams.txt copied from drill root: {out_dir_root}")
 
-        # --------------------------------------------------
-        # 🔁 Processar subpastas e arquivos
-        # --------------------------------------------------
+        # Process subfolders and files
         for root, _, files in os.walk(drill_path):
             rel_path = os.path.relpath(root, RAW_DIR)
             base = os.path.basename(root).lower()
 
-            # --------------------------------------------------
-            # 📁 Copiar pasta datalogger inteira (espelhada)
-            # --------------------------------------------------
+            # Copy the entire datalogger folder (preserving structure)
             if base == "datalogger":
                 dst_datalogger = os.path.join(OUTPUT_DIR, rel_path)
                 if not os.path.exists(dst_datalogger):
                     shutil.copytree(root, dst_datalogger)
-                    print(f"📁 datalogger copiado: {dst_datalogger}")
+                    print(f"datalogger copied: {dst_datalogger}")
                 else:
-                    print(f"ℹ️ datalogger já existe, pulando: {dst_datalogger}")
-                continue  # não processa WAVs aqui
+                    print(f"datalogger already exists, skipping: {dst_datalogger}")
+                continue  # Do not process WAV files here
 
-            # --------------------------------------------------
-            # 🔧 ultrasonic_mics sem subpastas → UUID único
-            # --------------------------------------------------
+            # ultrasonic_mics without subfolders → single UUID
             if base == "ultrasonic_mics":
                 unique_id = str(uuid.uuid4())[:8]
                 rel_path = os.path.join(rel_path, unique_id)
@@ -138,9 +131,7 @@ def main():
 
                 filepath = os.path.join(root, file)
 
-                # ------------------------------
-                # 🔹 Mic comum
-                # ------------------------------
+                # Standard microphone
                 mic_name = [k for k in MIC_MAPPING.keys() if k in file]
                 if mic_name:
                     mic_name = mic_name[0]
@@ -158,9 +149,7 @@ def main():
                     )
                     continue
 
-                # ------------------------------
-                # 🔹 Mic ultrassônico
-                # ------------------------------
+                #  Ultrasonic microphone
                 if "ultrasonic" in root.lower() or "ultrasonic" in file.lower():
 
                     if "ext" in file.lower():
@@ -183,17 +172,14 @@ def main():
                     )
                     continue
 
-                # ------------------------------
-                print(f"⚠️ Mic não mapeado, ignorando arquivo: {file}")
+                print(f" Unmapped microphone, skipping file: {file}")
 
-        break  # REMOVER ESTA LINHA APÓS TESTES
+        break  # REMOVE THIS LINE AFTER TESTING
 
-    # --------------------------------------------------
-    # 📊 Salvar metadata
-    # --------------------------------------------------
+    # Save metadata
     ensure_dir(os.path.dirname(METADATA_CSV))
     pd.DataFrame(metadata_list).to_csv(METADATA_CSV, index=False)
-    print(f"\n📊 Metadata inicial salva em: {METADATA_CSV}")
+    print(f"\n Initial metadata saved to: {METADATA_CSV}")
 
 
 if __name__ == "__main__":
