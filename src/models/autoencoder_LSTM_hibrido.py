@@ -14,7 +14,7 @@ plt.rcParams.update({
     "ps.fonttype": 42
 })
 
-hybrid_file = "resultados_LSTM_ae.csv"
+hybrid_file = "results_LSTM_hybrid.csv"
 if not os.path.exists(hybrid_file):
     raise FileNotFoundError(f"Generate the file '{hybrid_file}' by running the pipeline first")
 
