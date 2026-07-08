@@ -72,24 +72,3 @@ plt.tight_layout(pad=0.1)
 plt.savefig("matrix_xgboost_hybrid_final.pdf", dpi=600, bbox_inches='tight', pad_inches=0.01)
 plt.savefig("matrix_xgboost_hybrid_final.png", dpi=300, bbox_inches='tight', pad_inches=0.01)
 plt.show()
-
-
-fpr, tpr, _ = roc_curve(df_xgb['label'], df_xgb['score'])
-
-df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
-df_roc.to_csv("roc_xgboost_hybrid_data.csv", index=False)
-
-fig, ax = plt.subplots(figsize=(3.5, 3))
-ax.plot(fpr, tpr, color='#e67e22', linewidth=2, label=f'AUC = {auc_real:.2f}')
-ax.plot([0, 1], [0, 1], color='black', linestyle='--', alpha=0.7)
-
-ax.set_xlabel('False Positive Rate', fontweight='bold', fontsize=9)
-ax.set_ylabel('True Positive Rate', fontweight='bold', fontsize=9)
-ax.set_title('ROC Curve - XGBoost Hybrid', fontweight='bold', fontsize=10, pad=10)
-ax.legend(loc='lower right', fontsize=9)
-ax.grid(True, linestyle=':', alpha=0.3)
-plt.tight_layout()
-
-plt.savefig("roc_xgboost_hybrid.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("roc_xgboost_hybrid.png", dpi=300, bbox_inches='tight')
-plt.show()

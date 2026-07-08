@@ -54,3 +54,17 @@ print(f"Recall:   {recall:.4f}")
 print(f"Accuracy: {acc:.4f}")
 print(f"AUC:      {auc:.4f}")
 print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
+
+plt.figure(figsize=(3.5, 3))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', cbar=False,
+            annot_kws={"size": 12, "weight": "bold"},
+            xticklabels=['No Alert', 'Alert'],
+            yticklabels=['Normal', 'Anomaly'])
+
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.tight_layout()
+
+plt.savefig("matrix_lstm.pdf", dpi=600, bbox_inches='tight')
+plt.savefig("matrix_lstm.png", dpi=300, bbox_inches='tight')
+plt.show()

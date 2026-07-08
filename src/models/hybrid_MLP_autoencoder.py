@@ -71,22 +71,3 @@ plt.tight_layout()
 plt.savefig("matrix_autoencoder_hybrid.pdf", dpi=600, bbox_inches='tight')
 plt.savefig("matrix_autoencoder_hybrid.png", dpi=300, bbox_inches='tight')
 plt.show()
-
-fpr, tpr, _ = roc_curve(df_mlp['label'], df_mlp['hybrid_mse'])
-
-df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
-df_roc.to_csv("roc_mlp_hybrid_data.csv", index=False)
-
-plt.figure(figsize=(3.5, 3))
-plt.plot(fpr, tpr, color='darkgreen', linewidth=1.5, label=f'AUC = {auc:.2f}')
-plt.plot([0, 1], [0, 1], color='navy', linestyle='--', linewidth=1)
-
-plt.xlabel("False Positive Rate", fontweight='bold')
-plt.ylabel("True Positive Rate", fontweight='bold')
-plt.legend(loc="lower right")
-plt.grid(True, linestyle=':', alpha=0.6)
-plt.tight_layout()
-
-plt.savefig("roc_autoencoder_hybrid.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("roc_autoencoder_hybrid.png", dpi=300, bbox_inches='tight')
-plt.show()
