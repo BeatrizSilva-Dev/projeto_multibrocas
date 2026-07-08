@@ -68,3 +68,8 @@ plt.tight_layout()
 plt.savefig("matrix_lstm.pdf", dpi=600, bbox_inches='tight')
 plt.savefig("matrix_lstm.png", dpi=300, bbox_inches='tight')
 plt.show()
+
+fpr, tpr, _ = roc_curve(df_lstm['label'], df_lstm['hybrid_mse'])
+
+df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+df_roc.to_csv("hybrid_lstm_roc_data.csv", index=False)

@@ -72,3 +72,8 @@ plt.tight_layout(pad=0.1)
 plt.savefig("matrix_xgboost_hybrid_final.pdf", dpi=600, bbox_inches='tight', pad_inches=0.01)
 plt.savefig("matrix_xgboost_hybrid_final.png", dpi=300, bbox_inches='tight', pad_inches=0.01)
 plt.show()
+
+fpr, tpr, _ = roc_curve(df_xgb['label'], df_xgb['score'])
+
+df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+df_roc.to_csv("hybrid_xgboost_roc_data.csv", index=False)
