@@ -1,0 +1,805 @@
+drill,hole,duration_pct,mic_ultrasonic,mic_reg,human_severity_score
+drill_4mm_01,1,1.92,normal,normal,0
+drill_4mm_01,2,3.85,normal,normal,0
+drill_4mm_01,3,5.77,weak rattle at the end,onset of rattle,1
+drill_4mm_01,4,7.69,weak rattle at the end,weak rattle,1
+drill_4mm_01,5,9.62,weak rattle at the end,weak rattle,1
+drill_4mm_01,6,11.54,weak rattle at the end,weak rattle,1
+drill_4mm_01,7,13.46,rattle at the end,rattle,1
+drill_4mm_01,8,15.38,rattle at the end,rattle,1
+drill_4mm_01,9,17.31,rattle at the end,rattle,1
+drill_4mm_01,10,19.23,rattle at the end,rattle,1
+drill_4mm_01,11,21.15,rattle at the end,rattle,1
+drill_4mm_01,12,23.08,rattle at the end,weak rattle,1
+drill_4mm_01,13,25.0,slightly stronger rattle at the end,rattle,1
+drill_4mm_01,14,26.92,slightly stronger rattle at the end,rattle,1
+drill_4mm_01,15,28.85,rattle at the end,rattle,1
+drill_4mm_01,16,30.77,slightly stronger rattle at the end,weak rattle,1
+drill_4mm_01,17,32.69,weak rattle at the end,weak rattle,1
+drill_4mm_01,18,34.62,weak rattle at the end,weak rattle,1
+drill_4mm_01,19,36.54,rattle at the end,rattle,1
+drill_4mm_01,20,38.46,weak rattle at the end,normal,1
+drill_4mm_01,21,40.38,rattle at the end,rattle,1
+drill_4mm_01,22,42.31,weak rattle at the end,weak rattle,1
+drill_4mm_01,23,44.23,weak rattle at the end,weak rattle,1
+drill_4mm_01,24,46.15,weak rattle at the end,weak rattle,1
+drill_4mm_01,25,48.08,weak rattle at the end,weak rattle,1
+drill_4mm_01,26,50.0,rattle at the end,weak rattle,2
+drill_4mm_01,27,51.92,weak rattle at the end,weak rattle,2
+drill_4mm_01,28,53.85,weak rattle at the end,weak rattle,2
+drill_4mm_01,29,55.77,slightly stronger rattle at the end,weak rattle,2
+drill_4mm_01,30,57.69,slightly stronger rattle at the end,rattle,2
+drill_4mm_01,31,59.62,slightly stronger rattle at the end,rattle,2
+drill_4mm_01,32,61.54,rattle at the end,rattle,2
+drill_4mm_01,33,63.46,rattle at the end,rattle,2
+drill_4mm_01,34,65.38,slightly stronger rattle at the end,rattle,2
+drill_4mm_01,35,67.31,rattle at the end,rattle,2
+drill_4mm_01,36,69.23,strong rattle at the end,rattle,2
+drill_4mm_01,37,71.15,slightly stronger rattle at the end,rattle,2
+drill_4mm_01,38,73.08,strong rattle at the end,rattle,2
+drill_4mm_01,39,75.0,rattle + jammed,rattle + jammed,3
+drill_4mm_01,40,76.92,rattle at the end,rattle,2
+drill_4mm_01,41,78.85,weak rattle at the end,weak rattle,2
+drill_4mm_01,42,80.77,strong rattle at the end,weak rattle,2
+drill_4mm_01,43,82.69,strong rattle at the end,rattle,2
+drill_4mm_01,44,84.62,strong rattle at the end,rattle,2
+drill_4mm_01,45,86.54,very strong rattle at the end,rattle,2
+drill_4mm_01,46,88.46,very strong rattle at the end,rattle,2
+drill_4mm_01,47,90.38,sounds like radio noise,sounds like radio noise,2
+drill_4mm_01,48,92.31,sounds like radio noise,sounds like radio noise,2
+drill_4mm_01,49,94.23,rattle + jammed,rattle + jammed,3
+drill_4mm_01,50,96.15,sounds like radio noise,sounds like radio noise,2
+drill_4mm_01,51,98.08,sounds like radio noise,sounds like radio noise,2
+drill_4mm_01,52,100.0,rattle + jammed,rattle + jammed,3
+drill_4mm_02,1,0.93,normal hole,normal hole,0
+drill_4mm_02,2,1.87,normal hole,normal hole,0
+drill_4mm_02,3,2.8,onset of rattle at the end of audio,normal hole,1
+drill_4mm_02,4,3.74,weak rattle at the end,onset of rattle,1
+drill_4mm_02,5,4.67,weak rattle at the end,weak rattle,1
+drill_4mm_02,6,5.61,weak rattle at the end,weak rattle,1
+drill_4mm_02,7,6.54,weak rattle at the end,weak rattle,1
+drill_4mm_02,8,7.48,stronger rattle,rattle,1
+drill_4mm_02,9,8.41,weak rattle at the end,weak rattle,1
+drill_4mm_02,10,9.35,weak rattle at the end,weak rattle,1
+drill_4mm_02,11,10.28,weak rattle at the end,weak rattle,1
+drill_4mm_02,12,11.21,weak rattle at the end,weak rattle,1
+drill_4mm_02,13,12.15,stronger rattle,weak rattle,1
+drill_4mm_02,14,13.08,stronger rattle,weak rattle,1
+drill_4mm_02,15,14.02,stronger rattle,weak rattle,1
+drill_4mm_02,16,14.95,stronger rattle,weak rattle,1
+drill_4mm_02,17,15.89,stronger rattle,weak rattle,1
+drill_4mm_02,18,16.82,stronger rattle,weak rattle,1
+drill_4mm_02,19,17.76,weak rattle at the end,weak rattle,1
+drill_4mm_02,20,18.69,stronger rattle,weak rattle,1
+drill_4mm_02,21,19.63,stronger rattle,weak rattle,1
+drill_4mm_02,22,20.56,stronger rattle,rattle,1
+drill_4mm_02,23,21.5,stronger rattle,rattle,1
+drill_4mm_02,24,22.43,stronger rattle,rattle,1
+drill_4mm_02,25,23.36,stronger rattle,rattle,1
+drill_4mm_02,26,24.3,stronger rattle,rattle,1
+drill_4mm_02,27,25.23,stronger rattle,rattle,1
+drill_4mm_02,28,26.17,stronger rattle,rattle,1
+drill_4mm_02,29,27.1,stronger rattle,rattle,1
+drill_4mm_02,30,28.04,stronger rattle,rattle,1
+drill_4mm_02,31,28.97,rattle at the end,rattle,1
+drill_4mm_02,32,29.91,rattle at the end,rattle,1
+drill_4mm_02,33,30.84,rattle at the end,rattle,1
+drill_4mm_02,34,31.78,rattle at the end,rattle,1
+drill_4mm_02,35,32.71,rattle at the end,rattle,1
+drill_4mm_02,36,33.64,rattle at the end,rattle,1
+drill_4mm_02,37,34.58,rattle at the end,rattle,1
+drill_4mm_02,38,35.51,rattle at the end,rattle,1
+drill_4mm_02,39,36.45,rattle at the end,rattle,1
+drill_4mm_02,40,37.38,rattle at the end,rattle,1
+drill_4mm_02,41,38.32,rattle at the end,rattle,1
+drill_4mm_02,42,39.25,sounds like radio static,rattle,2
+drill_4mm_02,43,40.19,sounds like radio static,rattle,2
+drill_4mm_02,44,41.12,sounds like radio static,rattle,2
+drill_4mm_02,45,42.06,sounds like radio static,rattle,2
+drill_4mm_02,46,42.99,sounds like radio static,rattle,2
+drill_4mm_02,47,43.93,sounds like radio static,rattle,2
+drill_4mm_02,48,44.86,sounds like radio static,rattle,2
+drill_4mm_02,49,45.79,sounds like radio static,rattle,2
+drill_4mm_02,50,46.73,sounds like radio static,rattle,2
+drill_4mm_02,51,47.66,sounds like radio static,rattle,2
+drill_4mm_02,52,48.6,sounds like radio static,rattle,2
+drill_4mm_02,53,49.53,sounds like radio static,rattle,2
+drill_4mm_02,54,50.47,sounds like radio static,rattle,2
+drill_4mm_02,55,51.4,sounds like radio static,rattle,2
+drill_4mm_02,56,52.34,stronger hissing,rattle,2
+drill_4mm_02,57,53.27,sounds like radio static,rattle,2
+drill_4mm_02,58,54.21,sounds like radio static,rattle,2
+drill_4mm_02,59,55.14,stronger hissing,rattle,2
+drill_4mm_02,60,56.07,stronger hissing,rattle,2
+drill_4mm_02,61,57.01,sounds like radio static,rattle,2
+drill_4mm_02,62,57.94,stronger hissing,strong rattle,2
+drill_4mm_02,63,58.88,stronger hissing,strong rattle,2
+drill_4mm_02,64,59.81,stronger hissing,strong rattle,2
+drill_4mm_02,65,60.75,stronger hissing,strong rattle,2
+drill_4mm_02,66,61.68,stronger hissing,strong rattle,2
+drill_4mm_02,67,62.62,stronger hissing,strong rattle,2
+drill_4mm_02,68,63.55,stronger hissing,strong rattle,2
+drill_4mm_02,69,64.49,stronger hissing,strong rattle,2
+drill_4mm_02,70,65.42,stronger hissing,strong rattle,2
+drill_4mm_02,71,66.36,stronger hissing,strong rattle,2
+drill_4mm_02,72,67.29,unbearable hissing,strong rattle,2
+drill_4mm_02,73,68.22,unbearable hissing,strong rattle,2
+drill_4mm_02,74,69.16,unbearable hissing,strong rattle,2
+drill_4mm_02,75,70.09,unbearable hissing,strong rattle,2
+drill_4mm_02,76,71.03,unbearable hissing,strong rattle,2
+drill_4mm_02,77,71.96,unbearable hissing,strong rattle,2
+drill_4mm_02,78,72.9,unbearable hissing,strong rattle,2
+drill_4mm_02,79,73.83,unbearable hissing,strong rattle,2
+drill_4mm_02,80,74.77,unbearable hissing,strong rattle,2
+drill_4mm_02,81,75.7,unbearable hissing,sounds like radio static,2
+drill_4mm_02,82,76.64,unbearable hissing,sounds like radio static,2
+drill_4mm_02,83,77.57,unbearable hissing,sounds like radio static,2
+drill_4mm_02,84,78.5,unbearable hissing,sounds like radio static,2
+drill_4mm_02,85,79.44,unbearable hissing,sounds like radio static,2
+drill_4mm_02,86,80.37,unbearable hissing,sounds like radio static,2
+drill_4mm_02,87,81.31,unbearable hissing,sounds like radio static,2
+drill_4mm_02,88,82.24,unbearable hissing,sounds like radio static,2
+drill_4mm_02,89,83.18,unbearable hissing,sounds like radio static,2
+drill_4mm_02,90,84.11,unbearable hissing,strong rattle,2
+drill_4mm_02,91,85.05,unbearable hissing,sounds like radio static,2
+drill_4mm_02,92,85.98,unbearable hissing,strong rattle,2
+drill_4mm_02,93,86.92,jammed,jammed,3
+drill_4mm_02,94,87.85,unbearable hissing,sounds like radio static,2
+drill_4mm_02,95,88.79,unbearable hissing,sounds like radio static,2
+drill_4mm_02,96,89.72,jammed,jammed,3
+drill_4mm_02,97,90.65,unbearable hissing,sounds like radio static,2
+drill_4mm_02,98,91.59,unbearable hissing,sounds like radio static,2
+drill_4mm_02,99,92.52,unbearable hissing,sounds like radio static,2
+drill_4mm_02,100,93.46,unbearable hissing,sounds like radio static,2
+drill_4mm_02,101,94.39,unbearable hissing,sounds like radio static,2
+drill_4mm_02,102,95.33,unbearable hissing,sounds like radio static,2
+drill_4mm_02,103,96.26,rain noise,sounds like radio static,2
+drill_4mm_02,104,97.2,rain noise,rattle,2
+drill_4mm_02,105,98.13,rain noise,sounds like radio static,2
+drill_4mm_02,106,99.07,rain noise,sounds like radio static,2
+drill_4mm_02,107,100.0,jammed,jammed,3
+drill_4mm_03,1,3.85,normal hole,normal hole,0
+drill_4mm_03,2,7.69,normal hole,normal hole,0
+drill_4mm_03,3,11.54,onset of rattle,onset of rattle,1
+drill_4mm_03,4,15.38,onset of rattle,weak rattle,1
+drill_4mm_03,5,19.23,onset of rattle,weak rattle,1
+drill_4mm_03,6,23.08,onset of rattle,rattle,1
+drill_4mm_03,7,26.92,onset of rattle,rattle,1
+drill_4mm_03,8,30.77,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,9,34.62,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,10,38.46,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,11,42.31,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,12,46.15,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,13,50.0,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,14,53.85,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,15,57.69,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,16,61.54,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,17,65.38,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,18,69.23,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,19,73.08,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,20,76.92,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,21,80.77,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,22,84.62,rattle + jammed,jammed,3
+drill_4mm_03,23,88.46,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,24,92.31,sounds like radio static (unbearable from 17 onward),sounds like radio static,2
+drill_4mm_03,25,96.15,rattle + jammed,jammed,3
+drill_4mm_03,26,100.0,rattle + jammed,jammed,3
+drill_4mm_04,1,3.03,normal sound,normal hole,0
+drill_4mm_04,2,6.06,normal sound,normal hole,0
+drill_4mm_04,3,9.09,onset of weak rattle,onset of rattle,1
+drill_4mm_04,4,12.12,rattle + jammed,rattle + jammed,3
+drill_4mm_04,5,15.15,weak rattle at the end,rattle,1
+drill_4mm_04,6,18.18,weak rattle at the end,rattle,1
+drill_4mm_04,7,21.21,stronger rattle,rattle,1
+drill_4mm_04,8,24.24,stronger rattle,rattle,1
+drill_4mm_04,9,27.27,stronger rattle,rattle,1
+drill_4mm_04,10,30.3,stronger rattle,rattle,1
+drill_4mm_04,11,33.33,strange and strong rattle,strange and strong rattle,1
+drill_4mm_04,12,36.36,strange and strong rattle,strange and strong rattle,1
+drill_4mm_04,13,39.39,strange and strong rattle,strange and strong rattle,1
+drill_4mm_04,14,42.42,strange and strong rattle,strange and strong rattle,1
+drill_4mm_04,15,45.45,strange and strong rattle,strange and strong rattle,1
+drill_4mm_04,16,48.48,strange and strong rattle,strange and strong rattle,1
+drill_4mm_04,17,51.52,strange and strong rattle,strange and strong rattle,2
+drill_4mm_04,18,54.55,strange and strong rattle,strange and strong rattle,2
+drill_4mm_04,19,57.58,sounds like drizzle / untuned radio static,strange and strong rattle,2
+drill_4mm_04,20,60.61,sounds like drizzle / untuned radio static,strange and strong rattle,2
+drill_4mm_04,21,63.64,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,22,66.67,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,23,69.7,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,24,72.73,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,25,75.76,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,26,78.79,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,27,81.82,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,28,84.85,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,29,87.88,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,30,90.91,sounds like drizzle / untuned radio static,sounds like drizzle / untuned radio static,2
+drill_4mm_04,31,93.94,sounds like drizzle / untuned radio static + jammed,jammed,3
+drill_4mm_04,32,96.97,rattle + jammed,jammed,3
+drill_4mm_04,33,100.0,rattle + jammed,jammed,3
+drill_4mm_05,1,4.55,normal hole,normal hole,0
+drill_4mm_05,2,9.09,normal hole,normal hole,0
+drill_4mm_05,3,13.64,normal hole,normal hole,0
+drill_4mm_05,4,18.18,onset of rattle,normal hole,1
+drill_4mm_05,5,22.73,onset of rattle,onset of rattle,1
+drill_4mm_05,6,27.27,weak rattle at the end,weak rattle,1
+drill_4mm_05,7,31.82,weak rattle + jammed,jammed,3
+drill_4mm_05,8,36.36,weak rattle at the end,weak rattle,1
+drill_4mm_05,9,40.91,weak rattle at the end,strong rattle,1
+drill_4mm_05,10,45.45,strong rattle at the end,strong rattle,1
+drill_4mm_05,11,50.0,strong rattle at the end,strong rattle,2
+drill_4mm_05,12,54.55,sounds like light rain,strong rattle,2
+drill_4mm_05,13,59.09,sounds like light rain,strong rattle,2
+drill_4mm_05,14,63.64,sounds like light rain,weak rattle,2
+drill_4mm_05,15,68.18,sounds like light rain,weak rattle,2
+drill_4mm_05,16,72.73,weak rattle + JAMMED,jammed,3
+drill_4mm_05,17,77.27,weak rattle at the end,weak rattle,2
+drill_4mm_05,18,81.82,sounds like light rain,strong rattle,2
+drill_4mm_05,19,86.36,sounds like light rain + JAMMED,jammed,3
+drill_4mm_05,20,90.91,STRANGE AND LOUD NOISE,unbearable and strange noise,0
+drill_4mm_05,21,95.45,sounds like light rain,strong rattle,2
+drill_4mm_05,22,100.0,weak rattle + JAMMED,jammed,3
+drill_4mm_06,1,1.92,normal hole,normal hole,0
+drill_4mm_06,2,3.85,normal hole,normal hole,0
+drill_4mm_06,3,5.77,onset of rattle,onset of rattle,1
+drill_4mm_06,4,7.69,onset of rattle,rattle,1
+drill_4mm_06,5,9.62,strong rattle at the end,rattle,1
+drill_4mm_06,6,11.54,strong rattle at the end,rattle,1
+drill_4mm_06,7,13.46,strong rattle at the end,rattle,1
+drill_4mm_06,8,15.38,strong rattle at the end,rattle,1
+drill_4mm_06,9,17.31,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,10,19.23,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,11,21.15,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,12,23.08,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,13,25.0,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,14,26.92,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,15,28.85,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,16,30.77,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,17,32.69,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,18,34.62,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,19,36.54,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,20,38.46,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,21,40.38,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,22,42.31,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,23,44.23,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,24,46.15,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,25,48.08,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,26,50.0,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,27,51.92,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,28,53.85,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,29,55.77,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,30,57.69,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,31,59.62,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,32,61.54,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,33,63.46,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,34,65.38,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,35,67.31,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,36,69.23,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,37,71.15,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,38,73.08,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,39,75.0,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,40,76.92,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,41,78.85,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,42,80.77,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,43,82.69,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,44,84.62,sounds like rain + jammed,jammed,3
+drill_4mm_06,45,86.54,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,46,88.46,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,47,90.38,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,48,92.31,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,49,94.23,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,50,96.15,sounds like rain + jammed,jammed,3
+drill_4mm_06,51,98.08,sounds like rain / radio static,sounds like radio static,2
+drill_4mm_06,52,100.0,sounds like rain + jammed,jammed,3
+drill_4mm_07,1,1.67,normal hole,normal hole,0
+drill_4mm_07,2,3.33,jammed,jammed,3
+drill_4mm_07,3,5.0,rattle,rattle,1
+drill_4mm_07,4,6.67,rattle,rattle,1
+drill_4mm_07,5,8.33,rattle,rattle,1
+drill_4mm_07,6,10.0,rattle,rattle,1
+drill_4mm_07,7,11.67,rattle,rattle,1
+drill_4mm_07,8,13.33,rattle,rattle,1
+drill_4mm_07,9,15.0,jammed,jammed,3
+drill_4mm_07,10,16.67,rattle,rattle,1
+drill_4mm_07,11,18.33,rattle,rattle,1
+drill_4mm_07,12,20.0,rattle,rattle,1
+drill_4mm_07,13,21.67,rattle,rattle,1
+drill_4mm_07,14,23.33,jammed,jammed,3
+drill_4mm_07,15,25.0,rattle,rattle,1
+drill_4mm_07,16,26.67,rattle,rattle,1
+drill_4mm_07,17,28.33,rattle,rattle,1
+drill_4mm_07,18,30.0,rattle,rattle,1
+drill_4mm_07,19,31.67,rattle,rattle,1
+drill_4mm_07,20,33.33,rattle,rattle,1
+drill_4mm_07,21,35.0,rattle,rattle,1
+drill_4mm_07,22,36.67,rattle,rattle,1
+drill_4mm_07,23,38.33,rattle,rattle,1
+drill_4mm_07,24,40.0,rattle,rattle,1
+drill_4mm_07,25,41.67,rattle,rattle,1
+drill_4mm_07,26,43.33,rattle,rattle,1
+drill_4mm_07,27,45.0,rattle,rattle,1
+drill_4mm_07,28,46.67,rattle,rattle,1
+drill_4mm_07,29,48.33,rattle,rattle,1
+drill_4mm_07,30,50.0,rattle,rattle,2
+drill_4mm_07,31,51.67,rattle,rattle,2
+drill_4mm_07,32,53.33,hissing,rattle,2
+drill_4mm_07,33,55.0,hissing,rattle,2
+drill_4mm_07,34,56.67,hissing,rattle,2
+drill_4mm_07,35,58.33,hissing,rattle,2
+drill_4mm_07,36,60.0,hissing,rattle,2
+drill_4mm_07,37,61.67,hissing,rattle,2
+drill_4mm_07,38,63.33,hissing,rattle,2
+drill_4mm_07,39,65.0,hissing,rattle,2
+drill_4mm_07,40,66.67,hissing,rattle,2
+drill_4mm_07,41,68.33,hissing,rattle,2
+drill_4mm_07,42,70.0,hissing,rattle,2
+drill_4mm_07,43,71.67,hissing,rattle,2
+drill_4mm_07,44,73.33,hissing,rattle,2
+drill_4mm_07,45,75.0,hissing,rattle,2
+drill_4mm_07,46,76.67,hissing,rattle,2
+drill_4mm_07,47,78.33,hissing,rattle,2
+drill_4mm_07,48,80.0,hissing,rattle,2
+drill_4mm_07,49,81.67,hissing,rattle,2
+drill_4mm_07,50,83.33,jammed,jammed,3
+drill_4mm_07,51,85.0,"not jammed, jamming not audible but confirmed by logs","not jammed, jamming not audible but confirmed by logs",3
+drill_4mm_07,52,86.67,hissing,rattle,2
+drill_4mm_07,53,88.33,hissing,rattle,2
+drill_4mm_07,54,90.0,hissing,rattle,2
+drill_4mm_07,55,91.67,hissing,rattle,2
+drill_4mm_07,56,93.33,hissing,rattle,2
+drill_4mm_07,57,95.0,hissing,rattle,2
+drill_4mm_07,58,96.67,jammed,jammed,3
+drill_4mm_07,59,98.33,"not jammed, jamming not audible but confirmed by logs","not jammed, jamming not audible but confirmed by logs",3
+drill_4mm_07,60,100.0,jammed,jammed,3
+drill_4mm_08,1,5.0,normal hole,normal hole,0
+drill_4mm_08,2,10.0,normal hole,normal hole,0
+drill_4mm_08,3,15.0,onset of rattle,onset of rattle,1
+drill_4mm_08,4,20.0,rattle,rattle,1
+drill_4mm_08,5,25.0,rattle,rattle,1
+drill_4mm_08,6,30.0,rattle,rattle,1
+drill_4mm_08,7,35.0,rattle,rattle,1
+drill_4mm_08,8,40.0,rattle,rattle,1
+drill_4mm_08,9,45.0,rattle,rattle,1
+drill_4mm_08,10,50.0,rattle,rattle,2
+drill_4mm_08,11,55.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,12,60.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,13,65.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,14,70.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,15,75.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,16,80.0,static + jammed,jammed,3
+drill_4mm_08,17,85.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,18,90.0,sounds like radio static,sounds like radio static,2
+drill_4mm_08,19,95.0,static + jammed,jammed,3
+drill_4mm_08,20,100.0,static + jammed,jammed,3
+drill_4mm_09,1,5.56,normal hole,normal hole,0
+drill_4mm_09,2,11.11,normal hole,normal hole,0
+drill_4mm_09,3,16.67,normal hole,normal hole,0
+drill_4mm_09,4,22.22,normal hole,normal hole,0
+drill_4mm_09,5,27.78,normal hole,normal hole,0
+drill_4mm_09,6,33.33,onset of rattle,onset of rattle,1
+drill_4mm_09,7,38.89,rattle,weak rattle,1
+drill_4mm_09,8,44.44,rattle,rattle,1
+drill_4mm_09,9,50.0,rattle,rattle,2
+drill_4mm_09,10,55.56,rattle,rattle,2
+drill_4mm_09,11,61.11,rattle,rattle,2
+drill_4mm_09,12,66.67,rattle,rattle,2
+drill_4mm_09,13,72.22,strange rattle,rattle,2
+drill_4mm_09,14,77.78,strange rattle,strange rattle,2
+drill_4mm_09,15,83.33,strange rattle,strange rattle,2
+drill_4mm_09,16,88.89,strange rattle + jammed,jammed,3
+drill_4mm_09,17,94.44,rattle + jammed,jammed,3
+drill_4mm_09,18,100.0,rattle + jammed,jammed,3
+drill_4mm_10,1,5.26,normal hole,normal hole,0
+drill_4mm_10,2,10.53,onset of rattle,onset of rattle,1
+drill_4mm_10,3,15.79,weak rattle,rattle,1
+drill_4mm_10,4,21.05,weak rattle,rattle,1
+drill_4mm_10,5,26.32,weak rattle,rattle,1
+drill_4mm_10,6,31.58,rattle,rattle,1
+drill_4mm_10,7,36.84,rattle,rattle,1
+drill_4mm_10,8,42.11,rattle,rattle,1
+drill_4mm_10,9,47.37,rattle,rattle,1
+drill_4mm_10,10,52.63,rattle,rattle,2
+drill_4mm_10,11,57.89,rattle,rattle,2
+drill_4mm_10,12,63.16,rattle,rattle,2
+drill_4mm_10,13,68.42,rattle,rattle,2
+drill_4mm_10,14,73.68,rattle,rattle,2
+drill_4mm_10,15,78.95,rattle + jammed,jammed,3
+drill_4mm_10,16,84.21,rattle,rattle,2
+drill_4mm_10,17,89.47,rattle + jammed,jammed,3
+drill_4mm_10,18,94.74,rattle,rattle,2
+drill_4mm_10,19,100.0,rattle + jammed,jammed,3
+drill_4mm_11,1,4.55,normal hole,normal hole,0
+drill_4mm_11,2,9.09,normal hole,normal hole,0
+drill_4mm_11,3,13.64,normal hole,normal hole,0
+drill_4mm_11,4,18.18,onset of rattle,onset of rattle,1
+drill_4mm_11,5,22.73,rattle,rattle,1
+drill_4mm_11,6,27.27,rattle,rattle,1
+drill_4mm_11,7,31.82,rattle,rattle,1
+drill_4mm_11,8,36.36,rattle,rattle,1
+drill_4mm_11,9,40.91,rattle,rattle,1
+drill_4mm_11,10,45.45,rattle,rattle,1
+drill_4mm_11,11,50.0,rattle,rattle,2
+drill_4mm_11,12,54.55,rattle,rattle,2
+drill_4mm_11,13,59.09,rattle + jammed,jammed,3
+drill_4mm_11,14,63.64,rattle,rattle,2
+drill_4mm_11,15,68.18,rattle,rattle,2
+drill_4mm_11,16,72.73,rattle,rattle,2
+drill_4mm_11,17,77.27,sounds like radio static,sounds like radio static,2
+drill_4mm_11,18,81.82,sounds like radio static,sounds like radio static,2
+drill_4mm_11,19,86.36,sounds like radio static,sounds like radio static,2
+drill_4mm_11,20,90.91,sounds like radio static,sounds like radio static,2
+drill_4mm_11,21,95.45,rattle + jammed,jammed,3
+drill_4mm_11,22,100.0,rattle + jammed,jammed,3
+drill_4mm_12,1,2.22,normal hole,normal hole,0
+drill_4mm_12,2,4.44,onset of rattle,onset of rattle,1
+drill_4mm_12,3,6.67,weak rattle,rattle,1
+drill_4mm_12,4,8.89,rattle + jammed,jammed,3
+drill_4mm_12,5,11.11,rattle,rattle,1
+drill_4mm_12,6,13.33,rattle,rattle,1
+drill_4mm_12,7,15.56,rattle + jammed,jammed,3
+drill_4mm_12,8,17.78,rattle,rattle,1
+drill_4mm_12,9,20.0,rattle + jammed,jammed,3
+drill_4mm_12,10,22.22,rattle,rattle,1
+drill_4mm_12,11,24.44,rattle,rattle,1
+drill_4mm_12,12,26.67,rattle,rattle,1
+drill_4mm_12,13,28.89,rattle,rattle,1
+drill_4mm_12,14,31.11,rattle + jammed,jammed,3
+drill_4mm_12,15,33.33,rattle,rattle,1
+drill_4mm_12,16,35.56,rattle,rattle,1
+drill_4mm_12,17,37.78,rattle,rattle,1
+drill_4mm_12,18,40.0,sounds like radio static,sounds like radio static,2
+drill_4mm_12,19,42.22,sounds like radio static,sounds like radio static,2
+drill_4mm_12,20,44.44,sounds like radio static,sounds like radio static,2
+drill_4mm_12,21,46.67,sounds like radio static,sounds like radio static,2
+drill_4mm_12,22,48.89,sounds like radio static,sounds like radio static,2
+drill_4mm_12,23,51.11,sounds like radio static,sounds like radio static,2
+drill_4mm_12,24,53.33,sounds like radio static,sounds like radio static,2
+drill_4mm_12,25,55.56,sounds like radio static,sounds like radio static,2
+drill_4mm_12,26,57.78,sounds like radio static,sounds like radio static,2
+drill_4mm_12,27,60.0,sounds like radio static,sounds like radio static,2
+drill_4mm_12,28,62.22,sounds like radio static,sounds like radio static,2
+drill_4mm_12,29,64.44,sounds like radio static,sounds like radio static,2
+drill_4mm_12,30,66.67,sounds like radio static,sounds like radio static,2
+drill_4mm_12,31,68.89,rattle + jammed,jammed,3
+drill_4mm_12,32,71.11,rattle,sounds like radio static,2
+drill_4mm_12,33,73.33,rattle,sounds like radio static,2
+drill_4mm_12,34,75.56,rattle,sounds like radio static,2
+drill_4mm_12,35,77.78,rattle,sounds like radio static,2
+drill_4mm_12,36,80.0,sounds like radio static,sounds like radio static,2
+drill_4mm_12,37,82.22,rattle + jammed,jammed,3
+drill_4mm_12,38,84.44,sounds like radio static,sounds like radio static,2
+drill_4mm_12,39,86.67,rattle + jammed,jammed,3
+drill_4mm_12,40,88.89,sounds like radio static,sounds like radio static,2
+drill_4mm_12,41,91.11,sounds like radio static,sounds like radio static,2
+drill_4mm_12,42,93.33,sounds like radio static,sounds like radio static,2
+drill_4mm_12,43,95.56,rattle + jammed,jammed,3
+drill_4mm_12,44,97.78,sounds like radio static,sounds like radio static,2
+drill_4mm_12,45,100.0,rattle + jammed,jammed,3
+drill_4mm_13,1,2.44,normal hole,normal hole,0
+drill_4mm_13,2,4.88,normal hole,normal hole,0
+drill_4mm_13,3,7.32,rattle,rattle,1
+drill_4mm_13,4,9.76,rattle,rattle,1
+drill_4mm_13,5,12.2,rattle,rattle,1
+drill_4mm_13,6,14.63,rattle,rattle,1
+drill_4mm_13,7,17.07,jammed,jammed,3
+drill_4mm_13,8,19.51,rattle,rattle,1
+drill_4mm_13,9,21.95,rattle,rattle,1
+drill_4mm_13,10,24.39,rattle,rattle,1
+drill_4mm_13,11,26.83,rattle,rattle,1
+drill_4mm_13,12,29.27,rattle,rattle,1
+drill_4mm_13,13,31.71,rattle,rattle,1
+drill_4mm_13,14,34.15,jammed,jammed,3
+drill_4mm_13,15,36.59,hissing,rattle,2
+drill_4mm_13,16,39.02,rattle,rattle,1
+drill_4mm_13,17,41.46,jammed,jammed,3
+drill_4mm_13,18,43.9,hissing,rattle,2
+drill_4mm_13,19,46.34,rattle,rattle,1
+drill_4mm_13,20,48.78,hissing,rattle,2
+drill_4mm_13,21,51.22,hissing,rattle,2
+drill_4mm_13,22,53.66,hissing,rattle,2
+drill_4mm_13,23,56.1,hissing,rattle,2
+drill_4mm_13,24,58.54,hissing,rattle,2
+drill_4mm_13,25,60.98,hissing,rattle,2
+drill_4mm_13,26,63.41,hissing,rattle,2
+drill_4mm_13,27,65.85,hissing,rattle,2
+drill_4mm_13,28,68.29,hissing,rattle,2
+drill_4mm_13,29,70.73,jammed,jammed,3
+drill_4mm_13,30,73.17,hissing,rattle,2
+drill_4mm_13,31,75.61,rattle,rattle,2
+drill_4mm_13,32,78.05,hissing,rattle,2
+drill_4mm_13,33,80.49,jammed,jammed,3
+drill_4mm_13,34,82.93,hissing,rattle,2
+drill_4mm_13,35,85.37,rattle,rattle,2
+drill_4mm_13,36,87.8,hissing,rattle,2
+drill_4mm_13,37,90.24,hissing,rattle,2
+drill_4mm_13,38,92.68,jammed,jammed,3
+drill_4mm_13,39,95.12,jammed,jammed,3
+drill_4mm_13,40,97.56,rattle,rattle,2
+drill_4mm_13,41,100.0,rattle,rattle,2
+drill_4mm_14,1,5.0,jammed,jammed,3
+drill_4mm_14,2,10.0,normal hole,normal hole,0
+drill_4mm_14,3,15.0,onset of rattle,onset of rattle,1
+drill_4mm_14,4,20.0,rattle,rattle,1
+drill_4mm_14,5,25.0,rattle,rattle,1
+drill_4mm_14,6,30.0,rattle,rattle,1
+drill_4mm_14,7,35.0,rattle,rattle,1
+drill_4mm_14,8,40.0,rattle,rattle,1
+drill_4mm_14,9,45.0,jammed,jammed,3
+drill_4mm_14,10,50.0,rattle,rattle,2
+drill_4mm_14,11,55.0,rattle,rattle,2
+drill_4mm_14,12,60.0,rattle,rattle,2
+drill_4mm_14,13,65.0,jammed,jammed,3
+drill_4mm_14,14,70.0,jammed,jammed,3
+drill_4mm_14,15,75.0,rattle,rattle,2
+drill_4mm_14,16,80.0,jammed,jammed,3
+drill_4mm_14,17,85.0,rattle,rattle,2
+drill_4mm_14,18,90.0,sounds like radio static,sounds like radio static,2
+drill_4mm_14,19,95.0,sounds like radio static,sounds like radio static,2
+drill_4mm_14,20,100.0,jammed,jammed,3
+drill_4mm_15,1,1.22,normal hole,normal hole,0
+drill_4mm_15,2,2.44,normal hole,normal hole,0
+drill_4mm_15,3,3.66,jammed,jammed,3
+drill_4mm_15,4,4.88,normal hole,normal hole,0
+drill_4mm_15,5,6.1,normal hole,normal hole,0
+drill_4mm_15,6,7.32,normal hole,normal hole,0
+drill_4mm_15,7,8.54,normal hole,normal hole,0
+drill_4mm_15,8,9.76,normal hole,normal hole,0
+drill_4mm_15,9,10.98,normal hole,normal hole,0
+drill_4mm_15,10,12.2,normal hole,normal hole,0
+drill_4mm_15,11,13.41,hissing,normal hole,2
+drill_4mm_15,12,14.63,rattle,onset of rattle,1
+drill_4mm_15,13,15.85,normal hole,normal hole,0
+drill_4mm_15,14,17.07,normal hole,normal hole,0
+drill_4mm_15,15,18.29,rattle,rattle,1
+drill_4mm_15,16,19.51,rattle,rattle,1
+drill_4mm_15,17,20.73,rattle,rattle,1
+drill_4mm_15,18,21.95,rattle,rattle,1
+drill_4mm_15,19,23.17,rattle,rattle,1
+drill_4mm_15,20,24.39,rattle,rattle,1
+drill_4mm_15,21,25.61,rattle,rattle,1
+drill_4mm_15,22,26.83,rattle,rattle,1
+drill_4mm_15,23,28.05,rattle,rattle,1
+drill_4mm_15,24,29.27,rattle,rattle,1
+drill_4mm_15,25,30.49,rattle,rattle,1
+drill_4mm_15,26,31.71,rattle,rattle,1
+drill_4mm_15,27,32.93,rattle,rattle,1
+drill_4mm_15,28,34.15,rattle,rattle,1
+drill_4mm_15,29,35.37,sounds like hissing,rattle,2
+drill_4mm_15,30,36.59,sounds like hissing,rattle,2
+drill_4mm_15,31,37.8,rattle,rattle,1
+drill_4mm_15,32,39.02,rattle,rattle,1
+drill_4mm_15,33,40.24,sounds like hissing,rattle,2
+drill_4mm_15,34,41.46,rattle,rattle,1
+drill_4mm_15,35,42.68,sounds like hissing,rattle,2
+drill_4mm_15,36,43.9,sounds like hissing,rattle,2
+drill_4mm_15,37,45.12,hissing,sounds like hissing,2
+drill_4mm_15,38,46.34,hissing,sounds like hissing,2
+drill_4mm_15,39,47.56,hissing,sounds like hissing,2
+drill_4mm_15,40,48.78,hissing,sounds like hissing,2
+drill_4mm_15,41,50.0,hissing,sounds like hissing,2
+drill_4mm_15,42,51.22,hissing,sounds like hissing,2
+drill_4mm_15,43,52.44,hissing,sounds like hissing,2
+drill_4mm_15,44,53.66,hissing,sounds like hissing,2
+drill_4mm_15,45,54.88,jammed,jammed,3
+drill_4mm_15,46,56.1,hissing,sounds like hissing,2
+drill_4mm_15,47,57.32,hissing,sounds like hissing,2
+drill_4mm_15,48,58.54,hissing,sounds like hissing,2
+drill_4mm_15,49,59.76,hissing,sounds like hissing,2
+drill_4mm_15,50,60.98,hissing,sounds like hissing,2
+drill_4mm_15,51,62.2,hissing,sounds like hissing,2
+drill_4mm_15,52,63.41,jammed,jammed,3
+drill_4mm_15,53,64.63,hissing,sounds like hissing,2
+drill_4mm_15,54,65.85,hissing,sounds like hissing,2
+drill_4mm_15,55,67.07,hissing,sounds like hissing,2
+drill_4mm_15,56,68.29,hissing,sounds like hissing,2
+drill_4mm_15,57,69.51,hissing,sounds like hissing,2
+drill_4mm_15,58,70.73,hissing,sounds like hissing,2
+drill_4mm_15,59,71.95,hissing,sounds like hissing,2
+drill_4mm_15,60,73.17,hissing,sounds like hissing,2
+drill_4mm_15,61,74.39,hissing,sounds like hissing,2
+drill_4mm_15,62,75.61,hissing,sounds like hissing,2
+drill_4mm_15,63,76.83,hissing,sounds like hissing,2
+drill_4mm_15,64,78.05,hissing,sounds like hissing,2
+drill_4mm_15,65,79.27,hissing,sounds like hissing,2
+drill_4mm_15,66,80.49,hissing,sounds like hissing,2
+drill_4mm_15,67,81.71,hissing,sounds like hissing,2
+drill_4mm_15,68,82.93,jammed,jammed,3
+drill_4mm_15,69,84.15,hissing,sounds like hissing,2
+drill_4mm_15,70,85.37,hissing,sounds like hissing,2
+drill_4mm_15,71,86.59,hissing,sounds like hissing,2
+drill_4mm_15,72,87.8,hissing,sounds like hissing,2
+drill_4mm_15,73,89.02,hissing,sounds like hissing,2
+drill_4mm_15,74,90.24,hissing,sounds like hissing,2
+drill_4mm_15,75,91.46,jammed,jammed,3
+drill_4mm_15,76,92.68,hissing,sounds like hissing,2
+drill_4mm_15,77,93.9,hissing,sounds like hissing,2
+drill_4mm_15,78,95.12,jammed,jammed,3
+drill_4mm_15,79,96.34,hissing,sounds like hissing,2
+drill_4mm_15,80,97.56,jammed,jammed,3
+drill_4mm_15,81,98.78,hissing,sounds like hissing,2
+drill_4mm_15,82,100.0,jammed,jammed,3
+drill_4mm_16,1,1.85,normal,normal,0
+drill_4mm_16,2,3.7,normal,normal,0
+drill_4mm_16,3,5.56,rattle,rattle,1
+drill_4mm_16,4,7.41,rattle,rattle,1
+drill_4mm_16,5,9.26,stronger rattle,stronger rattle,1
+drill_4mm_16,6,11.11,stronger rattle,stronger rattle,1
+drill_4mm_16,7,12.96,stronger rattle,stronger rattle,1
+drill_4mm_16,8,14.81,stronger rattle,stronger rattle,1
+drill_4mm_16,9,16.67,stronger rattle,stronger rattle,1
+drill_4mm_16,10,18.52,jammed,jammed,3
+drill_4mm_16,11,20.37,stronger rattle,stronger rattle,1
+drill_4mm_16,12,22.22,stronger rattle,stronger rattle,1
+drill_4mm_16,13,24.07,stronger rattle,stronger rattle,1
+drill_4mm_16,14,25.93,stronger rattle,stronger rattle,1
+drill_4mm_16,15,27.78,stronger rattle,stronger rattle,1
+drill_4mm_16,16,29.63,stronger rattle,stronger rattle,1
+drill_4mm_16,17,31.48,hissing,stronger rattle,2
+drill_4mm_16,18,33.33,hissing,stronger rattle,2
+drill_4mm_16,19,35.19,hissing,stronger rattle,2
+drill_4mm_16,20,37.04,hissing,stronger rattle,2
+drill_4mm_16,21,38.89,hissing,stronger rattle,2
+drill_4mm_16,22,40.74,hissing,stronger rattle,2
+drill_4mm_16,23,42.59,hissing,stronger rattle,2
+drill_4mm_16,24,44.44,hissing,stronger rattle,2
+drill_4mm_16,25,46.3,hissing,stronger rattle,2
+drill_4mm_16,26,48.15,hissing,stronger rattle,2
+drill_4mm_16,27,50.0,hissing,stronger rattle,2
+drill_4mm_16,28,51.85,hissing,stronger rattle,2
+drill_4mm_16,29,53.7,hissing,stronger rattle,2
+drill_4mm_16,30,55.56,hissing,stronger rattle,2
+drill_4mm_16,31,57.41,hissing,stronger rattle,2
+drill_4mm_16,32,59.26,hissing,stronger rattle,2
+drill_4mm_16,33,61.11,hissing,stronger rattle,2
+drill_4mm_16,34,62.96,hissing,stronger rattle,2
+drill_4mm_16,35,64.81,hissing,stronger rattle,2
+drill_4mm_16,36,66.67,hissing,stronger rattle,2
+drill_4mm_16,37,68.52,hissing,stronger rattle,2
+drill_4mm_16,38,70.37,hissing,stronger rattle,2
+drill_4mm_16,39,72.22,hissing,stronger rattle,2
+drill_4mm_16,40,74.07,hissing,stronger rattle,2
+drill_4mm_16,41,75.93,hissing,stronger rattle,2
+drill_4mm_16,42,77.78,hissing,stronger rattle,2
+drill_4mm_16,43,79.63,hissing,stronger rattle,2
+drill_4mm_16,44,81.48,hissing,stronger rattle,2
+drill_4mm_16,45,83.33,hissing,stronger rattle,2
+drill_4mm_16,46,85.19,hissing,stronger rattle,2
+drill_4mm_16,47,87.04,hissing,stronger rattle,2
+drill_4mm_16,48,88.89,jammed,jammed,3
+drill_4mm_16,49,90.74,hissing,stronger rattle,2
+drill_4mm_16,50,92.59,jammed,jammed,3
+drill_4mm_16,51,94.44,hissing,stronger rattle,2
+drill_4mm_16,52,96.3,hissing,stronger rattle,2
+drill_4mm_16,53,98.15,jammed,jammed,3
+drill_4mm_16,54,100.0,jammed,jammed,3
+drill_4mm_17,1,2.78,normal hole,normal hole,0
+drill_4mm_17,2,5.56,rattle,onset of rattle,1
+drill_4mm_17,3,8.33,rattle,rattle,1
+drill_4mm_17,4,11.11,rattle,rattle,1
+drill_4mm_17,5,13.89,jammed,jammed,3
+drill_4mm_17,6,16.67,rattle,rattle,1
+drill_4mm_17,7,19.44,rattle,rattle,1
+drill_4mm_17,8,22.22,rattle,rattle,1
+drill_4mm_17,9,25.0,rattle,rattle,1
+drill_4mm_17,10,27.78,rattle,rattle,1
+drill_4mm_17,11,30.56,sounds like radio static,rattle,2
+drill_4mm_17,12,33.33,jammed,jammed,3
+drill_4mm_17,13,36.11,sounds like radio static,rattle,2
+drill_4mm_17,14,38.89,sounds like radio static,rattle,2
+drill_4mm_17,15,41.67,sounds like radio static,sounds like radio static,2
+drill_4mm_17,16,44.44,sounds like radio static,sounds like radio static,2
+drill_4mm_17,17,47.22,sounds like radio static,sounds like radio static,2
+drill_4mm_17,18,50.0,sounds like radio static,sounds like radio static,2
+drill_4mm_17,19,52.78,sounds like radio static,sounds like radio static,2
+drill_4mm_17,20,55.56,sounds like radio static,sounds like radio static,2
+drill_4mm_17,21,58.33,sounds like radio static,sounds like radio static,2
+drill_4mm_17,22,61.11,sounds like radio static,sounds like radio static,2
+drill_4mm_17,23,63.89,sounds like radio static,sounds like radio static,2
+drill_4mm_17,24,66.67,jammed,jammed,3
+drill_4mm_17,25,69.44,sounds like radio static,sounds like radio static,2
+drill_4mm_17,26,72.22,sounds like radio static,sounds like radio static,2
+drill_4mm_17,27,75.0,sounds like radio static,sounds like radio static,2
+drill_4mm_17,28,77.78,sounds like radio static,sounds like radio static,2
+drill_4mm_17,29,80.56,sounds like radio static,sounds like radio static,2
+drill_4mm_17,30,83.33,jammed,jammed,3
+drill_4mm_17,31,86.11,sounds like radio static,sounds like radio static,2
+drill_4mm_17,32,88.89,jammed,jammed,3
+drill_4mm_17,33,91.67,sounds like radio static,sounds like radio static,2
+drill_4mm_17,34,94.44,sounds like radio static,sounds like radio static,2
+drill_4mm_17,35,97.22,jammed,jammed,3
+drill_4mm_17,36,100.0,jammed,jammed,3
+drill_4mm_18,1,3.45,normal hole,normal hole,0
+drill_4mm_18,2,6.9,normal hole,normal hole,0
+drill_4mm_18,3,10.34,onset of rattle,onset of rattle,1
+drill_4mm_18,4,13.79,onset of rattle,onset of rattle,1
+drill_4mm_18,5,17.24,rattle,sounds like radio static,2
+drill_4mm_18,6,20.69,rattle,sounds like radio static,2
+drill_4mm_18,7,24.14,rattle,sounds like radio static,2
+drill_4mm_18,8,27.59,rattle,sounds like radio static,2
+drill_4mm_18,9,31.03,rattle,sounds like radio static,2
+drill_4mm_18,10,34.48,sounds like radio static,sounds like radio static,2
+drill_4mm_18,11,37.93,sounds like radio static,sounds like radio static,2
+drill_4mm_18,12,41.38,sounds like radio static,sounds like radio static,2
+drill_4mm_18,13,44.83,jammed,jammed,3
+drill_4mm_18,14,48.28,sounds like radio static,sounds like radio static,2
+drill_4mm_18,15,51.72,sounds like radio static,sounds like radio static,2
+drill_4mm_18,16,55.17,sounds like radio static,sounds like radio static,2
+drill_4mm_18,17,58.62,sounds like radio static,sounds like radio static,2
+drill_4mm_18,18,62.07,sounds like radio static,sounds like radio static,2
+drill_4mm_18,19,65.52,sounds like radio static,sounds like radio static,2
+drill_4mm_18,20,68.97,sounds like radio static,sounds like radio static,2
+drill_4mm_18,21,72.41,sounds like radio static,sounds like radio static,2
+drill_4mm_18,22,75.86,jammed,jammed,3
+drill_4mm_18,23,79.31,sounds like radio static,sounds like radio static,2
+drill_4mm_18,24,82.76,jammed,jammed,3
+drill_4mm_18,25,86.21,sounds like radio static,sounds like radio static,2
+drill_4mm_18,26,89.66,jammed,jammed,3
+drill_4mm_18,27,93.1,sounds like radio static,sounds like radio static,2
+drill_4mm_18,28,96.55,sounds like radio static,different and loud sound,2
+drill_4mm_18,29,100.0,jammed,jammed,3
+drill_4mm_19,1,4.0,normal hole,normal hole,0
+drill_4mm_19,2,8.0,onset of rattle,onset of rattle,1
+drill_4mm_19,3,12.0,rattle,rattle,1
+drill_4mm_19,4,16.0,rattle,rattle,1
+drill_4mm_19,5,20.0,rattle,rattle,1
+drill_4mm_19,6,24.0,rattle,rattle,1
+drill_4mm_19,7,28.0,rattle,rattle,1
+drill_4mm_19,8,32.0,rattle,rattle,1
+drill_4mm_19,9,36.0,rattle,rattle,1
+drill_4mm_19,10,40.0,rattle,rattle,1
+drill_4mm_19,11,44.0,rattle,rattle,1
+drill_4mm_19,12,48.0,rattle,rattle,1
+drill_4mm_19,13,52.0,rattle,rattle,2
+drill_4mm_19,14,56.0,rattle,rattle,2
+drill_4mm_19,15,60.0,rattle,rattle,2
+drill_4mm_19,16,64.0,rattle,rattle,2
+drill_4mm_19,17,68.0,rattle,rattle,2
+drill_4mm_19,18,72.0,rattle,rattle,2
+drill_4mm_19,19,76.0,sounds like radio static,rattle,2
+drill_4mm_19,20,80.0,sounds like radio static,sounds like radio static,2
+drill_4mm_19,21,84.0,sounds like radio static,sounds like radio static,2
+drill_4mm_19,22,88.0,jammed,jammed,3
+drill_4mm_19,23,92.0,jammed,jammed,3
+drill_4mm_19,24,96.0,jammed,jammed,3
+drill_4mm_19,25,100.0,jammed,jammed,3
+drill_4mm_20,1,2.44,normal,normal hole,0
+drill_4mm_20,2,4.88,normal,normal hole,0
+drill_4mm_20,3,7.32,onset of rattle,onset of rattle,1
+drill_4mm_20,4,9.76,rattle,rattle,1
+drill_4mm_20,5,12.2,rattle,rattle,1
+drill_4mm_20,6,14.63,sounds like radio static,sounds like radio static,2
+drill_4mm_20,7,17.07,sounds like radio static,sounds like radio static,2
+drill_4mm_20,8,19.51,sounds like radio static,sounds like radio static,2
+drill_4mm_20,9,21.95,sounds like radio static,sounds like radio static,2
+drill_4mm_20,10,24.39,sounds like radio static,sounds like radio static,2
+drill_4mm_20,11,26.83,sounds like radio static,sounds like radio static,2
+drill_4mm_20,12,29.27,sounds like radio static,sounds like radio static,2
+drill_4mm_20,13,31.71,sounds like radio static,sounds like radio static,2
+drill_4mm_20,14,34.15,sounds like radio static,sounds like radio static,2
+drill_4mm_20,15,36.59,sounds like radio static,sounds like radio static,2
+drill_4mm_20,16,39.02,sounds like radio static,sounds like radio static,2
+drill_4mm_20,17,41.46,sounds like radio static,sounds like radio static,2
+drill_4mm_20,18,43.9,sounds like radio static,sounds like radio static,2
+drill_4mm_20,19,46.34,sounds like radio static,sounds like radio static,2
+drill_4mm_20,20,48.78,sounds like radio static,sounds like radio static,2
+drill_4mm_20,21,51.22,sounds like radio static,sounds like radio static,2
+drill_4mm_20,22,53.66,sounds like radio static,sounds like radio static,2
+drill_4mm_20,23,56.1,sounds like radio static,sounds like radio static,2
+drill_4mm_20,24,58.54,sounds like radio static,sounds like radio static,2
+drill_4mm_20,25,60.98,sounds like radio static,sounds like radio static,2
+drill_4mm_20,26,63.41,jammed,jammed,3
+drill_4mm_20,27,65.85,sounds like radio static,sounds like radio static,2
+drill_4mm_20,28,68.29,jammed,jammed,3
+drill_4mm_20,29,70.73,sounds like radio static,sounds like radio static,2
+drill_4mm_20,30,73.17,sounds like radio static,sounds like radio static,2
+drill_4mm_20,31,75.61,sounds like radio static,sounds like radio static,2
+drill_4mm_20,32,78.05,sounds like radio static,sounds like radio static,2
+drill_4mm_20,33,80.49,jammed,jammed,3
+drill_4mm_20,34,82.93,jammed,jammed,3
+drill_4mm_20,35,85.37,sounds like radio static,sounds like radio static,2
+drill_4mm_20,36,87.8,sounds like radio static,sounds like radio static,2
+drill_4mm_20,37,90.24,sounds like radio static,sounds like radio static,2
+drill_4mm_20,38,92.68,sounds like radio static,sounds like radio static,2
+drill_4mm_20,39,95.12,jammed,jammed,3
+drill_4mm_20,40,97.56,sounds like radio static,sounds like radio static,2
+drill_4mm_20,41,100.0,jammed,jammed,3
