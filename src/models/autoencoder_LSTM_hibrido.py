@@ -14,12 +14,12 @@ plt.rcParams.update({
     "ps.fonttype": 42
 })
 
-if not os.path.exists("resultados_LSTM_ae.csv"):
-    raise FileNotFoundError("Gere o arquivo 'resultados_LSTM_ae.csv' executando o Mestre primeiro!")
+hybrid_file = "resultados_LSTM_ae.csv"
+if not os.path.exists(hybrid_file):
+    raise FileNotFoundError(f"Generate the file '{hybrid_file}' by running the pipeline first")
 
-df_lstm = pd.read_csv("resultados_LSTM_ae.csv")
+df_lstm = pd.read_csv(hybrid_file)
 
-# 2. CÁLCULO DOS RESULTADOS REGIONAIS E LEAD-TIMES
 regional_results = []
 lead_times = []
 
@@ -27,7 +27,6 @@ for drill in df_lstm['drill'].unique():
     sub_lstm = df_lstm[df_lstm['drill'] == drill].sort_values('hole').reset_index(drop=True)
     n_holes = len(sub_lstm)
 
-    # Resgata o lead-time real calculado pelo mestre unificado com janela=8
     alert_indices = np.where(sub_lstm['prediction'] == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1
@@ -45,52 +44,13 @@ for drill in df_lstm['drill'].unique():
 df_res = pd.DataFrame(regional_results)
 cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
 
-# 3. EXTRAÇÃO DAS MÉTRICAS OPERACIONAIS
 f1 = f1_score(df_res['y_true'], df_res['y_pred'])
 recall = recall_score(df_res['y_true'], df_res['y_pred'])
 acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
 auc = roc_auc_score(df_lstm['label'], df_lstm['hybrid_mse'])
 
-print("\nLSTM AUTOENCODER CONSOLIDADO")
 print(f"F1-score: {f1:.4f}")
 print(f"Recall:   {recall:.4f}")
 print(f"Accuracy: {acc:.4f}")
 print(f"AUC:      {auc:.4f}")
 print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-
-# 4. PLOTAGEM DA MATRIZ DE CONFUSÃO 
-plt.figure(figsize=(3.5, 3))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', cbar=False,
-            annot_kws={"size": 12, "weight": "bold"},
-            xticklabels=['No Alert', 'Alert'],
-            yticklabels=['Normal', 'Anomaly'])
-
-plt.xlabel("Predicted Label")
-plt.ylabel("True Label")
-plt.tight_layout()
-
-plt.savefig("matriz_lstm.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("matriz_lstm.png", dpi=300, bbox_inches='tight')
-plt.show()
-
-# 5. PLOTAGEM DA CURVA ROC 
-fpr, tpr, _ = roc_curve(df_lstm['label'], df_lstm['hybrid_mse'])
-
-df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
-df_roc.to_csv("roc_lstm_hibrido_data.csv", index=False)
-
-plt.figure(figsize=(3.5, 3))
-plt.plot(fpr, tpr, color='#7209b7', linewidth=1.5, label=f'AUC = {auc:.2f}')
-plt.plot([0, 1], [0, 1], color='navy', linestyle='--', linewidth=1)
-
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-plt.legend(loc="lower right")
-plt.grid(True, linestyle=':', alpha=0.5)
-plt.tight_layout()
-
-plt.savefig("roc_autoencoder_LSTM_hibrido.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("roc_autoencoder_LSTM_hibrido.png", dpi=300, bbox_inches='tight')
-plt.show()
-
-print("Relatórios e plots individuais do LSTM-AE gerados com total estabilidade!")

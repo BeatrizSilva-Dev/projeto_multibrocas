@@ -19,13 +19,12 @@ plt.rcParams.update({
     "ps.fonttype": 42
 })
 
-arquivo_comum = "resultados_autoencoder_comum.csv"
-if not os.path.exists(arquivo_comum):
-    raise FileNotFoundError(f"Gere o arquivo '{arquivo_comum}' executando o pipeline comum primeiro!")
+common_file = "results_autoencoder_common.csv"
+if not os.path.exists(common_file):
+    raise FileNotFoundError(f"Generate the file '{common_file}' by running the pipeline first")
 
-df_mlp = pd.read_csv(arquivo_comum)
+df_mlp = pd.read_csv(common_file)
 
-# 2. CÁLCULO DOS RESULTADOS REGIONAIS E LEAD-TIMES 
 regional_results = []
 lead_times = []
 
@@ -33,7 +32,6 @@ for drill in df_mlp['drill'].unique():
     sub_mlp = df_mlp[df_mlp['drill'] == drill].sort_values('hole').reset_index(drop=True)
     n_holes = len(sub_mlp)
 
-    # Resgata o lead-time real do arquivo unificado do canal audível
     alert_indices = np.where(sub_mlp['prediction'] == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1
@@ -51,54 +49,13 @@ for drill in df_mlp['drill'].unique():
 df_res = pd.DataFrame(regional_results)
 cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
 
-# 3. EXTRAÇÃO DAS MÉTRICAS OPERACIONAIS
 f1 = f1_score(df_res['y_true'], df_res['y_pred'])
 recall = recall_score(df_res['y_true'], df_res['y_pred'])
 acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
 auc = roc_auc_score(df_mlp['label'], df_mlp['hybrid_mse'])
 
-print("\nRESULTADOS CONSOLIDADOS MLP-AE (MICROFONE COMUM)")
 print(f"F1-score: {f1:.4f}")
 print(f"Recall:   {recall:.4f}")
 print(f"Accuracy: {acc:.4f}")
 print(f"AUC:      {auc:.4f}")
 print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-
-# 4. PLOTAGEM DA MATRIZ DE CONFUSÃO 
-cmap_turquesa = LinearSegmentedColormap.from_list("CustomTurquoise", ["#ffffff", "#2ec4b6"])
-
-plt.figure(figsize=(3.5, 3))
-sns.heatmap(cm, annot=True, fmt='d', cmap=cmap_turquesa, cbar=False,
-            annot_kws={"size": 12, "weight": "bold"},
-            xticklabels=['No Alert', 'Alert'],
-            yticklabels=['Normal', 'Anomaly'])
-
-plt.xlabel("Predicted Label", fontweight='bold')
-plt.ylabel("Ground Truth Label", fontweight='bold')
-plt.tight_layout()
-
-plt.savefig("matriz_autoencoder_comum.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("matriz_autoencoder_comum.png", dpi=300, bbox_inches='tight')
-plt.show()
-
-# 5. PLOTAGEM DA CURVA ROC
-fpr, tpr, _ = roc_curve(df_mlp['label'], df_mlp['hybrid_mse'])
-
-df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
-df_roc.to_csv("roc_mlp_comum_data.csv", index=False)
-
-plt.figure(figsize=(3.5, 3))
-plt.plot(fpr, tpr, color='#2ec4b6', linewidth=1.5, label=f'AUC = {auc:.2f}')
-plt.plot([0, 1], [0, 1], color='navy', linestyle='--', linewidth=1)
-
-plt.xlabel("False Positive Rate", fontweight='bold')
-plt.ylabel("True Positive Rate", fontweight='bold')
-plt.legend(loc="lower right")
-plt.grid(True, linestyle=':', alpha=0.6)
-plt.tight_layout()
-
-plt.savefig("roc_autoencoder_comum.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("roc_autoencoder_comum.png", dpi=300, bbox_inches='tight')
-plt.show()
-
-print("Relatórios individuais do MLP Autoencoder Comum exportados com consistência absoluta!")

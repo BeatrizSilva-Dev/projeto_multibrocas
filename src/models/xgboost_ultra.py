@@ -16,13 +16,12 @@ plt.rcParams.update({
 })
 
 
-arquivo_ultrasonic = "resultados_xgboost_ultrassonico.csv"
-if not os.path.exists(arquivo_ultrasonic):
-    raise FileNotFoundError(f"Gere o arquivo '{arquivo_ultrasonic}' executando o pipeline ultrassônico primeiro!")
+ultrasonic_file = "results_xgboost_ultrasonic.csv"
+if not os.path.exists(ultrasonic_file):
+    raise FileNotFoundError(f"Generate the file '{ultrasonic_file}' by running the ultrasonic pipeline first")
 
-df_xgb = pd.read_csv(arquivo_ultrasonic)
+df_xgb = pd.read_csv(ultrasonic_file)
 
-# CÁLCULO DOS RESULTADOS REGIONAIS E LEAD-TIMES 
 regional_results = []
 lead_times = []
 
@@ -30,7 +29,6 @@ for drill in df_xgb['drill'].unique():
     sub_xgb = df_xgb[df_xgb['drill'] == drill].sort_values('hole').reset_index(drop=True)
     n_holes = len(sub_xgb)
 
-    # Resgata o lead-time real do arquivo unificado do canal ultrassônico
     alert_indices = np.where(sub_xgb['prediction'] == 1)[0]
     if len(alert_indices) > 0:
         first_alert_hole = alert_indices[0] + 1
@@ -48,54 +46,13 @@ for drill in df_xgb['drill'].unique():
 df_res = pd.DataFrame(regional_results)
 cm = confusion_matrix(df_res['y_true'], df_res['y_pred'])
 
-# EXTRAÇÃO DAS MÉTRICAS OPERACIONAIS 
 f1 = f1_score(df_res['y_true'], df_res['y_pred'])
 recall = recall_score(df_res['y_true'], df_res['y_pred'])
 acc = accuracy_score(df_res['y_true'], df_res['y_pred'])
 auc = roc_auc_score(df_xgb['label'], df_xgb['score'])
 
-print("\nRESULTADOS CONSOLIDADOS XGBOOST (MICROFONE ULTRASSÔNICO)")
 print(f"F1-score: {f1:.4f}")
 print(f"Recall:   {recall:.4f}")
 print(f"Accuracy: {acc:.4f}")
 print(f"AUC:      {auc:.4f}")
 print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
-
-# PLOTAGEM DA MATRIZ DE CONFUSÃO 
-cmap_laranja = LinearSegmentedColormap.from_list("CustomOrange", ["#ffffff", "#e67e22"])
-
-plt.figure(figsize=(3.5, 3))
-sns.heatmap(cm, annot=True, fmt='d', cmap=cmap_laranja, cbar=False,
-            annot_kws={"size": 12, "weight": "bold"},
-            xticklabels=['No Alert', 'Alert'],
-            yticklabels=['Normal', 'Anomaly'])
-
-plt.xlabel("Predicted Label", fontweight='bold')
-plt.ylabel("Ground Truth Label", fontweight='bold')
-plt.tight_layout()
-
-plt.savefig("matriz_xgboost_ultrasonic.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("matriz_xgboost_ultrasonic.png", dpi=300, bbox_inches='tight')
-plt.show()
-
-# PLOTAGEM DA CURVA ROC
-fpr, tpr, _ = roc_curve(df_xgb['label'], df_xgb['score'])
-
-df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
-df_roc.to_csv("roc_xgboost_ultrasonic_data.csv", index=False)
-
-plt.figure(figsize=(3.5, 3))
-plt.plot(fpr, tpr, color='#e67e22', linewidth=1.5, label=f'AUC = {auc:.2f}')
-plt.plot([0, 1], [0, 1], color='black', linestyle='--', alpha=0.7)
-
-plt.xlabel("False Positive Rate", fontweight='bold')
-plt.ylabel("True Positive Rate", fontweight='bold')
-plt.legend(loc="lower right")
-plt.grid(True, linestyle=':', alpha=0.5)
-plt.tight_layout()
-
-plt.savefig("roc_xgboost_ultrasonic.pdf", dpi=600, bbox_inches='tight')
-plt.savefig("roc_xgboost_ultrasonic.png", dpi=300, bbox_inches='tight')
-plt.show()
-
-print("Relatórios e plots do XGBoost Ultrassônico gerados com consistência absoluta!")
