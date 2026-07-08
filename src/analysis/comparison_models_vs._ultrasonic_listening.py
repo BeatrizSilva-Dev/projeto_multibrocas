@@ -9,6 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
 from xgboost import XGBClassifier
 
+
 os.environ["PYTHONHASHSEED"] = "42"
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -37,7 +38,7 @@ from tensorflow.keras import backend as K
 
 ROOT_DATASET = r"C:\Users\...\segmented"
 LISTENING_FILE = "manual_listening_complete_project.csv"
-MIC_A = "reg_mics"  
+MIC_ULTRASONIC = "ultrasonic_mics" 
 TARGET_CHANNEL = "4"
 N_NORMAL = 5
 N_MFCC = 20
@@ -49,8 +50,8 @@ if not os.path.exists(LISTENING_FILE):
 df_esc = pd.read_csv(LISTENING_FILE)
 
 def clean_drill_name(name):
-    match = re.search(r"drill_4mm_(\d+)", str(name).lower())
-    return match.group(0) if match else str(name).lower().strip()
+    match = re.search(r"drill_4mm_(\d+)", str(a).lower())
+    return match.group(0) if match else str(a).lower().strip()
 
 df_esc['drill'] = df_esc['drill'].apply(clean_drill_name)
 
@@ -73,24 +74,24 @@ drills_data = {}
 for drill_folder in os.listdir(ROOT_DATASET):
     path = os.path.join(ROOT_DATASET, drill_folder)
     if not os.path.isdir(path): continue
-    dict_a = {}
+    dict_u = {}
     for root, _, fs in os.walk(path):
         for f in fs:
             if not f.lower().endswith(".wav"): continue
             if f"ch{TARGET_CHANNEL}" in f.lower() or f"tr{TARGET_CHANNEL}" in f.lower():
                 hole = extract_hole_number(f)
                 if hole is None: continue
-                if MIC_A in root.lower(): dict_a[hole] = os.path.join(root, f)
+                if MIC_ULTRASONIC in root.lower(): dict_u[hole] = os.path.join(root, f)
 
-    common_holes = sorted(list(dict_a.keys()))
+    common_holes = sorted(list(dict_u.keys()))
     if len(common_holes) <= N_NORMAL + 2: continue
     common_holes = common_holes[:-1]
     X_drill, y_drill, hole_indices = [], [], []
     for i, hole in enumerate(common_holes):
         try:
-            y_a, sr_a = librosa.load(dict_a[hole], sr=None)
-            feat_a = extract_features(y_a, sr_a)
-            X_drill.append(feat_a)
+            y_u, sr_u = librosa.load(dict_u[hole], sr=None)
+            feat_u = extract_features(y_u, sr_u)
+            X_drill.append(feat_u)
             y_drill.append(1 if (i/len(common_holes)) >= 0.8 else 0)
             hole_indices.append(hole)
         except: continue
@@ -220,12 +221,11 @@ df_final = pd.merge(df_models, df_esc, on=['drill', 'hole'])
 if df_final.empty:
     raise ValueError("CRITICAL ERROR: The data merge resulted in an empty dataset.")
 
-
 df_mlp_real = pd.DataFrame(continuous_mlp_data)
-df_mlp_real.to_csv("results_autoencoder_common.csv", index=False)
+df_mlp_real.to_csv("results_autoencoder_ultrasonic.csv", index=False)
 
 df_lstm_real = pd.DataFrame(continuous_lstm_data)
-df_lstm_real.to_csv("results_lstm_common.csv", index=False)
+df_lstm_real.to_csv("results_lstm_ultrasonic.csv", index=False)
 
 df_xgb_real = pd.DataFrame(continuous_xgb_data)
-df_xgb_real.to_csv("results_xgboost_common.csv", index=False)
+df_xgb_real.to_csv("results_xgboost_ultrasonic.csv", index=False)
