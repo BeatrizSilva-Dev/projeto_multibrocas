@@ -50,8 +50,8 @@ if not os.path.exists(LISTENING_FILE):
 df_esc = pd.read_csv(LISTENING_FILE)
 
 def clean_drill_name(name):
-    match = re.search(r"drill_4mm_(\d+)", str(a).lower())
-    return match.group(0) if match else str(a).lower().strip()
+    match = re.search(r"drill_4mm_(\d+)", str(name).lower())
+    return match.group(0) if match else str(name).lower().strip()
 
 df_esc['drill'] = df_esc['drill'].apply(clean_drill_name)
 
