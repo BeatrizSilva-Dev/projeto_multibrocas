@@ -262,6 +262,5 @@ df_complete = df_complete[['drill', 'hole', 'duration_pct', 'mic_ultrasonic', 'm
 
 df_complete.to_csv("manual_listening_complete_project.csv", index=False)
 
-print(f"[SUCCESS] Article mapping completed.")
 print(f"Masked drills list saved: {sorted(df_complete['drill'].unique())}")
 print(f"{len(df_complete)} rows saved with temporal index %!")
