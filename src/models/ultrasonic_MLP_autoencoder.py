@@ -55,3 +55,8 @@ print(f"Recall:   {recall:.4f}")
 print(f"Accuracy: {acc:.4f}")
 print(f"AUC:      {auc:.4f}")
 print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
+
+fpr, tpr, _ = roc_curve(df_mlp['label'], df_mlp['score'])
+
+df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+df_roc.to_csv("ultrasonic_mlp_roc_data.csv", index=False)

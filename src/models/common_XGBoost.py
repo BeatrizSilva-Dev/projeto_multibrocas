@@ -58,3 +58,8 @@ print(f"Recall:   {recall:.4f}")
 print(f"Accuracy: {accuracy:.4f}")
 print(f"AUC:      {auc_real:.4f}")
 print(f"Mean Lead-Time Window: {np.mean(lead_times):.2f} holes of anticipation")
+
+fpr, tpr, _ = roc_curve(df_xgb['label'], df_xgb['score'])
+
+df_roc = pd.DataFrame({'fpr': fpr, 'tpr': tpr})
+df_roc.to_csv("common_xgboost_roc_data.csv", index=False)

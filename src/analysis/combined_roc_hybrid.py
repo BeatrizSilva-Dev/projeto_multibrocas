@@ -19,17 +19,17 @@ def plot_all_9_curves_roc():
     plt.figure(figsize=(4.8, 4.4))
 
     try:
-        lstm_hyb = pd.read_csv("roc_lstm_hibrido_data.csv")
-        mlp_hyb  = pd.read_csv("roc_mlp_hibrido_data.csv")
-        xgb_hyb  = pd.read_csv("roc_xgboost_hibrido_data.csv")
+        lstm_hyb = pd.read_csv("hybrid_lstm_roc_data.csv")
+        mlp_hyb  = pd.read_csv("hybrid_mlp_roc_data.csv")
+        xgb_hyb  = pd.read_csv("hybrid_xgboost_roc_data.csv")
 
-        lstm_ult = pd.read_csv("roc_lstm_ultrasonic_data.csv")
-        mlp_ult  = pd.read_csv("roc_mlp_ultrasonic_data.csv")
-        xgb_ult  = pd.read_csv("roc_xgboost_ultrasonic_data.csv")
+        lstm_ult = pd.read_csv("ultrasonic_lstm_roc_data.csv")
+        mlp_ult  = pd.read_csv("ultrasonic_mlp_roc_data.csv")
+        xgb_ult  = pd.read_csv("ultrasonic_xgboost_roc_data.csv")
 
-        lstm_aud = pd.read_csv("roc_lstm_comum_data.csv")
-        mlp_aud  = pd.read_csv("roc_mlp_comum_data.csv")
-        xgb_aud  = pd.read_csv("roc_xgboost_comum_data.csv")
+        lstm_aud = pd.read_csv("common_lstm_roc_data.csv")
+        mlp_aud  = pd.read_csv("common_mlp_roc_data.csv")
+        xgb_aud  = pd.read_csv("common_xgboost_roc_data.csv")
 
         plt.plot(lstm_hyb['fpr'], lstm_hyb['tpr'], color='#7209b7', linestyle='-', linewidth=1.6,
                  label=f'LSTM-AE Hybrid (AUC = {auc(lstm_hyb["fpr"], lstm_hyb["tpr"]):.2f})')
