@@ -188,13 +188,14 @@ for drill_test in drills_data:
     for i in range(1, n_holes):
         if holes_above_xgb[i] == 1 and holes_above_xgb[i-1] == 1: pred_xgb[i] = 1
 
-    janela_mlp = 10
-    for i in range(janela_mlp - 1, n_holes):
-        if np.all(holes_above_mlp[i - (janela_mlp - 1):i + 1] == 1): pred_mlp[i] = 1
+    mlp_window = 10
+    for i in range(mlp_window - 1, n_holes):
+        if np.all(holes_above_mlp[i - (mlp_window
+ - 1):i + 1] == 1): pred_mlp[i] = 1
 
-    janela_lstm = 8
-    for i in range(janela_lstm - 1, n_holes):
-        if np.all(holes_above_lstm[i - (janela_lstm - 1):i + 1] == 1): pred_lstm[i] = 1
+    lstm_window = 8
+    for i in range(lstm_window - 1, n_holes):
+        if np.all(holes_above_lstm[i - (lstm_window - 1):i + 1] == 1): pred_lstm[i] = 1
 
     for i in range(n_holes):
         h_furo = test_holes[i]
