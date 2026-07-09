@@ -29,7 +29,7 @@ def generate_ieee_boxplot():
                 y_pred = df_drill[pred_col].values
 
                 score = f1_score(y_true, y_pred, zero_division=0)
-                f1_results.append({'drill': drill, 'f1_score': score, 'modelo': model})
+                f1_results.append({'drill': drill, 'f1_score': score, 'model': model})
             return pd.DataFrame(f1_results)
 
         df_f1_lstm = extract_true_f1_per_drill(df_lstm_raw, 'LSTM-AE')
@@ -65,11 +65,11 @@ def generate_ieee_boxplot():
 
         official_aligned_colors = ['#7209b7', '#2ec4b6', '#e67e22']
 
-        sns.boxplot(x='modelo', y='f1_score', data=df_plot,
+        sns.boxplot(x='model', y='f1_score', data=df_plot,
                     palette=official_aligned_colors,
                     width=0.45, linewidth=1.2, fliersize=0, ax=ax)
 
-        sns.stripplot(x='modelo', y='f1_score', data=df_plot,
+        sns.stripplot(x='model', y='f1_score', data=df_plot,
                       color='black', alpha=0.4, jitter=0.15, size=4, ax=ax)
 
         ax.set_ylabel('F1-score per Drill Unit', fontweight='bold')

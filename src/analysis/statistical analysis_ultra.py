@@ -29,7 +29,7 @@ def extract_true_f1_per_drill(df, model):
         y_pred = df_drill[pred_col].values
 
         score = f1_score(y_true, y_pred, zero_division=0)
-        f1_results.append({'drill': drill, 'f1_score': score, 'modelo': model})
+        f1_results.append({'drill': drill, 'f1_score': score, 'model': model})
         return pd.DataFrame(f1_results)
 
 df_f1_lstm = extract_true_f1_per_drill(df_lstm_raw, 'LSTM-AE')
