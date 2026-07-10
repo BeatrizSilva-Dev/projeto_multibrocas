@@ -1658,7 +1658,7 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 delta_sec=4.00
             )
         elif holes == [(0, 4804800)]:
-            print("limpo")
+            print("clean")
         elif holes == [(0, 1527296), (1527296, 3366400), (3366400, 5301760), (5301760, 7631872), (7631872, 11520000)]:
             holes = merge_holes_by_index(holes, 0, 1)
             holes = force_temporal_split_holes(
@@ -1746,7 +1746,7 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
                 delta_sec=4.00
             )
         elif holes == [(0, 2304000)]:
-            print("limpo")
+            print("clean")
         elif holes == [(0, 3175424), (3175424, 5259264), (5259264, 7610880), (7610880, 9894400), (9894400, 12259328), (12259328, 14587904), (14587904, 17088000)]:
             holes = adjust_hole_boundary(
                 holes, sr_ref,
@@ -3254,10 +3254,6 @@ def process_take_folder(take_path, drill, jams_list, metadata, hole_counter,
         holes = expand_holes_backward(holes)
         holes = merge_short_holes_by_recursion(holes, sr_ref, factor=0.6)
         if holes == [(0, 3209728), (3209728, 7968000)] or holes == [(0, 6019584), (6019584, 15926312)]:
-            print( "Aplicando split forçado para este caso específico")
-            print( "Aplicando split forçado para este caso específico")
-            print( "Aplicando split forçado para este caso específico")
-            print( "Aplicando split forçado para este caso específico")
             holes = force_temporal_split_holes(
                 holes,
                 sr_ref,
@@ -3664,7 +3660,7 @@ if __name__ == "__main__":
             print("global_hole_offset:", global_hole_offset)
             print("column_holes_count:", column_holes_count)
             print("column_start_id:", column_start_id)
-            print("hole_counter antes:", hole_counter)
+            print("hole_counter before:", hole_counter)
 
             if column_key != current_column_key:
                 if current_column_key is not None:
